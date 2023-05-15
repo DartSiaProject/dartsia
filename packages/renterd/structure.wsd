@@ -1,0 +1,57 @@
+@startsalt Renterd
+{
+    {
+        T
+        +assets
+        ++envs
+        +++.env
+        +lib
+        ++src
+        +++data
+        ++++services
+        +++++accounts_services
+        +++++consensus_services
+        +++++contract_services
+        +++++host_services
+        +++abstract
+        +++++accounts_absts
+        +++++consensus_absts
+        +++++contract_absts
+        +++++host_absts
+        +++logic
+        ++++controllers
+        +++++accounts_controllers
+        +++++consensus_controllers
+        +++++contract_controllers
+        +++++host_controllers
+        ++++routes
+        +++++accounts_route.dart
+        +++++consensus_route.dart
+        +++++contract_route.dart
+        +++++host_route.dart
+        +++injection.dart
+        ++renterd.dart
+        +test
+        ++src
+        +++data
+        ++++services
+        +++++accounts_services
+        +++++consensus_services
+        +++++contract_services
+        +++++host_services
+        +++logic
+        ++++controllers
+        +++++accounts_controllers
+        +++++consensus_controllers
+        +++++contract_controllers
+        +++++host_controllers
+        ++++routes
+        +++++accounts_route_test.dart
+        +++++consensus_route_test.dart
+        +++++contract_route_test.dart
+        +++++host_route_test.dart
+
+    }
+}
+
+@endsalt

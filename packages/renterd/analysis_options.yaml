@@ -1,0 +1,27 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+    language:
+        strict-casts: true
+        strict-raw-types: true
+        strict-inference: true
+
+linter:
+    rules:
+        prefer_const_constructors: true
+        prefer_final_fields: true
+        prefer_foreach: true
+        avoid_function_literals_in_foreach_calls: false
+        overridden_fields: false
+        annotate_overrides: false
+        unnecessary_overrides: false
+        use_full_hex_values_for_flutter_colors: false
+        avoid_print: false
+        unnecessary_new: false
+        prefer_initializing_formals: false
+        prefer_collection_literals: false
+        depend_on_referenced_packages: false
+        no_leading_underscores_for_local_identifiers: false
+        use_build_context_synchronously: false
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
