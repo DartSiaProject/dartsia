@@ -7,11 +7,11 @@ import '../../../abstract/accounts_absts/add_deposit_abst.dart';
 import '../../../apis/account_api.dart';
 
 /// Project : Renterd's Package
-/// Description : This file contains the function add a deposit whose Endpoint used for depositing or withdrawing tokens into/from an ephemeral account. The caller should hold a non-exlusive lock on the account.into response"
+/// Description : This file contains the function [add a deposit] whose Endpoint used for depositing or withdrawing tokens into/from an ephemeral account. The caller should hold a non-exlusive lock on the account.into response"
 /// Author : James Brel
 /// onCreated : 15/05/2023
 /// onUpadted : #
-/// Upadted by : James Brel
+/// Upadted by : #
 
 class AddDepositImpl implements AddDepositAbst {
   @override

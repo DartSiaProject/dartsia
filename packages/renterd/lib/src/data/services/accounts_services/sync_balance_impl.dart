@@ -7,11 +7,11 @@ import '../../../abstract/accounts_absts/sync_balance_abst.dart';
 import '../../../apis/account_api.dart';
 
 /// Project : Renterd's Package
-/// Description : This file contains the function sync Balance whose updateBalance, into response"
+/// Description : This file contains the function [sync Balance] whose updateBalance, into response"
 /// Author : James Brel
 /// onCreated : 15/05/2023
 /// onUpadted : #
-/// Upadted by : James Brel
+/// Upadted by : #
 class SyncBalanceImpl implements SyncBalanceAbst {
   @override
   Future<http.Response> syncBalance({

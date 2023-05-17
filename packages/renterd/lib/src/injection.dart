@@ -9,6 +9,9 @@ import 'abstract/accounts_absts/reset_drift_abst.dart';
 import 'abstract/accounts_absts/sync_balance_abst.dart';
 import 'abstract/accounts_absts/un_lock_an_account_abst.dart';
 import 'abstract/accounts_absts/update_balance_abst.dart';
+import 'abstract/consensus_absts/accept_block_abst.dart';
+import 'abstract/consensus_absts/get_sia_fund_fee_abst.dart';
+import 'abstract/consensus_absts/get_state_abst.dart';
 import 'data/services/accounts_services/add_deposit_impl.dart';
 import 'data/services/accounts_services/get_all_accounts_impl.dart';
 import 'data/services/accounts_services/get_an_account_by_id_impl.dart';
@@ -17,6 +20,9 @@ import 'data/services/accounts_services/reset_drift_impl.dart';
 import 'data/services/accounts_services/sync_balance_impl.dart';
 import 'data/services/accounts_services/un_lock_an_account_impl.dart';
 import 'data/services/accounts_services/update_balance_impl.dart';
+import 'data/services/consensus_services/accept_block_impl.dart';
+import 'data/services/consensus_services/get_sia_fund_fee_impl.dart';
+import 'data/services/consensus_services/get_state_impl.dart';
 import 'logic/controllers/accounts_controllers/add_deposit_controller.dart';
 import 'logic/controllers/accounts_controllers/get_all_accounts_controller.dart';
 import 'logic/controllers/accounts_controllers/get_an_account_by_id_controller.dart';
@@ -25,6 +31,9 @@ import 'logic/controllers/accounts_controllers/reset_drift_controller.dart';
 import 'logic/controllers/accounts_controllers/sync_balance_controller.dart';
 import 'logic/controllers/accounts_controllers/un_lock_an_account_controller.dart';
 import 'logic/controllers/accounts_controllers/update_balance_controller.dart';
+import 'logic/controllers/consensus_controllers/accept_block_controller.dart';
+import 'logic/controllers/consensus_controllers/get_sia_fund_fee_controller.dart';
+import 'logic/controllers/consensus_controllers/get_state_controller.dart';
 
 final sl = GetIt.instance;
 
@@ -39,6 +48,9 @@ Future<void> initialization() async {
   sl.registerLazySingleton<UpdateBalanceAbst>(() => UpdateBalanceImpl());
   sl.registerLazySingleton<SyncBalanceAbst>(() => SyncBalanceImpl());
   sl.registerLazySingleton<ResetDriftAbst>(() => ResetDriftImpl());
+  sl.registerLazySingleton<AcceptBlockAbst>(() => AcceptBlockImpl());
+  sl.registerLazySingleton<GetStateAbst>(() => GetStateImpl());
+  sl.registerLazySingleton<GetSiaFundFeeAbst>(() => GetSiaFundFeeImpl());
 
 //! Controller
 
@@ -58,4 +70,10 @@ Future<void> initialization() async {
       () => SyncBalanceController(syncBalanceAbst: sl.call()));
   sl.registerFactory<ResetDriftController>(
       () => ResetDriftController(resetDriftAbst: sl.call()));
+  sl.registerFactory<AcceptBlockController>(
+      () => AcceptBlockController(acceptBlockAbst: sl.call()));
+  sl.registerFactory<GetStateController>(
+      () => GetStateController(getStateAbst: sl.call()));
+  sl.registerFactory<GetSiaFundFeeController>(
+      () => GetSiaFundFeeController(getSiaFundFeeAbst: sl.call()));
 }

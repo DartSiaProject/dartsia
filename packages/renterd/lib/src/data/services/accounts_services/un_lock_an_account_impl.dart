@@ -7,11 +7,11 @@ import '../../../abstract/accounts_absts/un_lock_an_account_abst.dart';
 import '../../../apis/account_api.dart';
 
 /// Project : Renterd's Package
-/// Description : This file contains the function unLock An Account whose This is the counterpart to the account locking endpoint. The lock id returned when locking an account can be used to unlock it again before the locking duration has passed and the account gets unlocked automatically, into response"
+/// Description : This file contains the function [unLock An Account] whose This is the counterpart to the account locking endpoint. The lock id returned when locking an account can be used to unlock it again before the locking duration has passed and the account gets unlocked automatically, into response"
 /// Author : James Brel
 /// onCreated : 15/05/2023
 /// onUpadted : #
-/// Upadted by : James Brel
+/// Upadted by : #
 class UnLockAnAccountImpl implements UnLockAnAccountAbst {
   @override
   Future<http.Response> unLockAnAccount({

@@ -5,11 +5,11 @@ import '../../../abstract/accounts_absts/get_all_accounts_abst.dart';
 import '../../../apis/account_api.dart';
 
 /// Project : Renterd's Package
-/// Description : This file contains the function get all accounts whose Returns all known ephemeral accounts from the bus, into response"
+/// Description : This file contains the function [get all accounts] whose Returns all known ephemeral accounts from the bus, into response"
 /// Author : James Brel
 /// onCreated : 14/05/2023
 /// onUpadted : #
-/// Upadted by : James Brel
+/// Upadted by : #
 class GetAllAccountsImpl implements GetAllAccountsAbst {
   @override
   Future<http.Response> getAllAccounts() async {

@@ -7,11 +7,11 @@ import '../../../abstract/accounts_absts/update_balance_abst.dart';
 import '../../../apis/account_api.dart';
 
 /// Project : Renterd's Package
-/// Description : This file contains the function update Balance whose Updates the balance of an account to the provided value. The caller should acquire an exclusive lock before calling this endpoint, into response"
+/// Description : This file contains the function [update Balance] whose Updates the balance of an account to the provided value. The caller should acquire an exclusive lock before calling this endpoint, into response"
 /// Author : James Brel
 /// onCreated : 15/05/2023
 /// onUpadted : #
-/// Upadted by : James Brel
+/// Upadted by : #
 class UpdateBalanceImpl implements UpdateBalanceAbst {
   @override
   Future<http.Response> updateBalance({
