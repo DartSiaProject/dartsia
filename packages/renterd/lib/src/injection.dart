@@ -12,6 +12,12 @@ import 'abstract/accounts_absts/update_balance_abst.dart';
 import 'abstract/consensus_absts/accept_block_abst.dart';
 import 'abstract/consensus_absts/get_sia_fund_fee_abst.dart';
 import 'abstract/consensus_absts/get_state_abst.dart';
+import 'abstract/contract_absts/acquire_a_contract_abst.dart';
+import 'abstract/contract_absts/add_contract_abst.dart';
+import 'abstract/contract_absts/delete_contract_by_id_abst.dart';
+import 'abstract/contract_absts/get_contract_by_id_abst.dart';
+import 'abstract/contract_absts/get_contracts_abst.dart';
+import 'abstract/contract_absts/release_previous_contract_abst.dart';
 import 'abstract/host_absts/get_allow_list_abst.dart';
 import 'abstract/host_absts/get_block_list_abst.dart';
 import 'abstract/host_absts/get_host_info_by_public_key_abst.dart';
@@ -32,6 +38,12 @@ import 'data/services/accounts_services/update_balance_impl.dart';
 import 'data/services/consensus_services/accept_block_impl.dart';
 import 'data/services/consensus_services/get_sia_fund_fee_impl.dart';
 import 'data/services/consensus_services/get_state_impl.dart';
+import 'data/services/contract_services/acquire_a_contract_impl.dart';
+import 'data/services/contract_services/add_contract_impl.dart';
+import 'data/services/contract_services/delete_contract_by_id_impl.dart';
+import 'data/services/contract_services/get_contract_by_id_impl.dart';
+import 'data/services/contract_services/get_contracts_impl.dart';
+import 'data/services/contract_services/release_previous_contract_impl.dart';
 import 'data/services/host_services/get_allow_list_impl.dart';
 import 'data/services/host_services/get_block_list_impl.dart';
 import 'data/services/host_services/get_host_info_by_public_key_impl.dart';
@@ -52,6 +64,12 @@ import 'logic/controllers/accounts_controllers/update_balance_controller.dart';
 import 'logic/controllers/consensus_controllers/accept_block_controller.dart';
 import 'logic/controllers/consensus_controllers/get_sia_fund_fee_controller.dart';
 import 'logic/controllers/consensus_controllers/get_state_controller.dart';
+import 'logic/controllers/contract_controllers/acquire_a_contract_controller.dart';
+import 'logic/controllers/contract_controllers/add_contract_controller.dart';
+import 'logic/controllers/contract_controllers/delete_contract_by_id_controller.dart';
+import 'logic/controllers/contract_controllers/get_contract_by_id_controller.dart';
+import 'logic/controllers/contract_controllers/get_contracts_controller.dart';
+import 'logic/controllers/contract_controllers/release_presious_contract_controller.dart';
 import 'logic/controllers/host_controllers/get_allow_list_controller.dart';
 import 'logic/controllers/host_controllers/get_block_list_controller.dart';
 import 'logic/controllers/host_controllers/get_host_info_by_public_key_controller.dart';
@@ -88,6 +106,14 @@ Future<void> initialization() async {
   sl.registerLazySingleton<PostInteractionAbst>(() => PostInteractionImpl());
   sl.registerLazySingleton<RemoveHostsAbst>(() => RemoveHostsImpl());
   sl.registerLazySingleton<GetHostScannigAbst>(() => GetHostScannigImpl());
+  sl.registerLazySingleton<GetContractsAbst>(() => GetContractsImpl());
+  sl.registerLazySingleton<AddContractAbst>(() => AddContractImpl());
+  sl.registerLazySingleton<AcquireAContractAbst>(() => AcquireAContractImpl());
+  sl.registerLazySingleton<ReleasePreviousContractAbst>(
+      () => ReleasePreviousContractImpl());
+  sl.registerLazySingleton<GetContractByIdAbst>(() => GetContractByIdImpl());
+  sl.registerLazySingleton<DeleteContractByIdAbst>(
+      () => DeleteContractByIdImpl());
 
 //! Controller
 
@@ -141,4 +167,25 @@ Future<void> initialization() async {
   sl.registerFactory<GetHostScannigController>(() => GetHostScannigController(
         getHostScannigAbst: sl.call(),
       ));
+  sl.registerFactory<GetContractsController>(() => GetContractsController(
+        getContractsAbst: sl.call(),
+      ));
+  sl.registerFactory<AddContractController>(() => AddContractController(
+        addContractAbst: sl.call(),
+      ));
+  sl.registerFactory<AcquireAContractController>(
+      () => AcquireAContractController(
+            acquireAContractAbst: sl.call(),
+          ));
+  sl.registerFactory<ReleasePreviousContractController>(
+      () => ReleasePreviousContractController(
+            releasePreviousContractAbst: sl.call(),
+          ));
+  sl.registerFactory<GetContractByIdController>(() => GetContractByIdController(
+        getContractByIdAbst: sl.call(),
+      ));
+  sl.registerFactory<DeleteContractByIdController>(
+      () => DeleteContractByIdController(
+            deleteContractByIdAbst: sl.call(),
+          ));
 }

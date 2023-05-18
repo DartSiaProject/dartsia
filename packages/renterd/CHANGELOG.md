@@ -1,3 +1,13 @@
+## 0.0.3
+### Contract Services Created
+  - [x] Acquire a contract
+  - [x] Add Contract
+  - [x] Delete Contract By Id
+  - [x] Get Contract By Id
+  - [x] Get Contracts
+  - [x] Release Previous Contract
+
+---------------------------------
 ## 0.0.2
 ### Consensus Services Created
   - [x] Accept Block
