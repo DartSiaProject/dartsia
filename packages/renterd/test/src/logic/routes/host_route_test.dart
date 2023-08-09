@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:renterd/src/injection.dart' as insert;
+import 'package:renterd/src/logic/controllers/host_controllers/fetch_some_host_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/get_allow_list_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/get_block_list_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/get_host_info_by_public_key_controller.dart';
@@ -9,6 +10,7 @@ import 'package:renterd/src/logic/controllers/host_controllers/post_interaction_
 import 'package:renterd/src/logic/controllers/host_controllers/remove_hosts_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/update_allow_list_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/update_block_list_controller.dart';
+import 'package:renterd/src/logic/controllers/host_controllers/update_some_host_controller.dart';
 import 'package:renterd/src/logic/routes/host_route.dart';
 
 void main() async {
@@ -22,6 +24,9 @@ void main() async {
   late RemoveHostsController _removeHostsController;
   late UpdateAllowListController _updateAllowListController;
   late UpdateBlockListController _updateBlockListController;
+  late FetchSomeHostController _fetchSomeHostController;
+  late UpdateSomeHostController _updateSomeHostController;
+
   setUp(() {
     _getAllowListController = insert.sl<GetAllowListController>();
     _getBlockListController = insert.sl<GetBlockListController>();
@@ -33,6 +38,8 @@ void main() async {
     _removeHostsController = insert.sl<RemoveHostsController>();
     _updateAllowListController = insert.sl<UpdateAllowListController>();
     _updateBlockListController = insert.sl<UpdateBlockListController>();
+    _fetchSomeHostController = insert.sl<FetchSomeHostController>();
+    _updateSomeHostController = insert.sl<UpdateSomeHostController>();
   });
 
   group('HostRoute => ', () {
@@ -233,6 +240,49 @@ void main() async {
 
         //Assert - Compare the actual result and expected result
         expect(testValue.statusCode, verifyValue.statusCode);
+      },
+    );
+
+    test(
+      "the fetchSomeHost function whose return the user's host ",
+      () async {
+        //Arrange - Setup facts, Put Expected outputs or Initilize
+        final testValue = await _fetchSomeHostController.call(
+          password: 'renterd',
+        );
+
+        //Act - Call the function that is to be tested
+
+        final verifyValue = await Host.fetchSomeHost(
+          password: 'renterd',
+        );
+
+        //Assert - Compare the actual result and expected result
+        expect(testValue.statusCode, verifyValue.statusCode);
+      },
+    );
+
+    test(
+      "the updateSomeHost function whose help the user to update some host",
+      () async {
+        //Arrange - Setup facts, Put Expected outputs or Initilize
+        final testValue = await _updateSomeHostController.call(
+          password: 'renterd',
+          hostConfig: {},
+        );
+
+        //Act - Call the function that is to be tested
+
+        final verifyValue = await Host.updateSomeHost(
+          password: 'renterd',
+          hostConfig: {},
+        );
+
+        //Assert - Compare the actual result and expected result
+        expect(
+          testValue.statusCode,
+          verifyValue.statusCode,
+        );
       },
     );
   });

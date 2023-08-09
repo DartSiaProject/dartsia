@@ -290,5 +290,56 @@ void main() async {
         );
       },
     );
+
+    test('the fetchSomeHost function helps the user to get his host', () async {
+      String? username;
+      String password = "renterd";
+      http.Response _response = await http.get(
+        Uri.parse(
+          "${dotenv.env['ROOT_URL']}${fetchSomeHostApi(key: "gouging")}",
+        ),
+        headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+          HttpHeaders.authorizationHeader:
+              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+        },
+      );
+
+      final verifyValue = await _hostImpl.fetchSomeHost(
+        password: 'renterd',
+      );
+
+      expect(
+        _response.statusCode,
+        verifyValue.statusCode,
+      );
+    });
+
+    test('the fetchSomeHost function helps the user to update some host',
+        () async {
+      String? username;
+      String password = "renterd";
+      http.Response _response = await http.put(
+        Uri.parse(
+          "${dotenv.env['ROOT_URL']}${updateSomeHostApi(key: "gouging")}",
+        ),
+        headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+          HttpHeaders.authorizationHeader:
+              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+        },
+        body: json.encode({}),
+      );
+
+      final verifyValue = await _hostImpl.updateSomeHost(
+        password: 'renterd',
+        hostConfig: {},
+      );
+
+      expect(
+        _response.statusCode,
+        verifyValue.statusCode,
+      );
+    });
   });
 }

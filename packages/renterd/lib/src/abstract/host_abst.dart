@@ -56,4 +56,15 @@ abstract class HostAbst {
     required List<String> addHostList,
     required List<String> removeHostList,
   });
+
+  Future<http.Response> fetchSomeHost({
+    String? username,
+    required String password,
+  });
+
+  Future<http.Response> updateSomeHost({
+    String? username,
+    required String password,
+    required Map<String, dynamic> hostConfig,
+  });
 }

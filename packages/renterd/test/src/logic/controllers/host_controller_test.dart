@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:renterd/src/abstract/host_abst.dart';
+import 'package:renterd/src/logic/controllers/host_controllers/fetch_some_host_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/get_allow_list_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/get_block_list_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/get_host_info_by_public_key_controller.dart';
@@ -11,6 +12,7 @@ import 'package:renterd/src/logic/controllers/host_controllers/post_interaction_
 import 'package:renterd/src/logic/controllers/host_controllers/remove_hosts_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/update_allow_list_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/update_block_list_controller.dart';
+import 'package:renterd/src/logic/controllers/host_controllers/update_some_host_controller.dart';
 
 class MockHostAbst extends Mock implements HostAbst {}
 
@@ -28,6 +30,8 @@ void main() {
   late RemoveHostsController _removeHostsController;
   late UpdateAllowListController _updateAllowListController;
   late UpdateBlockListController _updateBlockListController;
+  late FetchSomeHostController _fetchSomeHostController;
+  late UpdateSomeHostController _updateSomeHostController;
   setUp(() {
     _mockHostAbst = MockHostAbst();
     _mockResponse = MockResponse();
@@ -45,6 +49,9 @@ void main() {
         UpdateAllowListController(hostAbst: _mockHostAbst);
     _updateBlockListController =
         UpdateBlockListController(hostAbst: _mockHostAbst);
+    _fetchSomeHostController = FetchSomeHostController(hostAbst: _mockHostAbst);
+    _updateSomeHostController =
+        UpdateSomeHostController(hostAbst: _mockHostAbst);
   });
 
   group('HostController => ', () {
@@ -289,6 +296,53 @@ void main() {
                 "51.158.108.244",
                 "45.148.30.56"
               ],
+            )).called(1);
+        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockResponse);
+      },
+    );
+
+    test(
+      'the call function of the "FetchSomeHostController" should return a response type',
+      () async {
+        //Arrange - Setup facts, Put Expected outputs or Initilize
+        when(() => _mockHostAbst.fetchSomeHost(
+              password: 'renterd',
+            )).thenAnswer((_) async => _mockResponse);
+
+        final verifyVariable = await _fetchSomeHostController.call(
+          password: 'renterd',
+        );
+
+        //Assert - Compare the actual result and expected result
+        expect(verifyVariable, _mockResponse);
+        verify(() => _mockHostAbst.fetchSomeHost(
+              password: 'renterd',
+            )).called(1);
+        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockResponse);
+      },
+    );
+
+    test(
+      'the call function of the "UpdateSomeHostController" should return a response type',
+      () async {
+        //Arrange - Setup facts, Put Expected outputs or Initilize
+        when(() => _mockHostAbst.updateSomeHost(
+              password: 'renterd',
+              hostConfig: {},
+            )).thenAnswer((_) async => _mockResponse);
+
+        final verifyVariable = await _updateSomeHostController.call(
+          password: 'renterd',
+          hostConfig: {},
+        );
+
+        //Assert - Compare the actual result and expected result
+        expect(verifyVariable, _mockResponse);
+        verify(() => _mockHostAbst.updateSomeHost(
+              password: 'renterd',
+              hostConfig: {},
             )).called(1);
         verifyNoMoreInteractions(_mockHostAbst);
         verifyNoMoreInteractions(_mockResponse);

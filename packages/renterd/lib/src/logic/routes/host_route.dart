@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
-import 'package:renterd/src/logic/controllers/host_controllers/update_block_list_controller.dart';
 
 import '../../injection.dart';
+import '../controllers/host_controllers/fetch_some_host_controller.dart';
 import '../controllers/host_controllers/get_allow_list_controller.dart';
 import '../controllers/host_controllers/get_host_info_by_public_key_controller.dart';
 import '../controllers/host_controllers/get_host_scanning_controller.dart';
@@ -9,6 +9,8 @@ import '../controllers/host_controllers/get_hosts_controller.dart';
 import '../controllers/host_controllers/post_interaction_controller.dart';
 import '../controllers/host_controllers/remove_hosts_controller.dart';
 import '../controllers/host_controllers/update_allow_list_controller.dart';
+import '../controllers/host_controllers/update_block_list_controller.dart';
+import '../controllers/host_controllers/update_some_host_controller.dart';
 
 class Host {
   static Future<http.Response> getHostInfoByPublicKey({
@@ -110,5 +112,25 @@ class Host {
         offset: offset,
         limit: limit,
         lastScan: lastScan,
+      );
+
+  static Future<http.Response> fetchSomeHost({
+    String? username,
+    required String password,
+  }) async =>
+      await sl<FetchSomeHostController>().call(
+        username: username,
+        password: password,
+      );
+
+  static Future<http.Response> updateSomeHost({
+    String? username,
+    required String password,
+    required Map<String, dynamic> hostConfig,
+  }) async =>
+      await sl<UpdateSomeHostController>().call(
+        username: username,
+        password: password,
+        hostConfig: hostConfig,
       );
 }

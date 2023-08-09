@@ -208,4 +208,43 @@ class HostImpl implements HostAbst {
         }));
     return _response;
   }
+
+  /// Note : This Function help the user to get his personal host
+  @override
+  Future<http.Response> fetchSomeHost({
+    String? username,
+    required String password,
+  }) async {
+    http.Response _response = await http.get(
+      Uri.parse(
+        "${dotenv.env['ROOT_URL']}${fetchSomeHostApi(key: "gouging")}",
+      ),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.authorizationHeader:
+            "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+      },
+    );
+    return _response;
+  }
+
+  /// Note : This Function help the user to configure some host
+  @override
+  Future<http.Response> updateSomeHost({
+    String? username,
+    required String password,
+    required Map<String, dynamic> hostConfig,
+  }) async {
+    http.Response _response = await http.put(
+        Uri.parse(
+          "${dotenv.env['ROOT_URL']}${updateSomeHostApi(key: "gouging")}",
+        ),
+        headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+          HttpHeaders.authorizationHeader:
+              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+        },
+        body: json.encode(hostConfig));
+    return _response;
+  }
 }
