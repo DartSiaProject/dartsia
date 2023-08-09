@@ -1,3 +1,9 @@
+## 0.1.0
+### Host Services Updated
+  - [x] fetch some host
+  - [x] update somm host 
+
+---------------------------------
 ## 0.0.3
 ### Contract Services Created
   - [x] Acquire a contract
