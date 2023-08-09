@@ -1,15 +1,21 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_absts/get_allow_list_abst.dart';
+import '../../../abstract/host_abst.dart';
 
 class GetAllowListController {
-  final GetAllowListAbst getAllowListAbst;
+  final HostAbst hostAbst;
 
   GetAllowListController({
-    required this.getAllowListAbst,
+    required this.hostAbst,
   });
 
-  Future<http.Response> call() async {
-    return await getAllowListAbst.getAllowList();
+  Future<http.Response> call({
+    String? username,
+    required String password,
+  }) async {
+    return await hostAbst.getAllowList(
+      username: username,
+      password: password,
+    );
   }
 }

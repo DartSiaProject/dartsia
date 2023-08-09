@@ -1,15 +1,18 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/accounts_absts/get_all_accounts_abst.dart';
+import '../../../abstract/accounts_abst.dart';
 
 class GetAllAccountsController {
-  final GetAllAccountsAbst getAllAccountsAbst;
+  final AccountsAbst accountsAbst;
 
   GetAllAccountsController({
-    required this.getAllAccountsAbst,
+    required this.accountsAbst,
   });
 
-  Future<http.Response> call() async {
-    return await getAllAccountsAbst.getAllAccounts();
+  Future<http.Response> call({
+    String? username,
+    required String password,
+  }) async {
+    return await accountsAbst.getAllAccounts(password: password);
   }
 }

@@ -1,23 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/accounts_absts/reset_drift_abst.dart';
+import '../../../abstract/accounts_abst.dart';
 
 class ResetDriftController {
-  final ResetDriftAbst resetDriftAbst;
+  final AccountsAbst accountsAbst;
 
   ResetDriftController({
-    required this.resetDriftAbst,
+    required this.accountsAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String accountId,
-    required String host,
-    required int amount,
   }) async {
-    return await resetDriftAbst.resetDrift(
+    return await accountsAbst.resetDrift(
+      username: username,
+      password: password,
       accountId: accountId,
-      host: host,
-      amount: amount,
     );
   }
 }

@@ -1,15 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/consensus_absts/get_sia_fund_fee_abst.dart';
+import '../../../abstract/consensus_abst.dart';
 
 class GetSiaFundFeeController {
-  final GetSiaFundFeeAbst getSiaFundFeeAbst;
+  final ConsensusAbst consensusAbst;
 
   GetSiaFundFeeController({
-    required this.getSiaFundFeeAbst,
+    required this.consensusAbst,
   });
 
-  Future<http.Response> call({required int payout}) async {
-    return await getSiaFundFeeAbst.getSiaFundFee(payout: payout);
+  Future<http.Response> call({
+    String? username,
+    required String password,
+    required int payout,
+  }) async {
+    return await consensusAbst.getSiaFundFee(
+      username: username,
+      password: password,
+      payout: payout,
+    );
   }
 }

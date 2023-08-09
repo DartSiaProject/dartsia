@@ -52,15 +52,12 @@ void main() async {
 
 ## **Packages Used**
 * [x] **Dart Dependencies Used**
-  -  equatable: ^2.0.5
   -  get_it: ^7.2.0
   -  http: ^0.13.5
   -  flutter_dotenv: ^5.0.2
   
 * [x] **Dart Dev_Dependencies Used**
   - mocktail: ^0.3.0
-
-
 
 ***
 <p style="text-align: center"> Copyright &copy; 2023 DartSia All Rights Reserved</p>

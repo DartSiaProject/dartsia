@@ -1,21 +1,25 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/contract_absts/add_contract_abst.dart';
+import '../../../abstract/contract_abst.dart';
 
 class AddContractController {
-  final AddContractAbst addContractAbst;
+  final ContractAbst contractAbst;
 
   AddContractController({
-    required this.addContractAbst,
+    required this.contractAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String id,
     required Map<dynamic, dynamic> contract,
     required String totalCost,
     required int startHeight,
   }) async {
-    return await addContractAbst.addContract(
+    return await contractAbst.addContract(
+      username: username,
+      password: password,
       id: id,
       contract: contract,
       totalCost: totalCost,

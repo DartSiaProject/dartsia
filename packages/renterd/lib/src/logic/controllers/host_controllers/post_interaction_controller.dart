@@ -1,18 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_absts/post_interaction_abst.dart';
+import '../../../abstract/host_abst.dart';
 
 class PostInteractionController {
-  final PostInteractionAbst postInteractionAbst;
+  final HostAbst hostAbst;
 
   PostInteractionController({
-    required this.postInteractionAbst,
+    required this.hostAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required List<String> hostScanData,
   }) async {
-    return await postInteractionAbst.postInteraction(
-        hostScanData: hostScanData);
+    return await hostAbst.postInteraction(
+      username: username,
+      password: password,
+      hostScanData: hostScanData,
+    );
   }
 }

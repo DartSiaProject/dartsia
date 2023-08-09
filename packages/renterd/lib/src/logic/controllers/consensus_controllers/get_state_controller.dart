@@ -1,15 +1,21 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/consensus_absts/get_state_abst.dart';
+import '../../../abstract/consensus_abst.dart';
 
 class GetStateController {
-  final GetStateAbst getStateAbst;
+  final ConsensusAbst consensusAbst;
 
   GetStateController({
-    required this.getStateAbst,
+    required this.consensusAbst,
   });
 
-  Future<http.Response> call() async {
-    return await getStateAbst.getState();
+  Future<http.Response> call({
+    String? username,
+    required String password,
+  }) async {
+    return await consensusAbst.getState(
+      username: username,
+      password: password,
+    );
   }
 }

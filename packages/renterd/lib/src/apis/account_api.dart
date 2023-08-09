@@ -1,4 +1,4 @@
-const String getAccountsApi = "api/bus/accounts";
+const getAccountsApi = "api/bus/accounts";
 String getAnAccountByIdApi(String accounId) => "api/bus/accounts/$accounId";
 String lockAnAccountApi(String accounId) => "api/bus/accounts/$accounId/lock";
 String unLockAnAccountApi(String accounId) =>

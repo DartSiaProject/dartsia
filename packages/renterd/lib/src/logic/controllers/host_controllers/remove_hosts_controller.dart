@@ -1,20 +1,25 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_absts/remove_hosts_abst.dart';
+import '../../../abstract/host_abst.dart';
 
 class RemoveHostsController {
-  final RemoveHostsAbst removeHostsAbst;
+  final HostAbst hostAbst;
 
   RemoveHostsController({
-    required this.removeHostsAbst,
+    required this.hostAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required int minRecentScanFailures,
     required String maxDowntimeHours,
   }) async {
-    return await removeHostsAbst.removeHosts(
-        minRecentScanFailures: minRecentScanFailures,
-        maxDowntimeHours: maxDowntimeHours);
+    return await hostAbst.removeHosts(
+      username: username,
+      password: password,
+      minRecentScanFailures: minRecentScanFailures,
+      maxDowntimeHours: maxDowntimeHours,
+    );
   }
 }

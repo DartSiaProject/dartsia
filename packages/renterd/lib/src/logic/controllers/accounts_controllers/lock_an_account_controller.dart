@@ -1,20 +1,24 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/accounts_absts/lock_an_account_abst.dart';
+import '../../../abstract/accounts_abst.dart';
 
 class LockAnAccountController {
-  final LockAnAccountAbst lockAnAccountAbst;
+  final AccountsAbst accountsAbst;
 
   LockAnAccountController({
-    required this.lockAnAccountAbst,
+    required this.accountsAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String accountId,
     required String hostKey,
     required bool exclusive,
   }) async {
-    return await lockAnAccountAbst.lockAnAccount(
+    return await accountsAbst.lockAnAccount(
+      username: username,
+      password: password,
       accountId: accountId,
       hostKey: hostKey,
       exclusive: exclusive,

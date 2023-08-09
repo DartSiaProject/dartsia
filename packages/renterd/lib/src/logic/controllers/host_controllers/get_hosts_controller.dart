@@ -1,15 +1,21 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_absts/get_hosts_abst.dart';
+import '../../../abstract/host_abst.dart';
 
 class GetHostsController {
-  final GetHostsAbst getHostsAbst;
+  final HostAbst hostAbst;
 
   GetHostsController({
-    required this.getHostsAbst,
+    required this.hostAbst,
   });
 
-  Future<http.Response> call() async {
-    return await getHostsAbst.getHosts();
+  Future<http.Response> call({
+    String? username,
+    required String password,
+  }) async {
+    return await hostAbst.getHosts(
+      username: username,
+      password: password,
+    );
   }
 }

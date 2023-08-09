@@ -1,20 +1,24 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/accounts_absts/add_deposit_abst.dart';
+import '../../../abstract/accounts_abst.dart';
 
 class AddDepositController {
-  final AddDepositAbst addDepositAbst;
+  final AccountsAbst accountsAbst;
 
   AddDepositController({
-    required this.addDepositAbst,
+    required this.accountsAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String accountId,
     required String host,
     required int amount,
   }) async {
-    return await addDepositAbst.addDeposit(
+    return await accountsAbst.addDeposit(
+      username: username,
+      password: password,
       accountId: accountId,
       host: host,
       amount: amount,

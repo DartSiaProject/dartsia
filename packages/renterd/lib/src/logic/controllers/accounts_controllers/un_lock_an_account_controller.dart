@@ -1,19 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/accounts_absts/un_lock_an_account_abst.dart';
+import '../../../abstract/accounts_abst.dart';
 
 class UnLockAnAccountController {
-  final UnLockAnAccountAbst unLockAnAccountAbst;
+  final AccountsAbst accountsAbst;
 
   UnLockAnAccountController({
-    required this.unLockAnAccountAbst,
+    required this.accountsAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String accountId,
-    required int lockId,
+    required String lockId,
   }) async {
-    return await unLockAnAccountAbst.unLockAnAccount(
+    return await accountsAbst.unLockAnAccount(
+      username: username,
+      password: password,
       accountId: accountId,
       lockId: lockId,
     );

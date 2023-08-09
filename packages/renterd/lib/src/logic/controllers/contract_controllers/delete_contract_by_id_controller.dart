@@ -1,17 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/contract_absts/delete_contract_by_id_abst.dart';
+import '../../../abstract/contract_abst.dart';
 
 class DeleteContractByIdController {
-  final DeleteContractByIdAbst deleteContractByIdAbst;
+  final ContractAbst contractAbst;
 
   DeleteContractByIdController({
-    required this.deleteContractByIdAbst,
+    required this.contractAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String id,
   }) async {
-    return await deleteContractByIdAbst.deleteContractById(id: id);
+    return await contractAbst.deleteContractById(
+      username: username,
+      password: password,
+      id: id,
+    );
   }
 }

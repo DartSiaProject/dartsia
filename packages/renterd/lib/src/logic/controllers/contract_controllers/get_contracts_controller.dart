@@ -1,15 +1,21 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/contract_absts/get_contracts_abst.dart';
+import '../../../abstract/contract_abst.dart';
 
 class GetContractsController {
-  final GetContractsAbst getContractsAbst;
+  final ContractAbst contractAbst;
 
   GetContractsController({
-    required this.getContractsAbst,
+    required this.contractAbst,
   });
 
-  Future<http.Response> call() async {
-    return await getContractsAbst.getContracts();
+  Future<http.Response> call({
+    String? username,
+    required String password,
+  }) async {
+    return await contractAbst.getContracts(
+      username: username,
+      password: password,
+    );
   }
 }

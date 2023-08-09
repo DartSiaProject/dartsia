@@ -1,19 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/accounts_absts/get_an_account_by_id_abst.dart';
+import '../../../abstract/accounts_abst.dart';
 
 class GetAnAccountByIdController {
-  final GetAnAccountByIdAbst getAnAccountByIdAbst;
+  final AccountsAbst accountsAbst;
 
   GetAnAccountByIdController({
-    required this.getAnAccountByIdAbst,
+    required this.accountsAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String accountId,
     required String hostKey,
   }) async {
-    return await getAnAccountByIdAbst.getAnAccountById(
+    return await accountsAbst.getAnAccountById(
+      username: username,
+      password: password,
       accountId: accountId,
       hostKey: hostKey,
     );

@@ -1,18 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_absts/get_host_info_by_public_key_abst.dart';
+import '../../../abstract/host_abst.dart';
 
 class GetHostInfoByPublicKeyController {
-  final GetHostInfoByPublicKeyAbst getHostInfoByPublicKeyAbst;
+  final HostAbst hostAbst;
 
   GetHostInfoByPublicKeyController({
-    required this.getHostInfoByPublicKeyAbst,
+    required this.hostAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String publicKey,
   }) async {
-    return await getHostInfoByPublicKeyAbst.getHostInfoByPublicKey(
-        publicKey: publicKey);
+    return await hostAbst.getHostInfoByPublicKey(
+      username: username,
+      password: password,
+      publicKey: publicKey,
+    );
   }
 }

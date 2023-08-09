@@ -1,19 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/contract_absts/release_previous_contract_abst.dart';
+import '../../../abstract/contract_abst.dart';
 
 class ReleasePreviousContractController {
-  final ReleasePreviousContractAbst releasePreviousContractAbst;
+  final ContractAbst contractAbst;
 
   ReleasePreviousContractController({
-    required this.releasePreviousContractAbst,
+    required this.contractAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String id,
     required int lockId,
   }) async {
-    return await releasePreviousContractAbst.releasePreviousContract(
+    return await contractAbst.releasePreviousContract(
+      username: username,
+      password: password,
       id: id,
       lockId: lockId,
     );

@@ -1,21 +1,25 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/consensus_absts/accept_block_abst.dart';
+import '../../../abstract/consensus_abst.dart';
 
 class AcceptBlockController {
-  final AcceptBlockAbst acceptBlockAbst;
+  final ConsensusAbst consensusAbst;
 
   AcceptBlockController({
-    required this.acceptBlockAbst,
+    required this.consensusAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String parentId,
     required String address,
     required String value,
     required List<String> arbitraryDataList,
   }) async {
-    return await acceptBlockAbst.acceptBlock(
+    return await consensusAbst.acceptBlock(
+      username: username,
+      password: password,
       parentId: parentId,
       address: address,
       value: value,

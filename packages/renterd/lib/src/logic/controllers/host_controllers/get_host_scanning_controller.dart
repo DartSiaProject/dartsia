@@ -1,20 +1,24 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_absts/get_host_scanning_abst.dart';
+import '../../../abstract/host_abst.dart';
 
 class GetHostScannigController {
-  final GetHostScannigAbst getHostScannigAbst;
+  final HostAbst hostAbst;
 
   GetHostScannigController({
-    required this.getHostScannigAbst,
+    required this.hostAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required int offset,
     required int limit,
     required String lastScan,
   }) async {
-    return await getHostScannigAbst.getHostScannig(
+    return await hostAbst.getHostScannig(
+      username: username,
+      password: password,
       offset: offset,
       limit: limit,
       lastScan: lastScan,

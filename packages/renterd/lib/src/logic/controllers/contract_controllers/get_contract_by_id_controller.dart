@@ -1,17 +1,23 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/contract_absts/get_contract_by_id_abst.dart';
+import '../../../abstract/contract_abst.dart';
 
 class GetContractByIdController {
-  final GetContractByIdAbst getContractByIdAbst;
+  final ContractAbst contractAbst;
 
   GetContractByIdController({
-    required this.getContractByIdAbst,
+    required this.contractAbst,
   });
 
   Future<http.Response> call({
+    String? username,
+    required String password,
     required String id,
   }) async {
-    return await getContractByIdAbst.getContractById(id: id);
+    return await contractAbst.getContractById(
+      username: username,
+      password: password,
+      id: id,
+    );
   }
 }

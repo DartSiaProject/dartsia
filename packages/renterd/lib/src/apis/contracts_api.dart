@@ -1,4 +1,4 @@
-const String getContractsApi = "api/bus/contracts";
+const getContractsApi = "api/bus/contracts";
 String postContractsApi(String id) => "api/bus/contract/$id";
 String acquireAContractApi(String id) => "api/bus/contract/$id/acquire";
 String releasePreviousContractApi(String id) => "api/bus/contract/$id/release";
