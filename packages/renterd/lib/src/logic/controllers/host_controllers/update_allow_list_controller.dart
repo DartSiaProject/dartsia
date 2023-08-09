@@ -1,12 +1,12 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_abst.dart';
+import '../../../abstract/hoster_abst.dart';
 
 class UpdateAllowListController {
-  final HostAbst hostAbst;
+  final HosterAbst hosterAbst;
 
   UpdateAllowListController({
-    required this.hostAbst,
+    required this.hosterAbst,
   });
 
   Future<http.Response> call({
@@ -15,7 +15,7 @@ class UpdateAllowListController {
     required List<String> addHostList,
     required List<String> removeHostList,
   }) async {
-    return await hostAbst.updateAllowList(
+    return await hosterAbst.updateAllowList(
       username: username,
       password: password,
       addHostList: addHostList,

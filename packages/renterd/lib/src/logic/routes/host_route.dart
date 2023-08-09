@@ -12,7 +12,7 @@ import '../controllers/host_controllers/update_allow_list_controller.dart';
 import '../controllers/host_controllers/update_block_list_controller.dart';
 import '../controllers/host_controllers/update_some_host_controller.dart';
 
-class Host {
+class Hoster {
   static Future<http.Response> getHostInfoByPublicKey({
     String? username,
     required String password,

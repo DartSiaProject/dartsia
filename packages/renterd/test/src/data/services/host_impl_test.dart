@@ -5,18 +5,18 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:renterd/src/apis/host_api.dart';
-import 'package:renterd/src/data/services/host_impl.dart';
+import 'package:renterd/src/data/services/hoster_impl.dart';
 import 'package:renterd/src/injection.dart' as insert;
 
 void main() async {
   await insert.initialization();
-  late HostImpl _hostImpl;
+  late HosterImpl _hosterImpl;
 
   setUp(() {
-    _hostImpl = HostImpl();
+    _hosterImpl = HosterImpl();
   });
 
-  group('HostIml => ', () {
+  group('HosterIml => ', () {
     // write tests
     test(
       "the getAllowList function whose Returns the current allowlist of the bus like http.Response",
@@ -34,7 +34,7 @@ void main() async {
           },
         );
 
-        final verifyValue = await _hostImpl.getAllowList(
+        final verifyValue = await _hosterImpl.getAllowList(
           password: 'renterd',
         );
 
@@ -60,7 +60,7 @@ void main() async {
           },
         );
 
-        final verifyValue = await _hostImpl.getBlockList(
+        final verifyValue = await _hosterImpl.getBlockList(
           password: 'renterd',
         );
 
@@ -86,7 +86,7 @@ void main() async {
           },
         );
 
-        final verifyValue = await _hostImpl.getHostInfoByPublicKey(
+        final verifyValue = await _hosterImpl.getHostInfoByPublicKey(
             password: 'renterd',
             publicKey:
                 "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece");
@@ -113,7 +113,7 @@ void main() async {
           },
         );
 
-        final verifyValue = await _hostImpl.getHostScannig(
+        final verifyValue = await _hosterImpl.getHostScannig(
           password: 'renterd',
           lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
           limit: 10,
@@ -142,7 +142,7 @@ void main() async {
           },
         );
 
-        final verifyValue = await _hostImpl.getHosts(
+        final verifyValue = await _hosterImpl.getHosts(
           password: 'renterd',
         );
 
@@ -169,7 +169,7 @@ void main() async {
             },
             body: json.encode([]));
 
-        final verifyValue = await _hostImpl.postInteraction(
+        final verifyValue = await _hosterImpl.postInteraction(
           password: 'renterd',
           hostScanData: [],
         );
@@ -200,7 +200,7 @@ void main() async {
               "maxDowntimeHours": "1000",
             }));
 
-        final verifyValue = await _hostImpl.removeHosts(
+        final verifyValue = await _hosterImpl.removeHosts(
           password: 'renterd',
           maxDowntimeHours: '1000',
           minRecentScanFailures: 3,
@@ -234,7 +234,7 @@ void main() async {
               "clear": false
             }));
 
-        final verifyValue = await _hostImpl.updateAllowList(
+        final verifyValue = await _hosterImpl.updateAllowList(
           password: 'renterd',
           addHostList: [],
           removeHostList: [
@@ -273,7 +273,7 @@ void main() async {
               "clear": false
             }));
 
-        final verifyValue = await _hostImpl.updateBlockList(
+        final verifyValue = await _hosterImpl.updateBlockList(
           password: 'renterd',
           addHostList: [],
           removeHostList: [
@@ -305,7 +305,7 @@ void main() async {
         },
       );
 
-      final verifyValue = await _hostImpl.fetchSomeHost(
+      final verifyValue = await _hosterImpl.fetchSomeHost(
         password: 'renterd',
       );
 
@@ -331,7 +331,7 @@ void main() async {
         body: json.encode({}),
       );
 
-      final verifyValue = await _hostImpl.updateSomeHost(
+      final verifyValue = await _hosterImpl.updateSomeHost(
         password: 'renterd',
         hostConfig: {},
       );

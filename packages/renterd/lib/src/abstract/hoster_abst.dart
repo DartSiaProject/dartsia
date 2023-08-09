@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-abstract class HostAbst {
+abstract class HosterAbst {
   Future<http.Response> getAllowList({
     String? username,
     required String password,

@@ -1,12 +1,12 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_abst.dart';
+import '../../../abstract/hoster_abst.dart';
 
 class UpdateSomeHostController {
-  final HostAbst hostAbst;
+  final HosterAbst hosterAbst;
 
   UpdateSomeHostController({
-    required this.hostAbst,
+    required this.hosterAbst,
   });
 
   Future<http.Response> call({
@@ -14,7 +14,7 @@ class UpdateSomeHostController {
     required String password,
     required Map<String, dynamic> hostConfig,
   }) async {
-    return await hostAbst.updateSomeHost(
+    return await hosterAbst.updateSomeHost(
       username: username,
       password: password,
       hostConfig: hostConfig,

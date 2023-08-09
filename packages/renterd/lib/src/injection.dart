@@ -4,11 +4,11 @@ import 'package:get_it/get_it.dart';
 import 'abstract/accounts_abst.dart';
 import 'abstract/consensus_abst.dart';
 import 'abstract/contract_abst.dart';
-import 'abstract/host_abst.dart';
+import 'abstract/hoster_abst.dart';
 import 'data/services/accounts_impl.dart';
 import 'data/services/consensus_impl.dart';
 import 'data/services/contract_impl.dart';
-import 'data/services/host_impl.dart';
+import 'data/services/hoster_impl.dart';
 import 'logic/controllers/accounts_controllers/add_deposit_controller.dart';
 import 'logic/controllers/accounts_controllers/get_all_accounts_controller.dart';
 import 'logic/controllers/accounts_controllers/get_an_account_by_id_controller.dart';
@@ -45,7 +45,7 @@ Future<void> initialization() async {
 
   sl.registerLazySingleton<AccountsAbst>(() => AccountsImpl());
   sl.registerLazySingleton<ConsensusAbst>(() => ConsensusImpl());
-  sl.registerLazySingleton<HostAbst>(() => HostImpl());
+  sl.registerLazySingleton<HosterAbst>(() => HosterImpl());
   sl.registerLazySingleton<ContractAbst>(() => ContractImpl());
 
   sl.registerFactory<GetAllAccountsController>(
@@ -71,23 +71,23 @@ Future<void> initialization() async {
   sl.registerFactory<GetSiaFundFeeController>(
       () => GetSiaFundFeeController(consensusAbst: sl.call()));
   sl.registerFactory<GetHostInfoByPublicKeyController>(
-      () => GetHostInfoByPublicKeyController(hostAbst: sl.call()));
+      () => GetHostInfoByPublicKeyController(hosterAbst: sl.call()));
   sl.registerFactory<GetHostsController>(
-      () => GetHostsController(hostAbst: sl.call()));
+      () => GetHostsController(hosterAbst: sl.call()));
   sl.registerFactory<UpdateAllowListController>(
-      () => UpdateAllowListController(hostAbst: sl.call()));
+      () => UpdateAllowListController(hosterAbst: sl.call()));
   sl.registerFactory<UpdateBlockListController>(
-      () => UpdateBlockListController(hostAbst: sl.call()));
+      () => UpdateBlockListController(hosterAbst: sl.call()));
   sl.registerFactory<GetAllowListController>(
-      () => GetAllowListController(hostAbst: sl.call()));
+      () => GetAllowListController(hosterAbst: sl.call()));
   sl.registerFactory<GetBlockListController>(
-      () => GetBlockListController(hostAbst: sl.call()));
+      () => GetBlockListController(hosterAbst: sl.call()));
   sl.registerFactory<PostInteractionController>(
-      () => PostInteractionController(hostAbst: sl.call()));
+      () => PostInteractionController(hosterAbst: sl.call()));
   sl.registerFactory<RemoveHostsController>(
-      () => RemoveHostsController(hostAbst: sl.call()));
+      () => RemoveHostsController(hosterAbst: sl.call()));
   sl.registerFactory<GetHostScannigController>(
-      () => GetHostScannigController(hostAbst: sl.call()));
+      () => GetHostScannigController(hosterAbst: sl.call()));
   sl.registerFactory<GetContractsController>(
       () => GetContractsController(contractAbst: sl.call()));
   sl.registerFactory<AddContractController>(
@@ -101,7 +101,7 @@ Future<void> initialization() async {
   sl.registerFactory<DeleteContractByIdController>(
       () => DeleteContractByIdController(contractAbst: sl.call()));
   sl.registerFactory<FetchSomeHostController>(
-      () => FetchSomeHostController(hostAbst: sl.call()));
+      () => FetchSomeHostController(hosterAbst: sl.call()));
   sl.registerFactory<UpdateSomeHostController>(
-      () => UpdateSomeHostController(hostAbst: sl.call()));
+      () => UpdateSomeHostController(hosterAbst: sl.call()));
 }

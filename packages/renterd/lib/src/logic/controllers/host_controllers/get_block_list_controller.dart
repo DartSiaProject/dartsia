@@ -1,19 +1,19 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_abst.dart';
+import '../../../abstract/hoster_abst.dart';
 
 class GetBlockListController {
-  final HostAbst hostAbst;
+  final HosterAbst hosterAbst;
 
   GetBlockListController({
-    required this.hostAbst,
+    required this.hosterAbst,
   });
 
   Future<http.Response> call({
     String? username,
     required String password,
   }) async {
-    return await hostAbst.getBlockList(
+    return await hosterAbst.getBlockList(
       username: username,
       password: password,
     );

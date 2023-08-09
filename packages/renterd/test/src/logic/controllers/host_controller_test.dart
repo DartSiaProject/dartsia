@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:renterd/src/abstract/host_abst.dart';
+import 'package:renterd/src/abstract/hoster_abst.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/fetch_some_host_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/get_allow_list_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/get_block_list_controller.dart';
@@ -14,12 +14,12 @@ import 'package:renterd/src/logic/controllers/host_controllers/update_allow_list
 import 'package:renterd/src/logic/controllers/host_controllers/update_block_list_controller.dart';
 import 'package:renterd/src/logic/controllers/host_controllers/update_some_host_controller.dart';
 
-class MockHostAbst extends Mock implements HostAbst {}
+class MockHosterAbst extends Mock implements HosterAbst {}
 
 class MockResponse extends Mock implements Response {}
 
 void main() {
-  late MockHostAbst _mockHostAbst;
+  late MockHosterAbst _mockHosterAbst;
   late MockResponse _mockResponse;
   late GetAllowListController _getAllowListController;
   late GetBlockListController _getBlockListController;
@@ -33,25 +33,28 @@ void main() {
   late FetchSomeHostController _fetchSomeHostController;
   late UpdateSomeHostController _updateSomeHostController;
   setUp(() {
-    _mockHostAbst = MockHostAbst();
+    _mockHosterAbst = MockHosterAbst();
     _mockResponse = MockResponse();
-    _getAllowListController = GetAllowListController(hostAbst: _mockHostAbst);
-    _getBlockListController = GetBlockListController(hostAbst: _mockHostAbst);
+    _getAllowListController =
+        GetAllowListController(hosterAbst: _mockHosterAbst);
+    _getBlockListController =
+        GetBlockListController(hosterAbst: _mockHosterAbst);
     _getHostInfoByPublicKeyController =
-        GetHostInfoByPublicKeyController(hostAbst: _mockHostAbst);
+        GetHostInfoByPublicKeyController(hosterAbst: _mockHosterAbst);
     _getHostScannigController =
-        GetHostScannigController(hostAbst: _mockHostAbst);
-    _getHostsController = GetHostsController(hostAbst: _mockHostAbst);
+        GetHostScannigController(hosterAbst: _mockHosterAbst);
+    _getHostsController = GetHostsController(hosterAbst: _mockHosterAbst);
     _postInteractionController =
-        PostInteractionController(hostAbst: _mockHostAbst);
-    _removeHostsController = RemoveHostsController(hostAbst: _mockHostAbst);
+        PostInteractionController(hosterAbst: _mockHosterAbst);
+    _removeHostsController = RemoveHostsController(hosterAbst: _mockHosterAbst);
     _updateAllowListController =
-        UpdateAllowListController(hostAbst: _mockHostAbst);
+        UpdateAllowListController(hosterAbst: _mockHosterAbst);
     _updateBlockListController =
-        UpdateBlockListController(hostAbst: _mockHostAbst);
-    _fetchSomeHostController = FetchSomeHostController(hostAbst: _mockHostAbst);
+        UpdateBlockListController(hosterAbst: _mockHosterAbst);
+    _fetchSomeHostController =
+        FetchSomeHostController(hosterAbst: _mockHosterAbst);
     _updateSomeHostController =
-        UpdateSomeHostController(hostAbst: _mockHostAbst);
+        UpdateSomeHostController(hosterAbst: _mockHosterAbst);
   });
 
   group('HostController => ', () {
@@ -60,7 +63,7 @@ void main() {
       'the call function of the "Get AllowList Controller" should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.getAllowList(
+        when(() => _mockHosterAbst.getAllowList(
               password: 'renterd',
             )).thenAnswer((_) async => _mockResponse);
 
@@ -70,10 +73,10 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.getAllowList(
+        verify(() => _mockHosterAbst.getAllowList(
               password: 'renterd',
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -81,7 +84,7 @@ void main() {
       'the call function of the "Get BlockList Controller" should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.getBlockList(
+        when(() => _mockHosterAbst.getBlockList(
               password: 'renterd',
             )).thenAnswer((_) async => _mockResponse);
 
@@ -91,10 +94,10 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.getBlockList(
+        verify(() => _mockHosterAbst.getBlockList(
               password: 'renterd',
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -102,7 +105,7 @@ void main() {
       'the call function of the "Get HostInfo By PublicKey Controller" should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.getHostInfoByPublicKey(
+        when(() => _mockHosterAbst.getHostInfoByPublicKey(
                 password: 'renterd',
                 publicKey:
                     "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece"))
@@ -115,12 +118,12 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.getHostInfoByPublicKey(
+        verify(() => _mockHosterAbst.getHostInfoByPublicKey(
                 password: 'renterd',
                 publicKey:
                     "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece"))
             .called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -128,7 +131,7 @@ void main() {
       'the call function of the "Get HostScannig Controller" should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.getHostScannig(
+        when(() => _mockHosterAbst.getHostScannig(
               password: 'renterd',
               lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
               limit: 10,
@@ -144,13 +147,13 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.getHostScannig(
+        verify(() => _mockHosterAbst.getHostScannig(
               password: 'renterd',
               lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
               limit: 10,
               offset: 0,
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -158,7 +161,7 @@ void main() {
       'the call function of the " Get Hosts Controller" should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.getHosts(
+        when(() => _mockHosterAbst.getHosts(
               password: 'renterd',
             )).thenAnswer((_) async => _mockResponse);
 
@@ -168,10 +171,10 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.getHosts(
+        verify(() => _mockHosterAbst.getHosts(
               password: 'renterd',
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -179,7 +182,7 @@ void main() {
       'the call function of the "Post Interaction Controller" should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.postInteraction(
+        when(() => _mockHosterAbst.postInteraction(
               password: 'renterd',
               hostScanData: [],
             )).thenAnswer((_) async => _mockResponse);
@@ -191,11 +194,11 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.postInteraction(
+        verify(() => _mockHosterAbst.postInteraction(
               password: 'renterd',
               hostScanData: [],
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -203,7 +206,7 @@ void main() {
       'the call function of the "Remove Hosts Controller " should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.removeHosts(
+        when(() => _mockHosterAbst.removeHosts(
               password: 'renterd',
               maxDowntimeHours: '1000',
               minRecentScanFailures: 3,
@@ -217,12 +220,12 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.removeHosts(
+        verify(() => _mockHosterAbst.removeHosts(
               password: 'renterd',
               maxDowntimeHours: '1000',
               minRecentScanFailures: 3,
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -230,7 +233,7 @@ void main() {
       'the call function of the "Update AllowList Controller " should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.updateAllowList(
+        when(() => _mockHosterAbst.updateAllowList(
               password: 'renterd',
               addHostList: [],
               removeHostList: [
@@ -248,14 +251,14 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.updateAllowList(
+        verify(() => _mockHosterAbst.updateAllowList(
               password: 'renterd',
               addHostList: [],
               removeHostList: [
                 "ed25519:6f7ac63891fa2eadeb3031b75817a4beaae91070f485c3d139f1ffd3107d6aa8"
               ],
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -263,7 +266,7 @@ void main() {
       'the call function of the "Update BlockList Controller " should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.updateBlockList(
+        when(() => _mockHosterAbst.updateBlockList(
               password: 'renterd',
               addHostList: [],
               removeHostList: [
@@ -287,7 +290,7 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.updateBlockList(
+        verify(() => _mockHosterAbst.updateBlockList(
               password: 'renterd',
               addHostList: [],
               removeHostList: [
@@ -297,7 +300,7 @@ void main() {
                 "45.148.30.56"
               ],
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -306,7 +309,7 @@ void main() {
       'the call function of the "FetchSomeHostController" should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.fetchSomeHost(
+        when(() => _mockHosterAbst.fetchSomeHost(
               password: 'renterd',
             )).thenAnswer((_) async => _mockResponse);
 
@@ -316,10 +319,10 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.fetchSomeHost(
+        verify(() => _mockHosterAbst.fetchSomeHost(
               password: 'renterd',
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );
@@ -328,7 +331,7 @@ void main() {
       'the call function of the "UpdateSomeHostController" should return a response type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        when(() => _mockHostAbst.updateSomeHost(
+        when(() => _mockHosterAbst.updateSomeHost(
               password: 'renterd',
               hostConfig: {},
             )).thenAnswer((_) async => _mockResponse);
@@ -340,11 +343,11 @@ void main() {
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
-        verify(() => _mockHostAbst.updateSomeHost(
+        verify(() => _mockHosterAbst.updateSomeHost(
               password: 'renterd',
               hostConfig: {},
             )).called(1);
-        verifyNoMoreInteractions(_mockHostAbst);
+        verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
       },
     );

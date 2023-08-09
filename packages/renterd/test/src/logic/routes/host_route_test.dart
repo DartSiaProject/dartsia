@@ -54,7 +54,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.getAllowList(
+        final verifyValue = await Hoster.getAllowList(
           password: 'renterd',
         );
 
@@ -72,7 +72,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.getBlockList(
+        final verifyValue = await Hoster.getBlockList(
           password: 'renterd',
         );
 
@@ -91,7 +91,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.getHostInfoByPublicKey(
+        final verifyValue = await Hoster.getHostInfoByPublicKey(
             password: 'renterd',
             publicKey:
                 "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece");
@@ -113,7 +113,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.getHostScannig(
+        final verifyValue = await Hoster.getHostScannig(
           password: 'renterd',
           lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
           limit: 10,
@@ -134,7 +134,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.getHosts(
+        final verifyValue = await Hoster.getHosts(
           password: 'renterd',
         );
 
@@ -153,7 +153,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.postInteraction(
+        final verifyValue = await Hoster.postInteraction(
           password: 'renterd',
           hostScanData: [],
         );
@@ -174,7 +174,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.removeHosts(
+        final verifyValue = await Hoster.removeHosts(
           password: 'renterd',
           maxDowntimeHours: '1000',
           minRecentScanFailures: 3,
@@ -198,7 +198,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.updateAllowList(
+        final verifyValue = await Hoster.updateAllowList(
           password: 'renterd',
           addHostList: [],
           removeHostList: [
@@ -227,7 +227,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.updateBlockList(
+        final verifyValue = await Hoster.updateBlockList(
           password: 'renterd',
           addHostList: [],
           removeHostList: [
@@ -253,7 +253,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.fetchSomeHost(
+        final verifyValue = await Hoster.fetchSomeHost(
           password: 'renterd',
         );
 
@@ -273,7 +273,7 @@ void main() async {
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Host.updateSomeHost(
+        final verifyValue = await Hoster.updateSomeHost(
           password: 'renterd',
           hostConfig: {},
         );

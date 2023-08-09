@@ -4,18 +4,18 @@ import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-import '../../abstract/host_abst.dart';
+import '../../abstract/hoster_abst.dart';
 import '../../apis/host_api.dart';
 
 /// Project : [Renterd's Package]
 /// Description : This file contains these Functionnalities []
 /// Author : [CotradeChain]
 /// onCreated : 24/05/2023
-/// onUpadted : #
-/// Upadted by : #
+/// onUpadted : 09/08/2023
+/// Upadted by : Jamse Brel
 /// AuthorCode : James Brel
 
-class HostImpl implements HostAbst {
+class HosterImpl implements HosterAbst {
   /// Note : This Function whose Returns the current allowlist of the bus like http.Response
   @override
   Future<http.Response> getAllowList({

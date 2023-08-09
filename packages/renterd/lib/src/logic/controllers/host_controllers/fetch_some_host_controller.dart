@@ -1,19 +1,19 @@
 import 'package:http/http.dart' as http;
 
-import '../../../abstract/host_abst.dart';
+import '../../../abstract/hoster_abst.dart';
 
 class FetchSomeHostController {
-  final HostAbst hostAbst;
+  final HosterAbst hosterAbst;
 
   FetchSomeHostController({
-    required this.hostAbst,
+    required this.hosterAbst,
   });
 
   Future<http.Response> call({
     String? username,
     required String password,
   }) async {
-    return await hostAbst.fetchSomeHost(
+    return await hosterAbst.fetchSomeHost(
       username: username,
       password: password,
     );
