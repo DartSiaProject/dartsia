@@ -26,17 +26,17 @@ import 'logic/controllers/contract_controllers/delete_contract_by_id_controller.
 import 'logic/controllers/contract_controllers/get_contract_by_id_controller.dart';
 import 'logic/controllers/contract_controllers/get_contracts_controller.dart';
 import 'logic/controllers/contract_controllers/release_presious_contract_controller.dart';
-import 'logic/controllers/host_controllers/fetch_some_host_controller.dart';
-import 'logic/controllers/host_controllers/get_allow_list_controller.dart';
-import 'logic/controllers/host_controllers/get_block_list_controller.dart';
-import 'logic/controllers/host_controllers/get_host_info_by_public_key_controller.dart';
-import 'logic/controllers/host_controllers/get_host_scanning_controller.dart';
-import 'logic/controllers/host_controllers/get_hosts_controller.dart';
-import 'logic/controllers/host_controllers/post_interaction_controller.dart';
-import 'logic/controllers/host_controllers/remove_hosts_controller.dart';
-import 'logic/controllers/host_controllers/update_allow_list_controller.dart';
-import 'logic/controllers/host_controllers/update_block_list_controller.dart';
-import 'logic/controllers/host_controllers/update_some_host_controller.dart';
+import 'logic/controllers/hoster_controllers/fetch_some_host_controller.dart';
+import 'logic/controllers/hoster_controllers/get_allow_list_controller.dart';
+import 'logic/controllers/hoster_controllers/get_block_list_controller.dart';
+import 'logic/controllers/hoster_controllers/get_host_info_by_public_key_controller.dart';
+import 'logic/controllers/hoster_controllers/get_host_scanning_controller.dart';
+import 'logic/controllers/hoster_controllers/get_hosts_controller.dart';
+import 'logic/controllers/hoster_controllers/post_interaction_controller.dart';
+import 'logic/controllers/hoster_controllers/remove_hosts_controller.dart';
+import 'logic/controllers/hoster_controllers/update_allow_list_controller.dart';
+import 'logic/controllers/hoster_controllers/update_block_list_controller.dart';
+import 'logic/controllers/hoster_controllers/update_some_host_controller.dart';
 
 final sl = GetIt.instance;
 

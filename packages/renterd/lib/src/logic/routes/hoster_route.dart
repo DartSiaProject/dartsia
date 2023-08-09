@@ -1,16 +1,16 @@
 import 'package:http/http.dart' as http;
 
 import '../../injection.dart';
-import '../controllers/host_controllers/fetch_some_host_controller.dart';
-import '../controllers/host_controllers/get_allow_list_controller.dart';
-import '../controllers/host_controllers/get_host_info_by_public_key_controller.dart';
-import '../controllers/host_controllers/get_host_scanning_controller.dart';
-import '../controllers/host_controllers/get_hosts_controller.dart';
-import '../controllers/host_controllers/post_interaction_controller.dart';
-import '../controllers/host_controllers/remove_hosts_controller.dart';
-import '../controllers/host_controllers/update_allow_list_controller.dart';
-import '../controllers/host_controllers/update_block_list_controller.dart';
-import '../controllers/host_controllers/update_some_host_controller.dart';
+import '../controllers/hoster_controllers/fetch_some_host_controller.dart';
+import '../controllers/hoster_controllers/get_allow_list_controller.dart';
+import '../controllers/hoster_controllers/get_host_info_by_public_key_controller.dart';
+import '../controllers/hoster_controllers/get_host_scanning_controller.dart';
+import '../controllers/hoster_controllers/get_hosts_controller.dart';
+import '../controllers/hoster_controllers/post_interaction_controller.dart';
+import '../controllers/hoster_controllers/remove_hosts_controller.dart';
+import '../controllers/hoster_controllers/update_allow_list_controller.dart';
+import '../controllers/hoster_controllers/update_block_list_controller.dart';
+import '../controllers/hoster_controllers/update_some_host_controller.dart';
 
 class Hoster {
   static Future<http.Response> getHostInfoByPublicKey({

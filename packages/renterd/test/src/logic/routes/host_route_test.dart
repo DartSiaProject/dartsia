@@ -1,17 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:renterd/src/injection.dart' as insert;
-import 'package:renterd/src/logic/controllers/host_controllers/fetch_some_host_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/get_allow_list_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/get_block_list_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/get_host_info_by_public_key_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/get_host_scanning_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/get_hosts_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/post_interaction_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/remove_hosts_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/update_allow_list_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/update_block_list_controller.dart';
-import 'package:renterd/src/logic/controllers/host_controllers/update_some_host_controller.dart';
-import 'package:renterd/src/logic/routes/host_route.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/fetch_some_host_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/get_allow_list_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/get_block_list_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/get_host_info_by_public_key_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/get_host_scanning_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/get_hosts_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/post_interaction_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/remove_hosts_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/update_allow_list_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/update_block_list_controller.dart';
+import 'package:renterd/src/logic/controllers/hoster_controllers/update_some_host_controller.dart';
+import 'package:renterd/src/logic/routes/hoster_route.dart';
 
 void main() async {
   await insert.initialization();
