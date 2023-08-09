@@ -217,7 +217,7 @@ class HosterImpl implements HosterAbst {
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        "${dotenv.env['ROOT_URL']}${fetchSomeHostApi(key: "gouging")}",
+        "${dotenv.env['ROOT_URL']}${fetchSomeHostApi("gouging")}",
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -237,7 +237,7 @@ class HosterImpl implements HosterAbst {
   }) async {
     http.Response _response = await http.put(
         Uri.parse(
-          "${dotenv.env['ROOT_URL']}${updateSomeHostApi(key: "gouging")}",
+          "${dotenv.env['ROOT_URL']}${updateSomeHostApi("gouging")}",
         ),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",

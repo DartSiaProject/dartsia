@@ -8,5 +8,5 @@ const postInteractionApi = "api/bus/hosts/interactions";
 const removeHostsApi = "api/bus/hosts/remove";
 String getHostsScanningApi(int offset, int limit, String lastScan) =>
     "api/bus/hosts/scanning?offset=$offset&limit=$limit&lastScan=$lastScan";
-String fetchSomeHostApi({required String key}) => "api/bus/setting/$key";
-String updateSomeHostApi({required String key}) => "api/bus/setting/$key";
+String fetchSomeHostApi(String key) => "api/bus/setting/$key";
+String updateSomeHostApi(String key) => "api/bus/setting/$key";
