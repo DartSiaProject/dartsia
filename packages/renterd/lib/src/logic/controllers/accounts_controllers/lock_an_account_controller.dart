@@ -15,6 +15,7 @@ class LockAnAccountController {
     required String accountId,
     required String hostKey,
     required bool exclusive,
+    required String ipAdress,
   }) async {
     return await accountsAbst.lockAnAccount(
       username: username,
@@ -22,6 +23,7 @@ class LockAnAccountController {
       accountId: accountId,
       hostKey: hostKey,
       exclusive: exclusive,
+      ipAdress: ipAdress,
     );
   }
 }

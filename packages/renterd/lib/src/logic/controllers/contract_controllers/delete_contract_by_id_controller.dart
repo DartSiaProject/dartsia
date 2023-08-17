@@ -13,11 +13,13 @@ class DeleteContractByIdController {
     String? username,
     required String password,
     required String id,
+    required String ipAdress,
   }) async {
     return await contractAbst.deleteContractById(
       username: username,
       password: password,
       id: id,
+      ipAdress: ipAdress,
     );
   }
 }

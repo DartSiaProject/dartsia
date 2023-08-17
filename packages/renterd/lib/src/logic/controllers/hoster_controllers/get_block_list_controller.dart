@@ -12,10 +12,12 @@ class GetBlockListController {
   Future<http.Response> call({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     return await hosterAbst.getBlockList(
       username: username,
       password: password,
+      ipAdress: ipAdress,
     );
   }
 }

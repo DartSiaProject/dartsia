@@ -12,10 +12,12 @@ class Contract {
   static Future<http.Response> getContracts({
     String? username,
     required String password,
+    required String ipAdress,
   }) async =>
       await sl<GetContractsController>().call(
         username: username,
         password: password,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> addContract({
@@ -25,6 +27,7 @@ class Contract {
     required Map<dynamic, dynamic> contract,
     required String totalCost,
     required int startHeight,
+    required String ipAdress,
   }) async =>
       await sl<AddContractController>().call(
         username: username,
@@ -33,6 +36,7 @@ class Contract {
         contract: contract,
         totalCost: totalCost,
         startHeight: startHeight,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> acquireAContract({
@@ -41,6 +45,7 @@ class Contract {
     required String id,
     required String duration,
     required int priority,
+    required String ipAdress,
   }) async =>
       await sl<AcquireAContractController>().call(
         username: username,
@@ -48,6 +53,7 @@ class Contract {
         id: id,
         duration: duration,
         priority: priority,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> releasePreviousContract({
@@ -55,33 +61,39 @@ class Contract {
     required String password,
     required String id,
     required int lockId,
+    required String ipAdress,
   }) async =>
       await sl<ReleasePreviousContractController>().call(
         username: username,
         password: password,
         id: id,
         lockId: lockId,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> getContractById({
     String? username,
     required String password,
     required String id,
+    required String ipAdress,
   }) async =>
       await sl<GetContractByIdController>().call(
         username: username,
         password: password,
         id: id,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> deleteContractById({
     String? username,
     required String password,
     required String id,
+    required String ipAdress,
   }) async =>
       await sl<DeleteContractByIdController>().call(
         username: username,
         password: password,
         id: id,
+        ipAdress: ipAdress,
       );
 }

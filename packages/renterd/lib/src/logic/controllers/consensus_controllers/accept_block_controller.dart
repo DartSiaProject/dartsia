@@ -16,6 +16,7 @@ class AcceptBlockController {
     required String address,
     required String value,
     required List<String> arbitraryDataList,
+    required String ipAdress,
   }) async {
     return await consensusAbst.acceptBlock(
       username: username,
@@ -24,6 +25,7 @@ class AcceptBlockController {
       address: address,
       value: value,
       arbitraryDataList: arbitraryDataList,
+      ipAdress: ipAdress,
     );
   }
 }

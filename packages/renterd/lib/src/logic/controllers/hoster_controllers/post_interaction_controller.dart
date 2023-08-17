@@ -13,11 +13,13 @@ class PostInteractionController {
     String? username,
     required String password,
     required List<String> hostScanData,
+    required String ipAdress,
   }) async {
     return await hosterAbst.postInteraction(
       username: username,
       password: password,
       hostScanData: hostScanData,
+      ipAdress: ipAdress,
     );
   }
 }

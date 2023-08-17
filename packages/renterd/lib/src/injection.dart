@@ -1,14 +1,9 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 
 import 'abstract/accounts_abst.dart';
 import 'abstract/consensus_abst.dart';
 import 'abstract/contract_abst.dart';
 import 'abstract/hoster_abst.dart';
-import 'data/services/accounts_impl.dart';
-import 'data/services/consensus_impl.dart';
-import 'data/services/contract_impl.dart';
-import 'data/services/hoster_impl.dart';
 import 'logic/controllers/accounts_controllers/add_deposit_controller.dart';
 import 'logic/controllers/accounts_controllers/get_all_accounts_controller.dart';
 import 'logic/controllers/accounts_controllers/get_an_account_by_id_controller.dart';
@@ -37,12 +32,14 @@ import 'logic/controllers/hoster_controllers/remove_hosts_controller.dart';
 import 'logic/controllers/hoster_controllers/update_allow_list_controller.dart';
 import 'logic/controllers/hoster_controllers/update_block_list_controller.dart';
 import 'logic/controllers/hoster_controllers/update_some_host_controller.dart';
+import 'services/accounts_impl.dart';
+import 'services/consensus_impl.dart';
+import 'services/contract_impl.dart';
+import 'services/hoster_impl.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initialization() async {
-  await dotenv.load(fileName: "assets/envs/.env");
-
   sl.registerLazySingleton<AccountsAbst>(() => AccountsImpl());
   sl.registerLazySingleton<ConsensusAbst>(() => ConsensusImpl());
   sl.registerLazySingleton<HosterAbst>(() => HosterImpl());

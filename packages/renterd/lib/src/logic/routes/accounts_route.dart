@@ -14,20 +14,27 @@ class Accounts {
   static Future<http.Response> getAllAccounts({
     String? username,
     required String password,
+    required String ipAdress,
   }) async =>
-      await sl<GetAllAccountsController>().call(password: password);
+      await sl<GetAllAccountsController>().call(
+        password: password,
+        username: username,
+        ipAdress: ipAdress,
+      );
 
   static Future<http.Response> getAnAcountById({
     String? username,
     required String password,
     required String accountId,
     required String hostKey,
+    required String ipAdress,
   }) async =>
       await sl<GetAnAccountByIdController>().call(
         username: username,
         password: password,
         accountId: accountId,
         hostKey: hostKey,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> lockAnAccount({
@@ -36,6 +43,7 @@ class Accounts {
     required String accountId,
     required String hostKey,
     required bool exclusive,
+    required String ipAdress,
   }) async =>
       await sl<LockAnAccountController>().call(
         username: username,
@@ -43,6 +51,7 @@ class Accounts {
         accountId: accountId,
         hostKey: hostKey,
         exclusive: exclusive,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> unLockAnAccount({
@@ -50,12 +59,14 @@ class Accounts {
     required String password,
     required String accountId,
     required String lockId,
+    required String ipAdress,
   }) async =>
       await sl<UnLockAnAccountController>().call(
         username: username,
         password: password,
         accountId: accountId,
         lockId: lockId,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> addDeposit({
@@ -64,6 +75,7 @@ class Accounts {
     required String accountId,
     required int amount,
     required String host,
+    required String ipAdress,
   }) async =>
       await sl<AddDepositController>().call(
         username: username,
@@ -71,6 +83,7 @@ class Accounts {
         accountId: accountId,
         amount: amount,
         host: host,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> updateBalance({
@@ -79,6 +92,7 @@ class Accounts {
     required String accountId,
     required int amount,
     required String host,
+    required String ipAdress,
   }) async =>
       await sl<UpdateBalanceController>().call(
         username: username,
@@ -86,6 +100,7 @@ class Accounts {
         accountId: accountId,
         amount: amount,
         host: host,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> syncBalance({
@@ -93,22 +108,26 @@ class Accounts {
     required String password,
     required String accountId,
     required String host,
+    required String ipAdress,
   }) async =>
       await sl<SyncBalanceController>().call(
         username: username,
         password: password,
         accountId: accountId,
         host: host,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> resetDrift({
     String? username,
     required String password,
     required String accountId,
+    required String ipAdress,
   }) async =>
       await sl<ResetDriftController>().call(
         username: username,
         password: password,
         accountId: accountId,
+        ipAdress: ipAdress,
       );
 }

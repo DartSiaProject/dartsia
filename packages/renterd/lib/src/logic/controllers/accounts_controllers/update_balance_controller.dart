@@ -15,6 +15,7 @@ class UpdateBalanceController {
     required String accountId,
     required String host,
     required int amount,
+    required String ipAdress,
   }) async {
     return await accountsAbst.updateBalance(
       username: username,
@@ -22,6 +23,7 @@ class UpdateBalanceController {
       accountId: accountId,
       host: host,
       amount: amount,
+      ipAdress: ipAdress,
     );
   }
 }

@@ -26,6 +26,7 @@ void main() {
   late UpdateBalanceController _updateBalanceController;
   late SyncBalanceController _syncBalanceController;
   late AddDepositController _addDepositController;
+  late String _ipAdress;
 
   setUp(() {
     _mockResponse = MockResponse();
@@ -46,6 +47,7 @@ void main() {
         SyncBalanceController(accountsAbst: _mockAccountsAbst);
     _addDepositController =
         AddDepositController(accountsAbst: _mockAccountsAbst);
+    _ipAdress = "127.0.0.1";
   });
 
   group('AccountsController => ', () {
@@ -55,16 +57,17 @@ void main() {
         'the call function of the "get all accounts Controller" should return a response type',
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
-      when(() => _mockAccountsAbst.getAllAccounts(password: "renterd"))
-          .thenAnswer((_) async => _mockResponse);
+      when(() => _mockAccountsAbst.getAllAccounts(
+          password: "renterd",
+          ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
-      final verifyVariable =
-          await _getAllAccountsController.call(password: "renterd");
+      final verifyVariable = await _getAllAccountsController.call(
+          password: "renterd", ipAdress: _ipAdress);
 
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
-      verify(() => _mockAccountsAbst.getAllAccounts(password: "renterd"))
-          .called(1);
+      verify(() => _mockAccountsAbst.getAllAccounts(
+          password: "renterd", ipAdress: _ipAdress)).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);
     });
@@ -73,29 +76,30 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.getAnAccountById(
-              password: "renterd",
-              accountId:
-                  'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
-              hostKey:
-                  'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9'))
-          .thenAnswer((_) async => _mockResponse);
+          password: "renterd",
+          accountId:
+              'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+          hostKey:
+              'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+          ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _getAnAccountByIdController.call(
           password: "renterd",
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
-              'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9');
+              'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+          ipAdress: _ipAdress);
 
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.getAnAccountById(
-              password: "renterd",
-              accountId:
-                  'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
-              hostKey:
-                  'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9'))
-          .called(1);
+          password: "renterd",
+          accountId:
+              'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+          hostKey:
+              'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+          ipAdress: _ipAdress)).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);
     });
@@ -110,7 +114,8 @@ void main() {
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
               'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
-          exclusive: false)).thenAnswer((_) async => _mockResponse);
+          exclusive: false,
+          ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _lockAnAccountController.call(
           password: "renterd",
@@ -118,7 +123,8 @@ void main() {
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
               'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
-          exclusive: false);
+          exclusive: false,
+          ipAdress: _ipAdress);
 
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
@@ -128,7 +134,8 @@ void main() {
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
               'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
-          exclusive: false)).called(1);
+          exclusive: false,
+          ipAdress: _ipAdress)).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);
     });
@@ -137,15 +144,16 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.resetDrift(
-            password: "renterd",
-            accountId:
-                'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
-          )).thenAnswer((_) async => _mockResponse);
+          password: "renterd",
+          accountId:
+              'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+          ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _resetDriftController.call(
         password: "renterd",
         accountId:
             'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+        ipAdress: _ipAdress,
       );
 
       //Assert - Compare the actual result and expected result
@@ -154,6 +162,7 @@ void main() {
             password: "renterd",
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+            ipAdress: _ipAdress,
           )).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);
@@ -166,6 +175,7 @@ void main() {
             password: "renterd",
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+            ipAdress: _ipAdress,
             lockId: '13874228167312385374',
           )).thenAnswer((_) async => _mockResponse);
 
@@ -174,6 +184,7 @@ void main() {
         accountId:
             'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
         lockId: '13874228167312385374',
+        ipAdress: _ipAdress,
       );
 
       //Assert - Compare the actual result and expected result
@@ -183,6 +194,7 @@ void main() {
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             lockId: '13874228167312385374',
+            ipAdress: _ipAdress,
           )).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);
@@ -199,6 +211,7 @@ void main() {
             amount: 1000000,
             host:
                 'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+            ipAdress: _ipAdress,
           )).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _updateBalanceController.call(
@@ -208,6 +221,7 @@ void main() {
         amount: 1000000,
         host:
             'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+        ipAdress: _ipAdress,
       );
 
       //Assert - Compare the actual result and expected result
@@ -219,6 +233,7 @@ void main() {
             amount: 1000000,
             host:
                 'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+            ipAdress: _ipAdress,
           )).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);
@@ -233,6 +248,7 @@ void main() {
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             host:
                 'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+            ipAdress: _ipAdress,
           )).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _syncBalanceController.call(
@@ -241,6 +257,7 @@ void main() {
             'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
         host:
             'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+        ipAdress: _ipAdress,
       );
 
       //Assert - Compare the actual result and expected result
@@ -251,6 +268,7 @@ void main() {
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             host:
                 'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+            ipAdress: _ipAdress,
           )).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);
@@ -265,6 +283,7 @@ void main() {
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
               "ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9",
+          ipAdress: _ipAdress,
           amount: 1000000)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _addDepositController.call(
@@ -273,6 +292,7 @@ void main() {
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
               "ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9",
+          ipAdress: _ipAdress,
           amount: 1000000);
 
       //Assert - Compare the actual result and expected result
@@ -283,6 +303,7 @@ void main() {
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
               "ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9",
+          ipAdress: _ipAdress,
           amount: 1000000)).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);

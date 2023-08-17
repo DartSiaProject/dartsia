@@ -12,10 +12,12 @@ class GetHostsController {
   Future<http.Response> call({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     return await hosterAbst.getHosts(
       username: username,
       password: password,
+      ipAdress: ipAdress,
     );
   }
 }

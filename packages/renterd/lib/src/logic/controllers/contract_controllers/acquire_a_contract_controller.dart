@@ -15,6 +15,7 @@ class AcquireAContractController {
     required String id,
     required String duration,
     required int priority,
+    required String ipAdress,
   }) async {
     return await contractAbst.acquireAContract(
       username: username,
@@ -22,6 +23,7 @@ class AcquireAContractController {
       id: id,
       duration: duration,
       priority: priority,
+      ipAdress: ipAdress,
     );
   }
 }

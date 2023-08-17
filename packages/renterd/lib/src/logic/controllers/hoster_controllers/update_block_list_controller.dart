@@ -14,12 +14,14 @@ class UpdateBlockListController {
     required String password,
     required List<String> addHostList,
     required List<String> removeHostList,
+    required String ipAdress,
   }) async {
     return await hosterAbst.updateBlockList(
       username: username,
       password: password,
       addHostList: addHostList,
       removeHostList: removeHostList,
+      ipAdress: ipAdress,
     );
   }
 }

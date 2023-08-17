@@ -14,12 +14,14 @@ class UnLockAnAccountController {
     required String password,
     required String accountId,
     required String lockId,
+    required String ipAdress,
   }) async {
     return await accountsAbst.unLockAnAccount(
       username: username,
       password: password,
       accountId: accountId,
       lockId: lockId,
+      ipAdress: ipAdress,
     );
   }
 }

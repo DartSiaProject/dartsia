@@ -1,18 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-import '../../abstract/accounts_abst.dart';
-import '../../apis/account_api.dart';
+import '../abstract/accounts_abst.dart';
+import '../apis/account_api.dart';
 
 /// Project : [Renterd's Package]
 /// Description : This file contains these Functionnalities [getAllAccounts, addDeposit, getAnAccountById, lockAnAccount, resetDrift, syncBalance, unLockAnAccount, updateBalance]
 /// Author : [CotradeChain]
 /// onCreated : 24/05/2023
-/// onUpadted : #
-/// Upadted by : #
+/// onUpadted : 14/08/2023
 /// AuthorCode : James Brel
 class AccountsImpl implements AccountsAbst {
   /// Note: This Function Returns all known ephemeral accounts from the bus like http.Response
@@ -20,9 +18,10 @@ class AccountsImpl implements AccountsAbst {
   Future<http.Response> getAllAccounts({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
-      Uri.parse("${dotenv.env['ROOT_URL']}$getAccountsApi"),
+      Uri.parse(getAccountsApi(ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -40,18 +39,19 @@ class AccountsImpl implements AccountsAbst {
     required String accountId,
     required String host,
     required int amount,
+    required String ipAdress,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse("${dotenv.env['ROOT_URL']}${addDepositApi(accountId)}"),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({
-          "host": host,
-          "amount": amount,
-        }));
+    http.Response _response =
+        await http.post(Uri.parse(addDepositApi(accountId, ipAdress)),
+            headers: {
+              HttpHeaders.contentTypeHeader: "application/json",
+              HttpHeaders.authorizationHeader:
+                  "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+            },
+            body: json.encode({
+              "host": host,
+              "amount": amount,
+            }));
     return _response;
   }
 
@@ -62,15 +62,16 @@ class AccountsImpl implements AccountsAbst {
     required String password,
     required String accountId,
     required String hostKey,
+    required String ipAdress,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse("${dotenv.env['ROOT_URL']}${getAnAccountByIdApi(accountId)}"),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({"hostKey": hostKey}));
+    http.Response _response =
+        await http.post(Uri.parse(getAnAccountByIdApi(accountId, ipAdress)),
+            headers: {
+              HttpHeaders.contentTypeHeader: "application/json",
+              HttpHeaders.authorizationHeader:
+                  "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+            },
+            body: json.encode({"hostKey": hostKey}));
     return _response;
   }
 
@@ -82,19 +83,20 @@ class AccountsImpl implements AccountsAbst {
     required String accountId,
     required String hostKey,
     required bool exclusive,
+    required String ipAdress,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse("${dotenv.env['ROOT_URL']}${lockAnAccountApi(accountId)}"),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({
-          "hostKey": hostKey,
-          "exclusive": exclusive,
-          "duration": "1000",
-        }));
+    http.Response _response =
+        await http.post(Uri.parse(lockAnAccountApi(accountId, ipAdress)),
+            headers: {
+              HttpHeaders.contentTypeHeader: "application/json",
+              HttpHeaders.authorizationHeader:
+                  "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+            },
+            body: json.encode({
+              "hostKey": hostKey,
+              "exclusive": exclusive,
+              "duration": "1000",
+            }));
     return _response;
   }
 
@@ -104,9 +106,10 @@ class AccountsImpl implements AccountsAbst {
     String? username,
     required String password,
     required String accountId,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.post(
-      Uri.parse("${dotenv.env['ROOT_URL']}${resetDriftApi(accountId)}"),
+      Uri.parse(resetDriftApi(accountId, ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -123,17 +126,18 @@ class AccountsImpl implements AccountsAbst {
     required String password,
     required String accountId,
     required String host,
+    required String ipAdress,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse("${dotenv.env['ROOT_URL']}${syncBalanceApi(accountId)}"),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({
-          "host": host,
-        }));
+    http.Response _response =
+        await http.post(Uri.parse(syncBalanceApi(accountId, ipAdress)),
+            headers: {
+              HttpHeaders.contentTypeHeader: "application/json",
+              HttpHeaders.authorizationHeader:
+                  "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+            },
+            body: json.encode({
+              "host": host,
+            }));
     return _response;
   }
 
@@ -144,15 +148,16 @@ class AccountsImpl implements AccountsAbst {
     required String password,
     required String accountId,
     required String lockId,
+    required String ipAdress,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse("${dotenv.env['ROOT_URL']}${unLockAnAccountApi(accountId)}"),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({"lockID": BigInt.parse(lockId).toInt()}));
+    http.Response _response =
+        await http.post(Uri.parse(unLockAnAccountApi(accountId, ipAdress)),
+            headers: {
+              HttpHeaders.contentTypeHeader: "application/json",
+              HttpHeaders.authorizationHeader:
+                  "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+            },
+            body: json.encode({"lockID": BigInt.parse(lockId).toInt()}));
     return _response;
   }
 
@@ -164,18 +169,19 @@ class AccountsImpl implements AccountsAbst {
     required String accountId,
     required String host,
     required int amount,
+    required String ipAdress,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse("${dotenv.env['ROOT_URL']}${updateBalanceApi(accountId)}"),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({
-          "host": host,
-          "amount": amount,
-        }));
+    http.Response _response =
+        await http.post(Uri.parse(updateBalanceApi(accountId, ipAdress)),
+            headers: {
+              HttpHeaders.contentTypeHeader: "application/json",
+              HttpHeaders.authorizationHeader:
+                  "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+            },
+            body: json.encode({
+              "host": host,
+              "amount": amount,
+            }));
     return _response;
   }
 }

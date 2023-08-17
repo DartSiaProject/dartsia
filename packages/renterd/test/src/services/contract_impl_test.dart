@@ -1,19 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:renterd/src/apis/contracts_api.dart';
-import 'package:renterd/src/data/services/contract_impl.dart';
-import 'package:renterd/src/injection.dart' as insert;
+import 'package:renterd/src/services/contract_impl.dart';
 
 void main() async {
-  await insert.initialization();
   late ContractImpl _contractImpl;
+  late String _ipAdress;
 
   setUp(() {
     _contractImpl = ContractImpl();
+    _ipAdress = "127.0.0.1";
   });
 
   group('ContractImpl => ', () {
@@ -25,8 +24,9 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.post(
-          Uri.parse(
-              "${dotenv.env['ROOT_URL']}${acquireAContractApi("fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b")}"),
+          Uri.parse(acquireAContractApi(
+              "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+              _ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -43,6 +43,7 @@ void main() async {
           duration: "10000",
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
           priority: 10,
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -57,8 +58,9 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.post(
-          Uri.parse(
-              "${dotenv.env['ROOT_URL']}${postContractsApi("fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b")}"),
+          Uri.parse(postContractsApi(
+              "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+              _ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -79,6 +81,7 @@ void main() async {
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
           startHeight: 53,
           totalCost: "16666666666666666666666666",
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -93,8 +96,9 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.delete(
-          Uri.parse(
-              "${dotenv.env['ROOT_URL']}${deleteContractByIdApi("fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b")}"),
+          Uri.parse(deleteContractByIdApi(
+              "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+              _ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -105,6 +109,7 @@ void main() async {
         final verifyValue = await _contractImpl.deleteContractById(
           password: 'renterd',
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -120,8 +125,9 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.get(
-          Uri.parse(
-              "${dotenv.env['ROOT_URL']}${getContractByIdApi("fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b")}"),
+          Uri.parse(getContractByIdApi(
+              "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+              _ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -132,6 +138,7 @@ void main() async {
         final verifyValue = await _contractImpl.getContractById(
           password: 'renterd',
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -147,7 +154,7 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.get(
-          Uri.parse("${dotenv.env['ROOT_URL']}$getContractsApi"),
+          Uri.parse(getContractsApi(_ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -157,6 +164,7 @@ void main() async {
 
         final verifyValue = await _contractImpl.getContracts(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -172,8 +180,9 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.post(
-          Uri.parse(
-              "${dotenv.env['ROOT_URL']}${releasePreviousContractApi("fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b")}"),
+          Uri.parse(releasePreviousContractApi(
+              "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+              _ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -188,6 +197,7 @@ void main() async {
           password: 'renterd',
           id: "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
           lockId: 609920465282217447,
+          ipAdress: _ipAdress,
         );
 
         expect(

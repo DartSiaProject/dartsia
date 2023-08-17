@@ -13,11 +13,13 @@ class GetSiaFundFeeController {
     String? username,
     required String password,
     required int payout,
+    required String ipAdress,
   }) async {
     return await consensusAbst.getSiaFundFee(
       username: username,
       password: password,
       payout: payout,
+      ipAdress: ipAdress,
     );
   }
 }

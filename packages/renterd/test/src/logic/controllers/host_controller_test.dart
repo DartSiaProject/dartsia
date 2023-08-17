@@ -32,6 +32,8 @@ void main() {
   late UpdateBlockListController _updateBlockListController;
   late FetchSomeHostController _fetchSomeHostController;
   late UpdateSomeHostController _updateSomeHostController;
+
+  late String _ipAdress;
   setUp(() {
     _mockHosterAbst = MockHosterAbst();
     _mockResponse = MockResponse();
@@ -55,6 +57,7 @@ void main() {
         FetchSomeHostController(hosterAbst: _mockHosterAbst);
     _updateSomeHostController =
         UpdateSomeHostController(hosterAbst: _mockHosterAbst);
+    _ipAdress = "127.0.0.1";
   });
 
   group('HostController => ', () {
@@ -65,16 +68,19 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.getAllowList(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _getAllowListController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.getAllowList(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).called(1);
         verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
@@ -86,16 +92,19 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.getBlockList(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _getBlockListController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.getBlockList(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).called(1);
         verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
@@ -107,12 +116,14 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.getHostInfoByPublicKey(
                 password: 'renterd',
+                ipAdress: _ipAdress,
                 publicKey:
                     "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece"))
             .thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _getHostInfoByPublicKeyController.call(
             password: 'renterd',
+            ipAdress: _ipAdress,
             publicKey:
                 "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece");
 
@@ -120,6 +131,7 @@ void main() {
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.getHostInfoByPublicKey(
                 password: 'renterd',
+                ipAdress: _ipAdress,
                 publicKey:
                     "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece"))
             .called(1);
@@ -133,6 +145,7 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.getHostScannig(
               password: 'renterd',
+              ipAdress: _ipAdress,
               lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
               limit: 10,
               offset: 0,
@@ -140,6 +153,7 @@ void main() {
 
         final verifyVariable = await _getHostScannigController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
           limit: 10,
           offset: 0,
@@ -149,6 +163,7 @@ void main() {
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.getHostScannig(
               password: 'renterd',
+              ipAdress: _ipAdress,
               lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
               limit: 10,
               offset: 0,
@@ -163,16 +178,19 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.getHosts(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _getHostsController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.getHosts(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).called(1);
         verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
@@ -184,11 +202,13 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.postInteraction(
               password: 'renterd',
+              ipAdress: _ipAdress,
               hostScanData: [],
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _postInteractionController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           hostScanData: [],
         );
 
@@ -196,6 +216,7 @@ void main() {
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.postInteraction(
               password: 'renterd',
+              ipAdress: _ipAdress,
               hostScanData: [],
             )).called(1);
         verifyNoMoreInteractions(_mockHosterAbst);
@@ -209,12 +230,14 @@ void main() {
         when(() => _mockHosterAbst.removeHosts(
               password: 'renterd',
               maxDowntimeHours: '1000',
+              ipAdress: _ipAdress,
               minRecentScanFailures: 3,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _removeHostsController.call(
           password: 'renterd',
           maxDowntimeHours: '1000',
+          ipAdress: _ipAdress,
           minRecentScanFailures: 3,
         );
 
@@ -223,6 +246,7 @@ void main() {
         verify(() => _mockHosterAbst.removeHosts(
               password: 'renterd',
               maxDowntimeHours: '1000',
+              ipAdress: _ipAdress,
               minRecentScanFailures: 3,
             )).called(1);
         verifyNoMoreInteractions(_mockHosterAbst);
@@ -235,6 +259,7 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.updateAllowList(
               password: 'renterd',
+              ipAdress: _ipAdress,
               addHostList: [],
               removeHostList: [
                 "ed25519:6f7ac63891fa2eadeb3031b75817a4beaae91070f485c3d139f1ffd3107d6aa8"
@@ -243,6 +268,7 @@ void main() {
 
         final verifyVariable = await _updateAllowListController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           addHostList: [],
           removeHostList: [
             "ed25519:6f7ac63891fa2eadeb3031b75817a4beaae91070f485c3d139f1ffd3107d6aa8"
@@ -253,6 +279,7 @@ void main() {
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.updateAllowList(
               password: 'renterd',
+              ipAdress: _ipAdress,
               addHostList: [],
               removeHostList: [
                 "ed25519:6f7ac63891fa2eadeb3031b75817a4beaae91070f485c3d139f1ffd3107d6aa8"
@@ -268,6 +295,7 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.updateBlockList(
               password: 'renterd',
+              ipAdress: _ipAdress,
               addHostList: [],
               removeHostList: [
                 "siacentral.ddnsfree.com",
@@ -280,6 +308,7 @@ void main() {
         final verifyVariable = await _updateBlockListController.call(
           password: 'renterd',
           addHostList: [],
+          ipAdress: _ipAdress,
           removeHostList: [
             "siacentral.ddnsfree.com",
             "siacentral.mooo.com",
@@ -293,6 +322,7 @@ void main() {
         verify(() => _mockHosterAbst.updateBlockList(
               password: 'renterd',
               addHostList: [],
+              ipAdress: _ipAdress,
               removeHostList: [
                 "siacentral.ddnsfree.com",
                 "siacentral.mooo.com",
@@ -311,16 +341,19 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.fetchSomeHost(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _fetchSomeHostController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.fetchSomeHost(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).called(1);
         verifyNoMoreInteractions(_mockHosterAbst);
         verifyNoMoreInteractions(_mockResponse);
@@ -333,11 +366,13 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockHosterAbst.updateSomeHost(
               password: 'renterd',
+              ipAdress: _ipAdress,
               hostConfig: {},
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _updateSomeHostController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           hostConfig: {},
         );
 
@@ -345,6 +380,7 @@ void main() {
         expect(verifyVariable, _mockResponse);
         verify(() => _mockHosterAbst.updateSomeHost(
               password: 'renterd',
+              ipAdress: _ipAdress,
               hostConfig: {},
             )).called(1);
         verifyNoMoreInteractions(_mockHosterAbst);

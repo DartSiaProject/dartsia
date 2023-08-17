@@ -12,7 +12,12 @@ class GetAllAccountsController {
   Future<http.Response> call({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
-    return await accountsAbst.getAllAccounts(password: password);
+    return await accountsAbst.getAllAccounts(
+      password: password,
+      username: username,
+      ipAdress: ipAdress,
+    );
   }
 }

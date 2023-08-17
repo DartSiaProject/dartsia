@@ -13,11 +13,13 @@ class ResetDriftController {
     String? username,
     required String password,
     required String accountId,
+    required String ipAdress,
   }) async {
     return await accountsAbst.resetDrift(
       username: username,
       password: password,
       accountId: accountId,
+      ipAdress: ipAdress,
     );
   }
 }

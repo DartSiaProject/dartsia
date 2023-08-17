@@ -14,12 +14,14 @@ class ReleasePreviousContractController {
     required String password,
     required String id,
     required int lockId,
+    required String ipAdress,
   }) async {
     return await contractAbst.releasePreviousContract(
       username: username,
       password: password,
       id: id,
       lockId: lockId,
+      ipAdress: ipAdress,
     );
   }
 }

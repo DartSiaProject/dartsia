@@ -1,18 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-import '../../abstract/consensus_abst.dart';
-import '../../apis/consensus_api.dart';
+import '../abstract/consensus_abst.dart';
+import '../apis/consensus_api.dart';
 
 /// Project : [Renterd's Package]
 /// Description : This file contains these Functionnalities [acceptBlock, getSiaFundFee, getState]
 /// Author : [CotradeChain]
 /// onCreated : 24/05/2023
-/// onUpadted : #
-/// Upadted by : #
+/// onUpadted : 14/08/2023
 /// AuthorCode : James Brel
 class ConsensusImpl extends ConsensusAbst {
   /// Note: This Function whose Accepts a mined block. Upon success, the block is forwarded to the node's peers and the whole p2p network like http.Response
@@ -24,9 +22,10 @@ class ConsensusImpl extends ConsensusAbst {
     required String address,
     required String value,
     required List<String> arbitraryDataList,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.post(
-      Uri.parse("${dotenv.env['ROOT_URL']}$postAcceptBlockApi"),
+      Uri.parse(postAcceptBlockApi(ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -69,9 +68,10 @@ class ConsensusImpl extends ConsensusAbst {
     String? username,
     required String password,
     required int payout,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
-      Uri.parse("${dotenv.env['ROOT_URL']}${getTotalPayoutApi(payout)}"),
+      Uri.parse(getTotalPayoutApi(payout, ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -86,9 +86,10 @@ class ConsensusImpl extends ConsensusAbst {
   Future<http.Response> getState({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
-      Uri.parse("${dotenv.env['ROOT_URL']}$getStateApi"),
+      Uri.parse(getStateApi(ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:

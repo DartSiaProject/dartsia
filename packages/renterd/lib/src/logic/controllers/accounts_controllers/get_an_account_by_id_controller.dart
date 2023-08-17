@@ -14,12 +14,14 @@ class GetAnAccountByIdController {
     required String password,
     required String accountId,
     required String hostKey,
+    required String ipAdress,
   }) async {
     return await accountsAbst.getAnAccountById(
       username: username,
       password: password,
       accountId: accountId,
       hostKey: hostKey,
+      ipAdress: ipAdress,
     );
   }
 }

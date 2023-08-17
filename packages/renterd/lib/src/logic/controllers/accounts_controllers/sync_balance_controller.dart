@@ -14,12 +14,14 @@ class SyncBalanceController {
     required String password,
     required String accountId,
     required String host,
+    required String ipAdress,
   }) async {
     return await accountsAbst.syncBalance(
       username: username,
       password: password,
       accountId: accountId,
       host: host,
+      ipAdress: ipAdress,
     );
   }
 }

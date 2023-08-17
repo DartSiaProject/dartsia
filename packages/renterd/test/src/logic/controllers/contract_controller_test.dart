@@ -22,6 +22,7 @@ void main() {
   late GetContractByIdController _getContractByIdController;
   late GetContractsController _getContractsController;
   late ReleasePreviousContractController _releasePreviousContractController;
+  late String _ipAdress;
 
   setUp(() {
     _mockContractAbst = MockContractAbst();
@@ -38,6 +39,7 @@ void main() {
         GetContractsController(contractAbst: _mockContractAbst);
     _releasePreviousContractController =
         ReleasePreviousContractController(contractAbst: _mockContractAbst);
+    _ipAdress = "127.0.0.1";
   });
 
   group('ContractController => ', () {
@@ -50,6 +52,7 @@ void main() {
               password: 'renterd',
               duration: "10000",
               id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+              ipAdress: _ipAdress,
               priority: 10,
             )).thenAnswer((_) async => _mockResponse);
 
@@ -57,6 +60,7 @@ void main() {
           password: 'renterd',
           duration: "10000",
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
           priority: 10,
         );
 
@@ -66,6 +70,7 @@ void main() {
               password: 'renterd',
               duration: "10000",
               id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+              ipAdress: _ipAdress,
               priority: 10,
             )).called(1);
         verifyNoMoreInteractions(_mockContractAbst);
@@ -82,6 +87,7 @@ void main() {
               id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
               startHeight: 53,
               totalCost: "16666666666666666666666666",
+              ipAdress: _ipAdress,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _addContractController.call(
@@ -90,6 +96,7 @@ void main() {
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
           startHeight: 53,
           totalCost: "16666666666666666666666666",
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -100,6 +107,7 @@ void main() {
               id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
               startHeight: 53,
               totalCost: "16666666666666666666666666",
+              ipAdress: _ipAdress,
             )).called(1);
         verifyNoMoreInteractions(_mockContractAbst);
         verifyNoMoreInteractions(_mockResponse);
@@ -112,11 +120,13 @@ void main() {
         when(() => _mockContractAbst.deleteContractById(
               password: 'renterd',
               id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+              ipAdress: _ipAdress,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _deleteContractByIdController.call(
           password: 'renterd',
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -124,6 +134,7 @@ void main() {
         verify(() => _mockContractAbst.deleteContractById(
               password: 'renterd',
               id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+              ipAdress: _ipAdress,
             )).called(1);
         verifyNoMoreInteractions(_mockContractAbst);
         verifyNoMoreInteractions(_mockResponse);
@@ -136,11 +147,13 @@ void main() {
         when(() => _mockContractAbst.getContractById(
               password: 'renterd',
               id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+              ipAdress: _ipAdress,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _getContractByIdController.call(
           password: 'renterd',
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -148,6 +161,7 @@ void main() {
         verify(() => _mockContractAbst.getContractById(
               password: 'renterd',
               id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+              ipAdress: _ipAdress,
             )).called(1);
         verifyNoMoreInteractions(_mockContractAbst);
         verifyNoMoreInteractions(_mockResponse);
@@ -159,16 +173,19 @@ void main() {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         when(() => _mockContractAbst.getContracts(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _getContractsController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
         expect(verifyVariable, _mockResponse);
         verify(() => _mockContractAbst.getContracts(
               password: 'renterd',
+              ipAdress: _ipAdress,
             )).called(1);
         verifyNoMoreInteractions(_mockContractAbst);
         verifyNoMoreInteractions(_mockResponse);
@@ -181,12 +198,14 @@ void main() {
         when(() => _mockContractAbst.releasePreviousContract(
               password: 'renterd',
               id: "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+              ipAdress: _ipAdress,
               lockId: 609920465282217447,
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _releasePreviousContractController.call(
           password: 'renterd',
           id: "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+          ipAdress: _ipAdress,
           lockId: 609920465282217447,
         );
 
@@ -195,6 +214,7 @@ void main() {
         verify(() => _mockContractAbst.releasePreviousContract(
               password: 'renterd',
               id: "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+              ipAdress: _ipAdress,
               lockId: 609920465282217447,
             )).called(1);
         verifyNoMoreInteractions(_mockContractAbst);

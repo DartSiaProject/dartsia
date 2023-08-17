@@ -21,6 +21,7 @@ void main() async {
   late UpdateBalanceController _updateBalanceController;
   late SyncBalanceController _syncBalanceController;
   late AddDepositController _addDepositController;
+  late String _ipAdress;
 
   setUp(() {
     _getAllAccountsController = insert.sl<GetAllAccountsController>();
@@ -31,6 +32,7 @@ void main() async {
     _updateBalanceController = insert.sl<UpdateBalanceController>();
     _syncBalanceController = insert.sl<SyncBalanceController>();
     _addDepositController = insert.sl<AddDepositController>();
+    _ipAdress = "127.0.0.1";
   });
 
   group('AccountsRoute =>', () {
@@ -40,12 +42,17 @@ void main() async {
       'the getAllAccounts Returns all known ephemeral accounts from the bus like http.Response Type',
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
-        final testValue =
-            await _getAllAccountsController.call(password: "renterd");
+        final testValue = await _getAllAccountsController.call(
+          password: "renterd",
+          ipAdress: _ipAdress,
+        );
 
         //Act - Call the function that is to be tested
 
-        final verifyValue = await Accounts.getAllAccounts(password: "renterd");
+        final verifyValue = await Accounts.getAllAccounts(
+          password: "renterd",
+          ipAdress: _ipAdress,
+        );
 
         //Assert - Compare the actual result and expected result
         expect(testValue.statusCode, verifyValue.statusCode);
@@ -59,6 +66,7 @@ void main() async {
             password: "renterd",
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+            ipAdress: _ipAdress,
             hostKey:
                 'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9');
 
@@ -68,6 +76,7 @@ void main() async {
             password: "renterd",
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+            ipAdress: _ipAdress,
             hostKey:
                 'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9');
 
@@ -83,6 +92,7 @@ void main() async {
             password: "renterd",
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+            ipAdress: _ipAdress,
             hostKey:
                 'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
             exclusive: false);
@@ -93,6 +103,7 @@ void main() async {
             password: "renterd",
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+            ipAdress: _ipAdress,
             hostKey:
                 'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
             exclusive: false);
@@ -110,6 +121,7 @@ void main() async {
           password: "renterd",
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
@@ -118,6 +130,7 @@ void main() async {
           password: "renterd",
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -134,6 +147,7 @@ void main() async {
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           lockId: '13874228167312385374',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
@@ -143,6 +157,7 @@ void main() async {
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           lockId: '13874228167312385374',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -160,6 +175,7 @@ void main() async {
           amount: 1000000,
           host:
               'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
@@ -171,6 +187,7 @@ void main() async {
           amount: 1000000,
           host:
               'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+          ipAdress: _ipAdress,
         );
         //Assert - Compare the actual result and expected result
         expect(testValue.statusCode, verifyValue.statusCode);
@@ -186,6 +203,7 @@ void main() async {
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
               'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
@@ -196,6 +214,7 @@ void main() async {
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
               'ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9',
+          ipAdress: _ipAdress,
         );
         //Assert - Compare the actual result and expected result
         expect(testValue.statusCode, verifyValue.statusCode);
@@ -211,6 +230,7 @@ void main() async {
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             host:
                 "ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9",
+            ipAdress: _ipAdress,
             amount: 1000000);
 
         //Act - Call the function that is to be tested
@@ -221,6 +241,7 @@ void main() async {
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             host:
                 "ed25519:0c920d0254011f1065eeb99aa909c644b991780c1155ce0aa34cce09e6eabdc9",
+            ipAdress: _ipAdress,
             amount: 1000000);
         //Assert - Compare the actual result and expected result
         expect(testValue.statusCode, verifyValue.statusCode);

@@ -1,19 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:renterd/src/apis/consensus_api.dart';
-import 'package:renterd/src/data/services/consensus_impl.dart';
-import 'package:renterd/src/injection.dart' as insert;
+import 'package:renterd/src/services/consensus_impl.dart';
 
 void main() async {
-  await insert.initialization();
   late ConsensusImpl _consensusImpl;
+  late String _ipAdress;
 
   setUp(() {
     _consensusImpl = ConsensusImpl();
+    _ipAdress = "127.0.0.1";
   });
 
   group('ConsensusImpl => ', () {
@@ -25,7 +24,7 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.post(
-          Uri.parse("${dotenv.env['ROOT_URL']}$postAcceptBlockApi"),
+          Uri.parse(postAcceptBlockApi(_ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -72,6 +71,7 @@ void main() async {
           parentId:
               "bid:56e4d337f8554ce34071743b1976e164da01728d824b4963761154c965fb5625",
           value: "299999000000000000000000000000",
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -87,7 +87,7 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.get(
-          Uri.parse("${dotenv.env['ROOT_URL']}${getTotalPayoutApi(100000000)}"),
+          Uri.parse(getTotalPayoutApi(100000000, _ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -98,6 +98,7 @@ void main() async {
         final verifyValue = await _consensusImpl.getSiaFundFee(
           password: 'renterd',
           payout: 100000000,
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -112,7 +113,7 @@ void main() async {
         String? username;
         String password = "renterd";
         http.Response _response = await http.get(
-          Uri.parse("${dotenv.env['ROOT_URL']}$getStateApi"),
+          Uri.parse(getStateApi(_ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
@@ -122,6 +123,7 @@ void main() async {
 
         final verifyValue = await _consensusImpl.getState(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         expect(

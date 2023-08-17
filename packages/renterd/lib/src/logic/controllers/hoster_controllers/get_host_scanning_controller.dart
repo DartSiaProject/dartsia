@@ -15,6 +15,7 @@ class GetHostScannigController {
     required int offset,
     required int limit,
     required String lastScan,
+    required String ipAdress,
   }) async {
     return await hosterAbst.getHostScannig(
       username: username,
@@ -22,6 +23,7 @@ class GetHostScannigController {
       offset: offset,
       limit: limit,
       lastScan: lastScan,
+      ipAdress: ipAdress,
     );
   }
 }

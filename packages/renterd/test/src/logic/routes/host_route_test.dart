@@ -26,7 +26,7 @@ void main() async {
   late UpdateBlockListController _updateBlockListController;
   late FetchSomeHostController _fetchSomeHostController;
   late UpdateSomeHostController _updateSomeHostController;
-
+  late String _ipAdress;
   setUp(() {
     _getAllowListController = insert.sl<GetAllowListController>();
     _getBlockListController = insert.sl<GetBlockListController>();
@@ -40,6 +40,7 @@ void main() async {
     _updateBlockListController = insert.sl<UpdateBlockListController>();
     _fetchSomeHostController = insert.sl<FetchSomeHostController>();
     _updateSomeHostController = insert.sl<UpdateSomeHostController>();
+    _ipAdress = "127.0.0.1";
   });
 
   group('HostRoute => ', () {
@@ -50,12 +51,14 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getAllowListController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
 
         final verifyValue = await Hoster.getAllowList(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -68,12 +71,14 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getBlockListController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
 
         final verifyValue = await Hoster.getBlockList(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -86,6 +91,7 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getHostInfoByPublicKeyController.call(
             password: 'renterd',
+            ipAdress: _ipAdress,
             publicKey:
                 "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece");
 
@@ -93,6 +99,7 @@ void main() async {
 
         final verifyValue = await Hoster.getHostInfoByPublicKey(
             password: 'renterd',
+            ipAdress: _ipAdress,
             publicKey:
                 "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece");
 
@@ -106,6 +113,7 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getHostScannigController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
           limit: 10,
           offset: 0,
@@ -115,6 +123,7 @@ void main() async {
 
         final verifyValue = await Hoster.getHostScannig(
           password: 'renterd',
+          ipAdress: _ipAdress,
           lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
           limit: 10,
           offset: 0,
@@ -130,12 +139,14 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getHostsController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
 
         final verifyValue = await Hoster.getHosts(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -148,6 +159,7 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _postInteractionController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           hostScanData: [],
         );
 
@@ -155,6 +167,7 @@ void main() async {
 
         final verifyValue = await Hoster.postInteraction(
           password: 'renterd',
+          ipAdress: _ipAdress,
           hostScanData: [],
         );
 
@@ -168,6 +181,7 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _removeHostsController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           maxDowntimeHours: '1000',
           minRecentScanFailures: 3,
         );
@@ -176,6 +190,7 @@ void main() async {
 
         final verifyValue = await Hoster.removeHosts(
           password: 'renterd',
+          ipAdress: _ipAdress,
           maxDowntimeHours: '1000',
           minRecentScanFailures: 3,
         );
@@ -190,6 +205,7 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _updateAllowListController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           addHostList: [],
           removeHostList: [
             "ed25519:6f7ac63891fa2eadeb3031b75817a4beaae91070f485c3d139f1ffd3107d6aa8"
@@ -200,6 +216,7 @@ void main() async {
 
         final verifyValue = await Hoster.updateAllowList(
           password: 'renterd',
+          ipAdress: _ipAdress,
           addHostList: [],
           removeHostList: [
             "ed25519:6f7ac63891fa2eadeb3031b75817a4beaae91070f485c3d139f1ffd3107d6aa8"
@@ -216,6 +233,7 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _updateBlockListController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           addHostList: [],
           removeHostList: [
             "siacentral.ddnsfree.com",
@@ -229,6 +247,7 @@ void main() async {
 
         final verifyValue = await Hoster.updateBlockList(
           password: 'renterd',
+          ipAdress: _ipAdress,
           addHostList: [],
           removeHostList: [
             "siacentral.ddnsfree.com",
@@ -249,12 +268,16 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _fetchSomeHostController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
+
+        print(testValue.statusCode);
 
         //Act - Call the function that is to be tested
 
         final verifyValue = await Hoster.fetchSomeHost(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -268,6 +291,7 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _updateSomeHostController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
           hostConfig: {},
         );
 
@@ -275,6 +299,7 @@ void main() async {
 
         final verifyValue = await Hoster.updateSomeHost(
           password: 'renterd',
+          ipAdress: _ipAdress,
           hostConfig: {},
         );
 

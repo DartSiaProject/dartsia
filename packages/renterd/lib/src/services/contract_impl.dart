@@ -1,18 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-import '../../abstract/contract_abst.dart';
-import '../../apis/contracts_api.dart';
+import '../abstract/contract_abst.dart';
+import '../apis/contracts_api.dart';
 
 /// Project : [Renterd's Package]
 /// Description : This file contains these Functionnalities [acquireAContract, addContract, deleteContractById, getContractById, getContracts, releasePreviousContract]
 /// Author : [CotradeChain]
 /// onCreated : 24/05/2023
-/// onUpadted : #
-/// Upadted by : #
+/// onUpadted : 14/08/2023
 /// AuthorCode : James Brel
 class ContractImpl implements ContractAbst {
   /// Note : This Function whose Acquires a contract for up to a given duration. Similar to ephemeral accounts, contracts can be unlocked ahead of time using the unlock endpoint with the returned lock id like http.Response
@@ -23,9 +21,10 @@ class ContractImpl implements ContractAbst {
     required String id,
     required String duration,
     required int priority,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.post(
-      Uri.parse("${dotenv.env['ROOT_URL']}${acquireAContractApi(id)}"),
+      Uri.parse(acquireAContractApi(id, ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -48,9 +47,10 @@ class ContractImpl implements ContractAbst {
     required Map<dynamic, dynamic> contract,
     required String totalCost,
     required int startHeight,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.post(
-      Uri.parse("${dotenv.env['ROOT_URL']}${postContractsApi(id)}"),
+      Uri.parse(postContractsApi(id, ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -73,9 +73,10 @@ class ContractImpl implements ContractAbst {
     String? username,
     required String password,
     required String id,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.delete(
-      Uri.parse("${dotenv.env['ROOT_URL']}${deleteContractByIdApi(id)}"),
+      Uri.parse(deleteContractByIdApi(id, ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -91,9 +92,10 @@ class ContractImpl implements ContractAbst {
     String? username,
     required String password,
     required String id,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
-      Uri.parse("${dotenv.env['ROOT_URL']}${getContractByIdApi(id)}"),
+      Uri.parse(getContractByIdApi(id, ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -108,9 +110,10 @@ class ContractImpl implements ContractAbst {
   Future<http.Response> getContracts({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
-      Uri.parse("${dotenv.env['ROOT_URL']}$getContractsApi"),
+      Uri.parse(getContractsApi(ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
@@ -127,9 +130,10 @@ class ContractImpl implements ContractAbst {
     required String password,
     required String id,
     required int lockId,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.post(
-      Uri.parse("${dotenv.env['ROOT_URL']}${releasePreviousContractApi(id)}"),
+      Uri.parse(releasePreviousContractApi(id, ipAdress)),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:

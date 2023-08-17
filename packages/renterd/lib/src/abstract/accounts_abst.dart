@@ -4,6 +4,7 @@ abstract class AccountsAbst {
   Future<http.Response> getAllAccounts({
     String? username,
     required String password,
+    required String ipAdress,
   });
 
   Future<http.Response> addDeposit({
@@ -12,6 +13,7 @@ abstract class AccountsAbst {
     required String accountId,
     required String host,
     required int amount,
+    required String ipAdress,
   });
 
   Future<http.Response> getAnAccountById({
@@ -19,6 +21,7 @@ abstract class AccountsAbst {
     required String password,
     required String accountId,
     required String hostKey,
+    required String ipAdress,
   });
 
   Future<http.Response> lockAnAccount({
@@ -27,12 +30,14 @@ abstract class AccountsAbst {
     required String accountId,
     required String hostKey,
     required bool exclusive,
+    required String ipAdress,
   });
 
   Future<http.Response> resetDrift({
     String? username,
     required String password,
     required String accountId,
+    required String ipAdress,
   });
 
   Future<http.Response> syncBalance({
@@ -40,6 +45,7 @@ abstract class AccountsAbst {
     required String password,
     required String accountId,
     required String host,
+    required String ipAdress,
   });
 
   Future<http.Response> unLockAnAccount({
@@ -47,6 +53,7 @@ abstract class AccountsAbst {
     required String password,
     required String accountId,
     required String lockId,
+    required String ipAdress,
   });
 
   Future<http.Response> updateBalance({
@@ -55,5 +62,6 @@ abstract class AccountsAbst {
     required String accountId,
     required String host,
     required int amount,
+    required String ipAdress,
   });
 }

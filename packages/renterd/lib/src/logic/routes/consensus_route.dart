@@ -13,6 +13,7 @@ class Consensus {
     required String address,
     required String value,
     required List<String> arbitraryDataList,
+    required String ipAdress,
   }) async =>
       await sl<AcceptBlockController>().call(
         username: username,
@@ -21,24 +22,29 @@ class Consensus {
         address: address,
         value: value,
         arbitraryDataList: arbitraryDataList,
+        ipAdress: ipAdress,
       );
   static Future<http.Response> getState({
     String? username,
     required String password,
+    required String ipAdress,
   }) async =>
       await sl<GetStateController>().call(
         username: username,
         password: password,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> getSiaFundFee({
     String? username,
     required String password,
     required int payout,
+    required String ipAdress,
   }) async =>
       await sl<GetSiaFundFeeController>().call(
         username: username,
         password: password,
         payout: payout,
+        ipAdress: ipAdress,
       );
 }

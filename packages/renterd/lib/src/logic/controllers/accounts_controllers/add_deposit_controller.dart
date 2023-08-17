@@ -15,6 +15,7 @@ class AddDepositController {
     required String accountId,
     required String host,
     required int amount,
+    required String ipAdress,
   }) async {
     return await accountsAbst.addDeposit(
       username: username,
@@ -22,6 +23,7 @@ class AddDepositController {
       accountId: accountId,
       host: host,
       amount: amount,
+      ipAdress: ipAdress,
     );
   }
 }

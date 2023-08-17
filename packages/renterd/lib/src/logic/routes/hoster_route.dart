@@ -17,20 +17,24 @@ class Hoster {
     String? username,
     required String password,
     required String publicKey,
+    required String ipAdress,
   }) async =>
       await sl<GetHostInfoByPublicKeyController>().call(
         username: username,
         password: password,
         publicKey: publicKey,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> getHosts({
     String? username,
     required String password,
+    required String ipAdress,
   }) async =>
       await sl<GetHostsController>().call(
         username: username,
         password: password,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> updateAllowList({
@@ -38,52 +42,62 @@ class Hoster {
     required String password,
     required List<String> addHostList,
     required List<String> removeHostList,
+    required String ipAdress,
   }) async =>
       await sl<UpdateAllowListController>().call(
         username: username,
         password: password,
         addHostList: addHostList,
         removeHostList: removeHostList,
+        ipAdress: ipAdress,
       );
   static Future<http.Response> updateBlockList({
     String? username,
     required String password,
     required List<String> addHostList,
     required List<String> removeHostList,
+    required String ipAdress,
   }) async =>
       await sl<UpdateBlockListController>().call(
         username: username,
         password: password,
         addHostList: addHostList,
         removeHostList: removeHostList,
+        ipAdress: ipAdress,
       );
   static Future<http.Response> getAllowList({
     String? username,
     required String password,
+    required String ipAdress,
   }) async =>
       await sl<GetAllowListController>().call(
         username: username,
         password: password,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> getBlockList({
     String? username,
     required String password,
+    required String ipAdress,
   }) async =>
       await sl<GetAllowListController>().call(
         username: username,
         password: password,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> postInteraction({
     String? username,
     required String password,
     required List<String> hostScanData,
+    required String ipAdress,
   }) async =>
       await sl<PostInteractionController>().call(
         username: username,
         password: password,
         hostScanData: hostScanData,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> removeHosts({
@@ -91,12 +105,14 @@ class Hoster {
     required String password,
     required int minRecentScanFailures,
     required String maxDowntimeHours,
+    required String ipAdress,
   }) async =>
       await sl<RemoveHostsController>().call(
         username: username,
         password: password,
         minRecentScanFailures: minRecentScanFailures,
         maxDowntimeHours: maxDowntimeHours,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> getHostScannig({
@@ -105,6 +121,7 @@ class Hoster {
     required int offset,
     required int limit,
     required String lastScan,
+    required String ipAdress,
   }) async =>
       await sl<GetHostScannigController>().call(
         username: username,
@@ -112,25 +129,30 @@ class Hoster {
         offset: offset,
         limit: limit,
         lastScan: lastScan,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> fetchSomeHost({
     String? username,
     required String password,
+    required String ipAdress,
   }) async =>
       await sl<FetchSomeHostController>().call(
         username: username,
         password: password,
+        ipAdress: ipAdress,
       );
 
   static Future<http.Response> updateSomeHost({
     String? username,
     required String password,
     required Map<String, dynamic> hostConfig,
+    required String ipAdress,
   }) async =>
       await sl<UpdateSomeHostController>().call(
         username: username,
         password: password,
         hostConfig: hostConfig,
+        ipAdress: ipAdress,
       );
 }

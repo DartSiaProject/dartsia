@@ -1,19 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:renterd/src/apis/host_api.dart';
-import 'package:renterd/src/data/services/hoster_impl.dart';
-import 'package:renterd/src/injection.dart' as insert;
+import 'package:renterd/src/services/hoster_impl.dart';
 
 void main() async {
-  await insert.initialization();
   late HosterImpl _hosterImpl;
+  late String _ipAdress;
 
   setUp(() {
     _hosterImpl = HosterImpl();
+    _ipAdress = "127.0.0.1";
   });
 
   group('HosterIml => ', () {
@@ -25,7 +24,7 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.get(
           Uri.parse(
-            "${dotenv.env['ROOT_URL']}$getAllowListApi",
+            getAllowListApi(_ipAdress),
           ),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
@@ -36,6 +35,7 @@ void main() async {
 
         final verifyValue = await _hosterImpl.getAllowList(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -51,7 +51,7 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.get(
           Uri.parse(
-            "${dotenv.env['ROOT_URL']}$getBlockListApi",
+            getBlockListApi(_ipAdress),
           ),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
@@ -62,6 +62,7 @@ void main() async {
 
         final verifyValue = await _hosterImpl.getBlockList(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -77,7 +78,9 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.get(
           Uri.parse(
-            "${dotenv.env['ROOT_URL']}${getHostInfoByPublicKeyApi("ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece")}",
+            getHostInfoByPublicKeyApi(
+                "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece",
+                _ipAdress),
           ),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
@@ -87,9 +90,11 @@ void main() async {
         );
 
         final verifyValue = await _hosterImpl.getHostInfoByPublicKey(
-            password: 'renterd',
-            publicKey:
-                "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece");
+          password: 'renterd',
+          publicKey:
+              "ed25519:b050c0c63f9f3b4d5a89acadf628e8d8c6f8768e38fbe731e429334e0fd2cece",
+          ipAdress: _ipAdress,
+        );
 
         expect(
           _response.statusCode,
@@ -104,7 +109,8 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.get(
           Uri.parse(
-            "${dotenv.env['ROOT_URL']}${getHostsScanningApi(0, 10, "2023-03-30T15%3A45%3A52%2B02%3A00")}",
+            getHostsScanningApi(
+                0, 10, "2023-03-30T15%3A45%3A52%2B02%3A00", _ipAdress),
           ),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
@@ -118,6 +124,7 @@ void main() async {
           lastScan: "2023-03-30T15%3A45%3A52%2B02%3A00",
           limit: 10,
           offset: 0,
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -133,7 +140,7 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.get(
           Uri.parse(
-            "${dotenv.env['ROOT_URL']}$getHostsApi",
+            getHostsApi(_ipAdress),
           ),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
@@ -144,6 +151,7 @@ void main() async {
 
         final verifyValue = await _hosterImpl.getHosts(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -160,7 +168,7 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.post(
             Uri.parse(
-              "${dotenv.env['ROOT_URL']}$postInteractionApi",
+              postInteractionApi(_ipAdress),
             ),
             headers: {
               HttpHeaders.contentTypeHeader: "application/json",
@@ -172,6 +180,7 @@ void main() async {
         final verifyValue = await _hosterImpl.postInteraction(
           password: 'renterd',
           hostScanData: [],
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -188,7 +197,7 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.post(
             Uri.parse(
-              "${dotenv.env['ROOT_URL']}$removeHostsApi",
+              removeHostsApi(_ipAdress),
             ),
             headers: {
               HttpHeaders.contentTypeHeader: "application/json",
@@ -204,6 +213,7 @@ void main() async {
           password: 'renterd',
           maxDowntimeHours: '1000',
           minRecentScanFailures: 3,
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -219,7 +229,7 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.put(
             Uri.parse(
-              "${dotenv.env['ROOT_URL']}$updateAllowListApi",
+              updateAllowListApi(_ipAdress),
             ),
             headers: {
               HttpHeaders.contentTypeHeader: "application/json",
@@ -240,6 +250,7 @@ void main() async {
           removeHostList: [
             "ed25519:6f7ac63891fa2eadeb3031b75817a4beaae91070f485c3d139f1ffd3107d6aa8"
           ],
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -255,7 +266,7 @@ void main() async {
         String password = "renterd";
         http.Response _response = await http.put(
             Uri.parse(
-              "${dotenv.env['ROOT_URL']}$updateBlockListApi",
+              updateBlockListApi(_ipAdress),
             ),
             headers: {
               HttpHeaders.contentTypeHeader: "application/json",
@@ -282,6 +293,7 @@ void main() async {
             "51.158.108.244",
             "45.148.30.56"
           ],
+          ipAdress: _ipAdress,
         );
 
         expect(
@@ -296,7 +308,7 @@ void main() async {
       String password = "renterd";
       http.Response _response = await http.get(
         Uri.parse(
-          "${dotenv.env['ROOT_URL']}${fetchSomeHostApi(key: "gouging")}",
+          fetchSomeHostApi("gouging", _ipAdress),
         ),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
@@ -305,9 +317,10 @@ void main() async {
         },
       );
 
+      print(_response.statusCode);
+
       final verifyValue = await _hosterImpl.fetchSomeHost(
-        password: 'renterd',
-      );
+          password: 'renterd', ipAdress: _ipAdress);
 
       expect(
         _response.statusCode,
@@ -321,7 +334,7 @@ void main() async {
       String password = "renterd";
       http.Response _response = await http.put(
         Uri.parse(
-          "${dotenv.env['ROOT_URL']}${updateSomeHostApi(key: "gouging")}",
+          updateSomeHostApi("gouging", _ipAdress),
         ),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
@@ -332,9 +345,7 @@ void main() async {
       );
 
       final verifyValue = await _hosterImpl.updateSomeHost(
-        password: 'renterd',
-        hostConfig: {},
-      );
+          password: 'renterd', hostConfig: {}, ipAdress: _ipAdress);
 
       expect(
         _response.statusCode,

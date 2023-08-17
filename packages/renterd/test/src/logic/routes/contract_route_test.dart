@@ -16,6 +16,7 @@ void main() async {
   late GetContractByIdController _getContractByIdController;
   late GetContractsController _getContractsController;
   late ReleasePreviousContractController _releasePreviousContractController;
+  late String _ipAdress;
 
   setUp(() {
     _acquireAContractController = insert.sl<AcquireAContractController>();
@@ -25,6 +26,7 @@ void main() async {
     _getContractsController = insert.sl<GetContractsController>();
     _releasePreviousContractController =
         insert.sl<ReleasePreviousContractController>();
+    _ipAdress = "127.0.0.1";
   });
 
   group('ContractRoute => ', () {
@@ -37,6 +39,7 @@ void main() async {
           password: 'renterd',
           duration: "10000",
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
           priority: 10,
         );
 
@@ -46,6 +49,7 @@ void main() async {
           password: 'renterd',
           duration: "10000",
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
           priority: 10,
         );
 
@@ -61,6 +65,7 @@ void main() async {
           password: 'renterd',
           contract: {},
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
           startHeight: 53,
           totalCost: "16666666666666666666666666",
         );
@@ -71,6 +76,7 @@ void main() async {
           password: 'renterd',
           contract: {},
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
           startHeight: 53,
           totalCost: "16666666666666666666666666",
         );
@@ -86,6 +92,7 @@ void main() async {
         final testValue = await _deleteContractByIdController.call(
           password: 'renterd',
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
@@ -93,6 +100,7 @@ void main() async {
         final verifyValue = await Contract.deleteContractById(
           password: 'renterd',
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -106,6 +114,7 @@ void main() async {
         final testValue = await _getContractByIdController.call(
           password: 'renterd',
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
@@ -113,6 +122,7 @@ void main() async {
         final verifyValue = await Contract.getContractById(
           password: 'renterd',
           id: 'fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -125,12 +135,14 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getContractsController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
 
         final verifyValue = await Contract.getContracts(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -144,6 +156,7 @@ void main() async {
         final testValue = await _releasePreviousContractController.call(
           password: 'renterd',
           id: "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+          ipAdress: _ipAdress,
           lockId: 609920465282217447,
         );
 
@@ -152,6 +165,7 @@ void main() async {
         final verifyValue = await Contract.releasePreviousContract(
           password: 'renterd',
           id: "fcid:06025daad00bb361df5a897b33a82ec24f61499757a3a4b7053a921314b9099b",
+          ipAdress: _ipAdress,
           lockId: 609920465282217447,
         );
 

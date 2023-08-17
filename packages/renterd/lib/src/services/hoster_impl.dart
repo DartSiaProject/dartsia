@@ -1,18 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-import '../../abstract/hoster_abst.dart';
-import '../../apis/host_api.dart';
+import '../abstract/hoster_abst.dart';
+import '../apis/host_api.dart';
 
 /// Project : [Renterd's Package]
 /// Description : This file contains these Functionnalities []
 /// Author : [CotradeChain]
 /// onCreated : 24/05/2023
-/// onUpadted : 09/08/2023
-/// Upadted by : Jamse Brel
+/// onUpadted : 14/08/2023
 /// AuthorCode : James Brel
 
 class HosterImpl implements HosterAbst {
@@ -21,10 +19,11 @@ class HosterImpl implements HosterAbst {
   Future<http.Response> getAllowList({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        "${dotenv.env['ROOT_URL']}$getAllowListApi",
+        getAllowListApi(ipAdress),
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -40,10 +39,11 @@ class HosterImpl implements HosterAbst {
   Future<http.Response> getBlockList({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        "${dotenv.env['ROOT_URL']}$getBlockListApi",
+        getBlockListApi(ipAdress),
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -60,10 +60,11 @@ class HosterImpl implements HosterAbst {
     String? username,
     required String password,
     required String publicKey,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        "${dotenv.env['ROOT_URL']}${getHostInfoByPublicKeyApi(publicKey)}",
+        getHostInfoByPublicKeyApi(publicKey, ipAdress),
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -82,10 +83,11 @@ class HosterImpl implements HosterAbst {
     required int offset,
     required int limit,
     required String lastScan,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        "${dotenv.env['ROOT_URL']}${getHostsScanningApi(offset, limit, lastScan)}",
+        getHostsScanningApi(offset, limit, lastScan, ipAdress),
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -101,10 +103,11 @@ class HosterImpl implements HosterAbst {
   Future<http.Response> getHosts({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        "${dotenv.env['ROOT_URL']}$getHostsApi",
+        getHostsApi(ipAdress),
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -117,14 +120,14 @@ class HosterImpl implements HosterAbst {
 
   /// Note : This Function whose Records host ineractions in the bus. Commonly called by workers when scanning hosts like http.Response
   @override
-  Future<http.Response> postInteraction({
-    String? username,
-    required String password,
-    required List<String> hostScanData,
-  }) async {
+  Future<http.Response> postInteraction(
+      {String? username,
+      required String password,
+      required List<String> hostScanData,
+      required String ipAdress}) async {
     http.Response _response = await http.post(
         Uri.parse(
-          "${dotenv.env['ROOT_URL']}$postInteractionApi",
+          postInteractionApi(ipAdress),
         ),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
@@ -142,10 +145,11 @@ class HosterImpl implements HosterAbst {
     required String password,
     required int minRecentScanFailures,
     required String maxDowntimeHours,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.post(
         Uri.parse(
-          "${dotenv.env['ROOT_URL']}$removeHostsApi",
+          removeHostsApi(ipAdress),
         ),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
@@ -166,10 +170,11 @@ class HosterImpl implements HosterAbst {
     required String password,
     required List<String> addHostList,
     required List<String> removeHostList,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.put(
         Uri.parse(
-          "${dotenv.env['ROOT_URL']}$updateAllowListApi",
+          updateAllowListApi(ipAdress),
         ),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
@@ -191,10 +196,11 @@ class HosterImpl implements HosterAbst {
     required String password,
     required List<String> addHostList,
     required List<String> removeHostList,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.put(
         Uri.parse(
-          "${dotenv.env['ROOT_URL']}$updateBlockListApi",
+          updateBlockListApi(ipAdress),
         ),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
@@ -214,10 +220,11 @@ class HosterImpl implements HosterAbst {
   Future<http.Response> fetchSomeHost({
     String? username,
     required String password,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        "${dotenv.env['ROOT_URL']}${fetchSomeHostApi("gouging")}",
+        fetchSomeHostApi("gouging", ipAdress),
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -234,10 +241,11 @@ class HosterImpl implements HosterAbst {
     String? username,
     required String password,
     required Map<String, dynamic> hostConfig,
+    required String ipAdress,
   }) async {
     http.Response _response = await http.put(
         Uri.parse(
-          "${dotenv.env['ROOT_URL']}${updateSomeHostApi("gouging")}",
+          updateSomeHostApi("gouging", ipAdress),
         ),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",

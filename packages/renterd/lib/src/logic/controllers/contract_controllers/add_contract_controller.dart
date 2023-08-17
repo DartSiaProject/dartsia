@@ -16,6 +16,7 @@ class AddContractController {
     required Map<dynamic, dynamic> contract,
     required String totalCost,
     required int startHeight,
+    required String ipAdress,
   }) async {
     return await contractAbst.addContract(
       username: username,
@@ -24,6 +25,7 @@ class AddContractController {
       contract: contract,
       totalCost: totalCost,
       startHeight: startHeight,
+      ipAdress: ipAdress,
     );
   }
 }

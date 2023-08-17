@@ -10,11 +10,13 @@ void main() async {
   late AcceptBlockController _acceptBlockController;
   late GetSiaFundFeeController _getSiaFundFeeController;
   late GetStateController _getStateController;
+  late String _ipAdress;
 
   setUp(() {
     _acceptBlockController = insert.sl<AcceptBlockController>();
     _getSiaFundFeeController = insert.sl<GetSiaFundFeeController>();
     _getStateController = insert.sl<GetStateController>();
+    _ipAdress = "127.0.0.1";
   });
 
   group('ConsensusRoute => ', () {
@@ -32,6 +34,7 @@ void main() async {
           parentId:
               "bid:56e4d337f8554ce34071743b1976e164da01728d824b4963761154c965fb5625",
           value: "299999000000000000000000000000",
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
@@ -44,6 +47,7 @@ void main() async {
           parentId:
               "bid:56e4d337f8554ce34071743b1976e164da01728d824b4963761154c965fb5625",
           value: "299999000000000000000000000000",
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -57,6 +61,7 @@ void main() async {
         final testValue = await _getSiaFundFeeController.call(
           password: 'renterd',
           payout: 100000000,
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
@@ -64,6 +69,7 @@ void main() async {
         final verifyValue = await Consensus.getSiaFundFee(
           password: 'renterd',
           payout: 100000000,
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result
@@ -76,12 +82,14 @@ void main() async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getStateController.call(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
 
         final verifyValue = await Consensus.getState(
           password: 'renterd',
+          ipAdress: _ipAdress,
         );
 
         //Assert - Compare the actual result and expected result

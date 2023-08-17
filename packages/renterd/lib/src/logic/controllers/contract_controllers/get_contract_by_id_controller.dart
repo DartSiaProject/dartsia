@@ -13,11 +13,13 @@ class GetContractByIdController {
     String? username,
     required String password,
     required String id,
+    required String ipAdress,
   }) async {
     return await contractAbst.getContractById(
       username: username,
       password: password,
       id: id,
+      ipAdress: ipAdress,
     );
   }
 }
