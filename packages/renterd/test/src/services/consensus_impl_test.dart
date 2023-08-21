@@ -9,10 +9,16 @@ import 'package:renterd/src/services/consensus_impl.dart';
 void main() async {
   late ConsensusImpl _consensusImpl;
   late String _ipAdress;
+  late String _username;
+  late String _password;
 
   setUp(() {
     _consensusImpl = ConsensusImpl();
-    _ipAdress = "127.0.0.1";
+    _ipAdress = "0a96-34-212-52-203";
+    _username = "";
+    _password = "Vykuj3546@";
+
+    // todo :  ip local "127.0.0.1";
   });
 
   group('ConsensusImpl => ', () {
@@ -21,14 +27,12 @@ void main() async {
     test(
       "the acceptBlock function whose Accepts a mined block. Upon success, the block is forwarded to the node's peers and the whole p2p network like http.Response",
       () async {
-        String? username;
-        String password = "renterd";
         http.Response _response = await http.post(
           Uri.parse(postAcceptBlockApi(_ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
-                "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+                "Basic ${base64Encode(utf8.encode('$_username:$_password'))}"
           },
           body: json.encode(
             {
@@ -45,18 +49,18 @@ void main() async {
               ],
               "Transactions": [
                 {
-                  "SiacoinInputs": [],
-                  "SiacoinOutputs": [],
-                  "FileContracts": [],
-                  "FileContractRevisions": [],
-                  "StorageProofs": [],
-                  "SiafundInputs": [],
-                  "SiafundOutputs": [],
-                  "MinerFees": [],
+                  "SiacoinInputs": <dynamic>[],
+                  "SiacoinOutputs": <dynamic>[],
+                  "FileContracts": <dynamic>[],
+                  "FileContractRevisions": <dynamic>[],
+                  "StorageProofs": <dynamic>[],
+                  "SiafundInputs": <dynamic>[],
+                  "SiafundOutputs": <dynamic>[],
+                  "MinerFees": <dynamic>[],
                   "ArbitraryData": [
                     "Tm9uU2lhAAAAAAAAAAAAADuAtj8zRWfR3ulRHvz7fb0="
                   ],
-                  "Signatures": []
+                  "Signatures": <dynamic>[]
                 }
               ]
             },
@@ -64,7 +68,7 @@ void main() async {
         );
 
         final verifyValue = await _consensusImpl.acceptBlock(
-          password: 'renterd',
+          password: _password,
           address:
               "addr:162a2c565d0c10997ad21697c78c80688807296b09ea599f402c2304730ee6f67563d7c53145",
           arbitraryDataList: ["Tm9uU2lhAAAAAAAAAAAAADuAtj8zRWfR3ulRHvz7fb0="],
@@ -84,19 +88,17 @@ void main() async {
     test(
       "the getSiaFundFee function whose Given the total payout of a contract, this endpoint returns the appropriate siafund fee to pay like http.Response",
       () async {
-        String? username;
-        String password = "renterd";
         http.Response _response = await http.get(
           Uri.parse(getTotalPayoutApi(100000000, _ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
-                "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+                "Basic ${base64Encode(utf8.encode('$_username:$_password'))}"
           },
         );
 
         final verifyValue = await _consensusImpl.getSiaFundFee(
-          password: 'renterd',
+          password: _password,
           payout: 100000000,
           ipAdress: _ipAdress,
         );
@@ -110,19 +112,17 @@ void main() async {
     test(
       "the getState function whose Returns some info regarding the current state of the consensus like http.Response",
       () async {
-        String? username;
-        String password = "renterd";
         http.Response _response = await http.get(
           Uri.parse(getStateApi(_ipAdress)),
           headers: {
             HttpHeaders.contentTypeHeader: "application/json",
             HttpHeaders.authorizationHeader:
-                "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+                "Basic ${base64Encode(utf8.encode('$_username:$_password'))}"
           },
         );
 
         final verifyValue = await _consensusImpl.getState(
-          password: 'renterd',
+          password: _password,
           ipAdress: _ipAdress,
         );
 

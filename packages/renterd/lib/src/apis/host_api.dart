@@ -3,7 +3,6 @@ import 'package:renterd/src/utils/constants/string_const.dart';
 String getHostInfoByPublicKeyApi(String publicKey, String ipAdress) =>
     "${endPoint(ipAdress)}/api/bus/host/$publicKey";
 String getHostsApi(String ipAdress) => "${endPoint(ipAdress)}/api/bus/hosts";
-
 String updateAllowListApi(String ipAdress) =>
     "${endPoint(ipAdress)}/api/bus/hosts/allowlist";
 String getAllowListApi(String ipAdress) =>

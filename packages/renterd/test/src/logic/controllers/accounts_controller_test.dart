@@ -27,6 +27,7 @@ void main() {
   late SyncBalanceController _syncBalanceController;
   late AddDepositController _addDepositController;
   late String _ipAdress;
+  late String _password;
 
   setUp(() {
     _mockResponse = MockResponse();
@@ -47,7 +48,10 @@ void main() {
         SyncBalanceController(accountsAbst: _mockAccountsAbst);
     _addDepositController =
         AddDepositController(accountsAbst: _mockAccountsAbst);
-    _ipAdress = "127.0.0.1";
+    _ipAdress = "0a96-34-212-52-203";
+    _password = "Vykuj3546@";
+
+    // todo :  ip local "127.0.0.1";
   });
 
   group('AccountsController => ', () {
@@ -58,16 +62,18 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.getAllAccounts(
-          password: "renterd",
+          password: _password,
           ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _getAllAccountsController.call(
-          password: "renterd", ipAdress: _ipAdress);
+          password: _password, ipAdress: _ipAdress);
 
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.getAllAccounts(
-          password: "renterd", ipAdress: _ipAdress)).called(1);
+            password: _password,
+            ipAdress: _ipAdress,
+          )).called(1);
       verifyNoMoreInteractions(_mockAccountsAbst);
       verifyNoMoreInteractions(_mockResponse);
     });
@@ -76,7 +82,7 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.getAnAccountById(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
@@ -84,7 +90,7 @@ void main() {
           ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _getAnAccountByIdController.call(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
@@ -94,7 +100,7 @@ void main() {
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.getAnAccountById(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
@@ -109,7 +115,7 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.lockAnAccount(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
@@ -118,7 +124,7 @@ void main() {
           ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _lockAnAccountController.call(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
@@ -129,7 +135,7 @@ void main() {
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.lockAnAccount(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           hostKey:
@@ -144,13 +150,13 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.resetDrift(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _resetDriftController.call(
-        password: "renterd",
+        password: _password,
         accountId:
             'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
         ipAdress: _ipAdress,
@@ -159,7 +165,7 @@ void main() {
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.resetDrift(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             ipAdress: _ipAdress,
@@ -172,7 +178,7 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.unLockAnAccount(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             ipAdress: _ipAdress,
@@ -180,7 +186,7 @@ void main() {
           )).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _unLockAnAccountController.call(
-        password: "renterd",
+        password: _password,
         accountId:
             'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
         lockId: '13874228167312385374',
@@ -190,7 +196,7 @@ void main() {
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.unLockAnAccount(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             lockId: '13874228167312385374',
@@ -205,7 +211,7 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.updateBalance(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             amount: 1000000,
@@ -215,7 +221,7 @@ void main() {
           )).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _updateBalanceController.call(
-        password: "renterd",
+        password: _password,
         accountId:
             'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
         amount: 1000000,
@@ -227,7 +233,7 @@ void main() {
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.updateBalance(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             amount: 1000000,
@@ -243,7 +249,7 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.syncBalance(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             host:
@@ -252,7 +258,7 @@ void main() {
           )).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _syncBalanceController.call(
-        password: "renterd",
+        password: _password,
         accountId:
             'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
         host:
@@ -263,7 +269,7 @@ void main() {
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.syncBalance(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             host:
@@ -278,7 +284,7 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockAccountsAbst.addDeposit(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
@@ -287,7 +293,7 @@ void main() {
           amount: 1000000)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _addDepositController.call(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
@@ -298,7 +304,7 @@ void main() {
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockAccountsAbst.addDeposit(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:

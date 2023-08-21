@@ -44,16 +44,16 @@ class ConsensusImpl extends ConsensusAbst {
           ],
           "Transactions": [
             {
-              "SiacoinInputs": [],
-              "SiacoinOutputs": [],
-              "FileContracts": [],
-              "FileContractRevisions": [],
-              "StorageProofs": [],
-              "SiafundInputs": [],
-              "SiafundOutputs": [],
-              "MinerFees": [],
+              "SiacoinInputs": <dynamic>[],
+              "SiacoinOutputs": <dynamic>[],
+              "FileContracts": <dynamic>[],
+              "FileContractRevisions": <dynamic>[],
+              "StorageProofs": <dynamic>[],
+              "SiafundInputs": <dynamic>[],
+              "SiafundOutputs": <dynamic>[],
+              "MinerFees": <dynamic>[],
               "ArbitraryData": arbitraryDataList,
-              "Signatures": []
+              "Signatures": <dynamic>[]
             }
           ]
         },

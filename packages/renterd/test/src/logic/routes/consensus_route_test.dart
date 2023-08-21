@@ -11,12 +11,16 @@ void main() async {
   late GetSiaFundFeeController _getSiaFundFeeController;
   late GetStateController _getStateController;
   late String _ipAdress;
+  late String _password;
 
   setUp(() {
     _acceptBlockController = insert.sl<AcceptBlockController>();
     _getSiaFundFeeController = insert.sl<GetSiaFundFeeController>();
     _getStateController = insert.sl<GetStateController>();
-    _ipAdress = "127.0.0.1";
+    _ipAdress = "0a96-34-212-52-203";
+    _password = "Vykuj3546@";
+
+    // todo :  ip local "127.0.0.1";
   });
 
   group('ConsensusRoute => ', () {
@@ -27,7 +31,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _acceptBlockController.call(
-          password: 'renterd',
+          password: _password,
           address:
               "addr:162a2c565d0c10997ad21697c78c80688807296b09ea599f402c2304730ee6f67563d7c53145",
           arbitraryDataList: ["Tm9uU2lhAAAAAAAAAAAAADuAtj8zRWfR3ulRHvz7fb0="],
@@ -40,7 +44,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Consensus.acceptBlock(
-          password: 'renterd',
+          password: _password,
           address:
               "addr:162a2c565d0c10997ad21697c78c80688807296b09ea599f402c2304730ee6f67563d7c53145",
           arbitraryDataList: ["Tm9uU2lhAAAAAAAAAAAAADuAtj8zRWfR3ulRHvz7fb0="],
@@ -59,7 +63,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getSiaFundFeeController.call(
-          password: 'renterd',
+          password: _password,
           payout: 100000000,
           ipAdress: _ipAdress,
         );
@@ -67,7 +71,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Consensus.getSiaFundFee(
-          password: 'renterd',
+          password: _password,
           payout: 100000000,
           ipAdress: _ipAdress,
         );
@@ -81,14 +85,14 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getStateController.call(
-          password: 'renterd',
+          password: _password,
           ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
 
         final verifyValue = await Consensus.getState(
-          password: 'renterd',
+          password: _password,
           ipAdress: _ipAdress,
         );
 

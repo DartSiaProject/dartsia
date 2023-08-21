@@ -1,8 +1,12 @@
+import 'dart:io';
+
+import 'package:example/http_overrides_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:renterd/renterd.dart';
 
 void main() async {
   await initialization();
+  HttpOverrides.global = MyHttpOverridesHelper();
 
   runApp(const MyApp());
 }
@@ -62,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() async {
     debugPrint("aaaa");
-    var response =
-        await Hoster.fetchSomeHost(password: "renterd", ipAdress: "10.0.2.2");
+    var response = await Hoster.fetchSomeHost(
+        password: "Vykuj3546@", ipAdress: "0a96-34-212-52-203");
 
     // http.Response response = await http.get(
     //   Uri.parse(

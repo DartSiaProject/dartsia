@@ -22,6 +22,7 @@ void main() async {
   late SyncBalanceController _syncBalanceController;
   late AddDepositController _addDepositController;
   late String _ipAdress;
+  late String _password;
 
   setUp(() {
     _getAllAccountsController = insert.sl<GetAllAccountsController>();
@@ -32,7 +33,10 @@ void main() async {
     _updateBalanceController = insert.sl<UpdateBalanceController>();
     _syncBalanceController = insert.sl<SyncBalanceController>();
     _addDepositController = insert.sl<AddDepositController>();
-    _ipAdress = "127.0.0.1";
+    _ipAdress = "0a96-34-212-52-203";
+    _password = "Vykuj3546@";
+
+    // todo :  ip local "127.0.0.1";
   });
 
   group('AccountsRoute =>', () {
@@ -43,14 +47,14 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getAllAccountsController.call(
-          password: "renterd",
+          password: _password,
           ipAdress: _ipAdress,
         );
 
         //Act - Call the function that is to be tested
 
         final verifyValue = await Accounts.getAllAccounts(
-          password: "renterd",
+          password: _password,
           ipAdress: _ipAdress,
         );
 
@@ -63,7 +67,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _getAnAccountByIdController.call(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             ipAdress: _ipAdress,
@@ -73,7 +77,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Accounts.getAnAcountById(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             ipAdress: _ipAdress,
@@ -89,7 +93,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _lockAnAccountController.call(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             ipAdress: _ipAdress,
@@ -100,7 +104,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Accounts.lockAnAccount(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             ipAdress: _ipAdress,
@@ -118,7 +122,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _resetDriftController.call(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           ipAdress: _ipAdress,
@@ -127,7 +131,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Accounts.resetDrift(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           ipAdress: _ipAdress,
@@ -143,7 +147,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _unLockAnAccountController.call(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           lockId: '13874228167312385374',
@@ -153,7 +157,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Accounts.unLockAnAccount(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           lockId: '13874228167312385374',
@@ -169,7 +173,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _updateBalanceController.call(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           amount: 1000000,
@@ -181,7 +185,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Accounts.updateBalance(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           amount: 1000000,
@@ -198,7 +202,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _syncBalanceController.call(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
@@ -209,7 +213,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Accounts.syncBalance(
-          password: "renterd",
+          password: _password,
           accountId:
               'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
           host:
@@ -225,7 +229,7 @@ void main() async {
       () async {
         //Arrange - Setup facts, Put Expected outputs or Initilize
         final testValue = await _addDepositController.call(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             host:
@@ -236,7 +240,7 @@ void main() async {
         //Act - Call the function that is to be tested
 
         final verifyValue = await Accounts.addDeposit(
-            password: "renterd",
+            password: _password,
             accountId:
                 'ed25519:99611c808ccb74402f0c80ea0b22cefe3b46a73abe1072c90687658d44dead75',
             host:

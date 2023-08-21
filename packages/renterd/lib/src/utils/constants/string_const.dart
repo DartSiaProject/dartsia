@@ -1,1 +1,3 @@
-String endPoint(String ipAdress) => "http://$ipAdress:9880";
+String endPoint(String ipAdress) => "https://$ipAdress.ngrok-free.app";
+
+//  todo : "http://$ipAdress:9880";

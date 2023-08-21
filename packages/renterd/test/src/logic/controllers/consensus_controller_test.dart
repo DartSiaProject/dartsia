@@ -17,6 +17,7 @@ void main() {
   late GetSiaFundFeeController _getSiaFundFeeController;
   late GetStateController _getStateController;
   late String _ipAdress;
+  late String _password;
 
   setUp(() {
     _mockConsensusAbst = MockConsensusAbst();
@@ -26,7 +27,10 @@ void main() {
     _getSiaFundFeeController =
         GetSiaFundFeeController(consensusAbst: _mockConsensusAbst);
     _getStateController = GetStateController(consensusAbst: _mockConsensusAbst);
-    _ipAdress = "127.0.0.1";
+    _ipAdress = "0a96-34-212-52-203";
+    _password = "Vykuj3546@";
+
+    // todo :  ip local "127.0.0.1";
   });
 
   group('ConsensusController => ', () {
@@ -36,7 +40,7 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockConsensusAbst.acceptBlock(
-            password: 'renterd',
+            password: _password,
             address:
                 "addr:162a2c565d0c10997ad21697c78c80688807296b09ea599f402c2304730ee6f67563d7c53145",
             arbitraryDataList: ["Tm9uU2lhAAAAAAAAAAAAADuAtj8zRWfR3ulRHvz7fb0="],
@@ -47,7 +51,7 @@ void main() {
           )).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _acceptBlockController.call(
-          password: 'renterd',
+          password: _password,
           address:
               "addr:162a2c565d0c10997ad21697c78c80688807296b09ea599f402c2304730ee6f67563d7c53145",
           arbitraryDataList: ["Tm9uU2lhAAAAAAAAAAAAADuAtj8zRWfR3ulRHvz7fb0="],
@@ -59,7 +63,7 @@ void main() {
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockConsensusAbst.acceptBlock(
-          password: 'renterd',
+          password: _password,
           address:
               "addr:162a2c565d0c10997ad21697c78c80688807296b09ea599f402c2304730ee6f67563d7c53145",
           arbitraryDataList: ["Tm9uU2lhAAAAAAAAAAAAADuAtj8zRWfR3ulRHvz7fb0="],
@@ -75,17 +79,17 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockConsensusAbst.getSiaFundFee(
-          password: 'renterd',
+          password: _password,
           payout: 100000000,
           ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _getSiaFundFeeController.call(
-          password: 'renterd', payout: 100000000, ipAdress: _ipAdress);
+          password: _password, payout: 100000000, ipAdress: _ipAdress);
 
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockConsensusAbst.getSiaFundFee(
-          password: 'renterd',
+          password: _password,
           payout: 100000000,
           ipAdress: _ipAdress)).called(1);
       verifyNoMoreInteractions(_mockConsensusAbst);
@@ -96,16 +100,16 @@ void main() {
         () async {
       //Arrange - Setup facts, Put Expected outputs or Initilize
       when(() => _mockConsensusAbst.getState(
-          password: 'renterd',
+          password: _password,
           ipAdress: _ipAdress)).thenAnswer((_) async => _mockResponse);
 
       final verifyVariable = await _getStateController.call(
-          password: 'renterd', ipAdress: _ipAdress);
+          password: _password, ipAdress: _ipAdress);
 
       //Assert - Compare the actual result and expected result
       expect(verifyVariable, _mockResponse);
       verify(() => _mockConsensusAbst.getState(
-          password: 'renterd', ipAdress: _ipAdress)).called(1);
+          password: _password, ipAdress: _ipAdress)).called(1);
       verifyNoMoreInteractions(_mockConsensusAbst);
       verifyNoMoreInteractions(_mockResponse);
     });
