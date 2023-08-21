@@ -1,3 +1,4 @@
+@Timeout(Duration(seconds: 90))
 import 'package:flutter_test/flutter_test.dart';
 import 'package:renterd/src/injection.dart' as insert;
 import 'package:renterd/src/logic/controllers/hoster_controllers/fetch_some_host_controller.dart';

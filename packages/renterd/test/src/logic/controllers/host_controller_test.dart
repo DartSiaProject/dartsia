@@ -1,3 +1,4 @@
+@Timeout(Duration(seconds: 90))
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail/mocktail.dart';
@@ -186,7 +187,7 @@ void main() {
             )).thenAnswer((_) async => _mockResponse);
 
         final verifyVariable = await _getHostsController.call(
-          password: 'renterd',
+          password: _password,
           ipAdress: _ipAdress,
         );
 

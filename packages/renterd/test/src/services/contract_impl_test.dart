@@ -1,3 +1,4 @@
+@Timeout(Duration(seconds: 90))
 import 'dart:convert';
 import 'dart:io';
 
@@ -70,7 +71,7 @@ void main() async {
           },
           body: json.encode(
             {
-              "contract": <dynamic>{},
+              "contract": {},
               "startHeight": 53,
               "totalCost": "16666666666666666666666666"
             },

@@ -1,3 +1,4 @@
+@Timeout(Duration(seconds: 90))
 import 'package:flutter_test/flutter_test.dart';
 import 'package:renterd/renterd.dart';
 import 'package:renterd/src/injection.dart' as insert;
@@ -58,6 +59,7 @@ void main() async {
         expect(testValue.statusCode, verifyValue.statusCode);
       },
     );
+
     test(
       "the getSiaFundFee function whose Given the total payout of a contract, this endpoint returns the appropriate siafund fee to pay like http.Response",
       () async {

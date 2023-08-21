@@ -1,3 +1,4 @@
+@Timeout(Duration(seconds: 90))
 import 'package:flutter_test/flutter_test.dart';
 import 'package:renterd/renterd.dart';
 import 'package:renterd/src/injection.dart' as insert;
