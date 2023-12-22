@@ -11,8 +11,11 @@
 
 ## **Features**
 
-Renterd, is a package that operates in 2 main Modules such as:
-- Accounts, 
+Renterd, is a package that operates in fours Modules such as:
+- Accounts
+- Consensus
+- Contact
+- hoster
 
 ## **Usage**
 
@@ -39,7 +42,7 @@ import 'package:renterd/renterd.dart';
 
 ```dart
 void main() async {
-  await initialization();
+  Injection.init();
   runApp(const MyApp());
 }
 ```
@@ -53,8 +56,7 @@ void main() async {
 ## **Packages Used**
 * [x] **Dart Dependencies Used**
   -  get_it: ^7.2.0
-  -  http: ^0.13.5
-  -  flutter_dotenv: ^5.0.2
+  -  http: ^1.1.0
   
 * [x] **Dart Dev_Dependencies Used**
   - mocktail: ^0.3.0

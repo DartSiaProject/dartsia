@@ -1,10 +1,17 @@
-## 0.1.0
+## 0.4.1
+### All the services are updated
+  In all the functions, the user will send a server address from the flutter app and the renterd package. We add a const of an int data type file which contains the variable "testnetPort". whom the mobile developer will use in his work.
+
+  
+
+---------------------------------
+## 0.4.0
 ### Host Services Updated
   - [x] fetch some host
   - [x] update somm host 
 
 ---------------------------------
-## 0.0.3
+## 0.3.0
 ### Contract Services Created
   - [x] Acquire a contract
   - [x] Add Contract
@@ -14,7 +21,7 @@
   - [x] Release Previous Contract
 
 ---------------------------------
-## 0.0.2
+## 0.2.0
 ### Consensus Services Created
   - [x] Accept Block
   - [x] Get Sia Fund Fee
@@ -31,7 +38,7 @@
   - [x] Update Block List
 ---------------------------------
 
-## 0.0.1
+## 0.1.0
 ### Accounts Services Created
   - [x] Add Deposit
   - [x] Get All Accounts

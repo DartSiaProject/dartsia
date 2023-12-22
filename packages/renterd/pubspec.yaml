@@ -1,7 +1,7 @@
+publish_to: none
 name: renterd
 description: Renterd, is a package that was developed in dart code for flutter projects. Its purpose is to contain several return functions that can communicate with the Sia blockchain.
-version: 0.1.0
-# homepage: https://github.com/flustora/dart_flustora/tree/main/packages/flustora
+version: 0.4.1
 repository: https://github.com/DartSiaProject/dartsia.git
 
 environment:
