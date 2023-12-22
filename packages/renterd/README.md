@@ -12,10 +12,13 @@
 ## **Features**
 
 Renterd, is a package that operates in fours Modules such as:
-- Accounts
-- Consensus
-- Contact
-- hoster
+
+#### Renterd
+- [x] Bus
+ - Accounts
+ - Consensus
+ - Contact 
+ - hoster
 
 ## **Usage**
 
