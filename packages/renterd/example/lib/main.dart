@@ -5,8 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:renterd/renterd.dart';
 
 void main() async {
-  Renterd.init();
+  renterdInit();
   HttpOverrides.global = MyHttpOverridesHelper();
+  var response = await Hoster.fetchSomeHost(
+      password: "Vykuj3546@",
+      serverAddress: "https://254b-188-166-77-234.ngrok-free.app");
+  debugPrint(response.statusCode.toString());
 
   runApp(const MyApp());
 }
@@ -23,7 +27,7 @@ class MyApp extends StatelessWidget {
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
+        // the application has a purple toolbar. Then, without quitting the app,
         // try changing the seedColor in the colorScheme below to Colors.green
         // and then invoke "hot reload" (save your changes or press the "hot
         // reload" button in a Flutter-supported IDE, or press "r" if you used
@@ -36,7 +40,7 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: false,
+        useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -64,34 +68,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() async {
-    debugPrint("aaaa");
-    var response = await Hoster.fetchSomeHost(
-        password: "Vykuj3546@", serverAddress: "0a96-34-212-52-203");
-
-    // http.Response response = await http.get(
-    //   Uri.parse(
-    //       // "${dotenv.env['ROOT_URL']}${fetchSomeHostApi("gouging")}",
-    //       "http://127.0.0.1:9880/api/bus/setting/gouging"
-    //       // "http://127.0.0.1:9880/${fetchSomeHostApi("gouging")}",
-    //       ),
-    //   headers: {
-    //     HttpHeaders.contentTypeHeader: "application/json",
-    //     HttpHeaders.authorizationHeader:
-    //         "Basic ${base64Encode(utf8.encode(':renterd"))}"'))}"
-    //   },
-    // );
-
-    debugPrint(response.statusCode.toString());
-
-    // setState(() {
-    //   // This call to setState tells the Flutter framework that something has
-    //   // changed in this State, which causes it to rerun the build method below
-    //   // so that the display can reflect the updated values. If we changed
-    //   // _counter without calling setState(), then the build method would not be
-    //   // called again, and so nothing would appear to happen.
-    //   _counter++;
-    // });
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
   }
 
   @override

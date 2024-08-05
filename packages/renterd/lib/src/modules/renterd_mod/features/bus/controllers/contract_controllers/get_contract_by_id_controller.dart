@@ -1,0 +1,27 @@
+import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
+
+import '../../data/abstract/contract_abst.dart';
+
+@Injectable()
+class GetContractByIdController {
+  final ContractAbst contractAbst;
+
+  GetContractByIdController({
+    required this.contractAbst,
+  });
+
+  Future<http.Response> call({
+    String? username,
+    required String password,
+    required String id,
+    required String serverAddress,
+  }) async {
+    return await contractAbst.getContractById(
+      username: username,
+      password: password,
+      id: id,
+      serverAddress: serverAddress,
+    );
+  }
+}

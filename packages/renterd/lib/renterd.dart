@@ -1,12 +1,14 @@
 library renterd;
 
-export 'package:renterd/src/injection.dart' show Renterd;
-export 'package:renterd/src/logic/routes/renterd/bus/accounts_route.dart'
+export 'package:renterd/src/core/configs/injectors_config/injector.dart';
+export 'package:renterd/src/modules/renterd_mod/routes/accounts_route.dart'
     show Accounts;
-export 'package:renterd/src/logic/routes/renterd/bus/consensus_route.dart'
+export 'package:renterd/src/modules/renterd_mod/routes/consensus_route.dart'
     show Consensus;
-export 'package:renterd/src/logic/routes/renterd/bus/contract_route.dart'
+export 'package:renterd/src/modules/renterd_mod/routes/contract_route.dart'
     show Contract;
-export 'package:renterd/src/logic/routes/renterd/bus/hoster_route.dart'
+export 'package:renterd/src/modules/renterd_mod/routes/hoster_route.dart'
     show Hoster;
-export 'package:renterd/src/utils/constants/int_const.dart';
+export 'package:renterd/src/modules/renterd_mod/routes/object_route.dart'
+    show Object;
+export 'package:renterd/src/shared/constants/int_const.dart';

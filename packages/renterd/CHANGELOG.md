@@ -2,8 +2,6 @@
 ### All the services are updated
   In all the functions, the user will send a server address from the flutter app and the renterd package. We add a const of an int data type file which contains the variable "testnetPort". whom the mobile developer will use in his work.
 
-  
-
 ---------------------------------
 ## 0.4.0
 ### Host Services Updated

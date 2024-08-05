@@ -19,6 +19,10 @@ Renterd, is a package that operates in fours Modules such as:
  - Consensus
  - Contact 
  - hoster
+ - object
+
+- [x] Worker
+ - worker_object
 
 ## **Usage**
 
@@ -45,7 +49,7 @@ import 'package:renterd/renterd.dart';
 
 ```dart
 void main() async {
-  Injection.init();
+  renterdInit();
   runApp(const MyApp());
 }
 ```
@@ -58,11 +62,14 @@ void main() async {
 
 ## **Packages Used**
 * [x] **Dart Dependencies Used**
-  -  get_it: ^7.2.0
-  -  http: ^1.1.0
+  - get_it: ^7.7.0
+  - injectable: ^2.4.2
+  - http: ^1.2.2
   
 * [x] **Dart Dev_Dependencies Used**
   - mocktail: ^0.3.0
+  - injectable_generator: ^2.6.1
+  - build_runner: ^2.4.11
 
 ***
-<p style="text-align: center"> Copyright &copy; 2023 DartSia All Rights Reserved</p>
+<p style="text-align: center"> Copyright &copy; 2024 DartSia All Rights Reserved</p>
