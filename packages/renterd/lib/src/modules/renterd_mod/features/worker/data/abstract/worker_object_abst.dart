@@ -14,7 +14,8 @@ abstract class WorkerObjectAbst {
   Future<http.Response> downloadTheObject({
     String? username,
     required String password,
-    required String key,
     required String serverAddress,
+    required String bucketName,
+    required String fileName,
   });
 }

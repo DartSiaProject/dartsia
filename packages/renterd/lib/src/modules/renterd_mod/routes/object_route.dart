@@ -57,14 +57,16 @@ class Object {
   static Future<http.Response> downloadTheObject({
     String? username,
     required String password,
-    required String key,
     required String serverAddress,
+    required String bucketName,
+    required String fileName,
   }) async =>
       await sl.call<DownloadTheObjectController>().call(
           username: username,
           password: password,
-          key: key,
-          serverAddress: serverAddress);
+          serverAddress: serverAddress,
+          bucketName: bucketName,
+          fileName: fileName);
 
   static Future<http.Response> renameSingleObject({
     String? username,

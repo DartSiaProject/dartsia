@@ -14,14 +14,16 @@ class DownloadTheObjectController {
   Future<http.Response> call({
     String? username,
     required String password,
-    required String key,
     required String serverAddress,
+    required String bucketName,
+    required String fileName,
   }) async {
     return await _workerObjectAbst.downloadTheObject(
       username: username,
       password: password,
-      key: key,
       serverAddress: serverAddress,
+      bucketName: bucketName,
+      fileName: fileName,
     );
   }
 }

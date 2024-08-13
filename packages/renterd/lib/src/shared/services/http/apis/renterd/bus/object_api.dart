@@ -5,8 +5,9 @@ class ObjectApi {
           String serverAddress, String bucketName, String fileName) =>
       "$serverAddress/api/bus/objects/$fileName?bucket=$bucketName";
 
-  static String downloadTheObject(String serverAddress, String key) =>
-      "$serverAddress/api/worker/objects/$key";
+  static String downloadTheObject(
+          String serverAddress, String bucketName, String fileName) =>
+      "$serverAddress/api/worker/objects/$fileName?bucket=$bucketName";
 
   static String uploadTheObject(
           String serverAddress, String bucketName, String fileName) =>

@@ -51,15 +51,16 @@ class WorkerObjectImpl implements WorkerObjectAbst {
   Future<http.Response> downloadTheObject({
     String? username,
     required String password,
-    required String key,
     required String serverAddress,
+    required String bucketName,
+    required String fileName,
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        ObjectApi.downloadTheObject(serverAddress, key),
+        ObjectApi.downloadTheObject(serverAddress, bucketName, fileName),
       ),
       headers: {
-        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.contentTypeHeader: "application/octet-stream",
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
