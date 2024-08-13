@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:renterd/src/modules/renterd_mod/features/bus/controllers/object_controllers/get_details_of_object_controller.dart';
 import 'package:renterd/src/modules/renterd_mod/features/bus/controllers/object_controllers/get_the_list_of_bucket_controller.dart';
 
 import '../../../core/configs/injectors_config/injector.dart';
@@ -8,7 +9,7 @@ import '../features/bus/controllers/object_controllers/copy_and_paste_the_object
 import '../features/bus/controllers/object_controllers/delete_the_object_controller.dart';
 import '../features/bus/controllers/object_controllers/get_the_list_of_object_controller.dart';
 import '../features/bus/controllers/object_controllers/rename_an_object_controller.dart';
-import '../features/worker/controllers/object_controllers/get_the_object_controller.dart';
+import '../features/worker/controllers/object_controllers/download_the_object_controller.dart';
 import '../features/worker/controllers/object_controllers/upload_the_object_controller.dart';
 
 class Object {
@@ -22,27 +23,44 @@ class Object {
             password: password,
             serverAddress: serverAddress,
           );
+
+  static Future<http.Response> getTheDetailsObject({
+    String? username,
+    required String password,
+    required String serverAddress,
+    required String bucketName,
+    required String fileName,
+  }) async =>
+      await sl.call<GetTheDetailsOfObjectController>().call(
+            username: username,
+            password: password,
+            serverAddress: serverAddress,
+            bucketName: bucketName,
+            fileName: fileName,
+          );
+
   static Future<http.Response> uploadAnObject({
     String? username,
     required String password,
-    required String key,
+    required String bucketName,
+    required String fileName,
     required File file,
     required String serverAddress,
   }) async =>
       await sl.call<UploadTheObjectController>().call(
-          username: username,
           password: password,
-          key: key,
+          bucketName: bucketName,
+          fileName: fileName,
           file: file,
           serverAddress: serverAddress);
 
-  static Future<http.Response> previewTheObject({
+  static Future<http.Response> downloadTheObject({
     String? username,
     required String password,
     required String key,
     required String serverAddress,
   }) async =>
-      await sl.call<FetchObjectController>().call(
+      await sl.call<DownloadTheObjectController>().call(
           username: username,
           password: password,
           key: key,
@@ -102,11 +120,13 @@ class Object {
     String? username,
     required String password,
     required String serverAddress,
-    required String fileNameWithExtension,
+    required String fileName,
+    required String bucketName,
   }) async =>
       await sl.call<DeleteTheObjectController>().call(
           username: username,
           password: password,
           serverAddress: serverAddress,
-          fileNameWithExtension: fileNameWithExtension);
+          fileName: fileName,
+          bucketName: bucketName);
 }

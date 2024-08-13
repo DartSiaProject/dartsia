@@ -16,14 +16,15 @@ class UploadTheObjectController {
   Future<http.Response> call({
     String? username,
     required String password,
-    required String key,
+    required String bucketName,
+    required String fileName,
     required File file,
     required String serverAddress,
   }) async {
     return await _workerObjectAbst.uploadAnObject(
-      username: username,
       password: password,
-      key: key,
+      bucketName: bucketName,
+      fileName: fileName,
       file: file,
       serverAddress: serverAddress,
     );

@@ -6,6 +6,13 @@ abstract class ObjectAbst {
     required String password,
     required String serverAddress,
   });
+  Future<http.Response> getDetailsOfObjects({
+    String? username,
+    required String password,
+    required String serverAddress,
+    required String bucketName,
+    required String fileName,
+  });
   Future<http.Response> copyAndPasteTheObject({
     String? username,
     required String password,
@@ -19,7 +26,8 @@ abstract class ObjectAbst {
     String? username,
     required String password,
     required String serverAddress,
-    required String fileNameWithExtension,
+    required String fileName,
+    required String bucketName,
   });
   Future<http.Response> getListOfObjectLimited({
     String? username,

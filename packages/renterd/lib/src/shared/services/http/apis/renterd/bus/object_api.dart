@@ -1,13 +1,21 @@
 class ObjectApi {
   static String getBucketsList(String serverAddress) =>
       "$serverAddress/api/bus/buckets";
-  static String getTheObject(String serverAddress, String key) =>
+  static String getTheDetailsObject(
+          String serverAddress, String bucketName, String fileName) =>
+      "$serverAddress/api/bus/objects/$fileName?bucket=$bucketName";
+
+  static String downloadTheObject(String serverAddress, String key) =>
       "$serverAddress/api/worker/objects/$key";
-  static String updateObject(String serverAddress, String key) =>
-      "$serverAddress/api/bus/objects/$key";
+
+  static String uploadTheObject(
+          String serverAddress, String bucketName, String fileName) =>
+      "$serverAddress/api/worker/objects/$fileName?bucket=$bucketName";
+
   static String deleteObject(
-          String serverAddress, String fileNameWithExtension) =>
-      "$serverAddress/api/bus/objects/$fileNameWithExtension";
+          String serverAddress, String fileName, String bucketName) =>
+      "$serverAddress/api/bus/objects/$fileName?batch=false&bucket=$bucketName";
+
   static String copyAndPasteObject(String serverAddress) =>
       "$serverAddress/api/bus/objects/copy";
   static String getObjectList(String serverAddress) =>

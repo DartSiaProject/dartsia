@@ -34,43 +34,45 @@ import '../../../modules/renterd_mod/features/bus/controllers/consensus_controll
 import '../../../modules/renterd_mod/features/bus/controllers/consensus_controllers/get_state_controller.dart'
     as _i15;
 import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/acquire_a_contract_controller.dart'
-    as _i44;
-import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/add_contract_controller.dart'
     as _i45;
-import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/delete_contract_by_id_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/add_contract_controller.dart'
     as _i46;
-import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/get_contract_by_id_controller.dart'
-    as _i48;
-import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/get_contracts_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/delete_contract_by_id_controller.dart'
     as _i47;
-import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/release_presious_contract_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/get_contract_by_id_controller.dart'
     as _i49;
+import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/get_contracts_controller.dart'
+    as _i48;
+import '../../../modules/renterd_mod/features/bus/controllers/contract_controllers/release_presious_contract_controller.dart'
+    as _i50;
 import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/fetch_some_host_controller.dart'
-    as _i33;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_allow_list_controller.dart'
     as _i34;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_block_list_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_allow_list_controller.dart'
     as _i35;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_host_info_by_public_key_controller.dart'
-    as _i37;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_host_scanning_controller.dart'
-    as _i38;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_hosts_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_block_list_controller.dart'
     as _i36;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/post_interaction_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_host_info_by_public_key_controller.dart'
+    as _i38;
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_host_scanning_controller.dart'
     as _i39;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/remove_hosts_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/get_hosts_controller.dart'
+    as _i37;
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/post_interaction_controller.dart'
     as _i40;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/update_allow_list_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/remove_hosts_controller.dart'
     as _i41;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/update_block_list_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/update_allow_list_controller.dart'
     as _i42;
-import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/update_some_host_controller.dart'
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/update_block_list_controller.dart'
     as _i43;
+import '../../../modules/renterd_mod/features/bus/controllers/hoster_controllers/update_some_host_controller.dart'
+    as _i44;
 import '../../../modules/renterd_mod/features/bus/controllers/object_controllers/copy_and_paste_the_object_controller.dart'
     as _i28;
 import '../../../modules/renterd_mod/features/bus/controllers/object_controllers/delete_the_object_controller.dart'
     as _i29;
+import '../../../modules/renterd_mod/features/bus/controllers/object_controllers/get_details_of_object_controller.dart'
+    as _i33;
 import '../../../modules/renterd_mod/features/bus/controllers/object_controllers/get_the_list_of_bucket_controller.dart'
     as _i32;
 import '../../../modules/renterd_mod/features/bus/controllers/object_controllers/get_the_list_of_object_controller.dart'
@@ -97,10 +99,10 @@ import '../../../modules/renterd_mod/features/bus/data/impls/hoster_impl.dart'
     as _i17;
 import '../../../modules/renterd_mod/features/bus/data/impls/object_impl.dart'
     as _i10;
-import '../../../modules/renterd_mod/features/worker/controllers/object_controllers/get_the_object_controller.dart'
-    as _i11;
-import '../../../modules/renterd_mod/features/worker/controllers/object_controllers/upload_the_object_controller.dart'
+import '../../../modules/renterd_mod/features/worker/controllers/object_controllers/download_the_object_controller.dart'
     as _i12;
+import '../../../modules/renterd_mod/features/worker/controllers/object_controllers/upload_the_object_controller.dart'
+    as _i11;
 import '../../../modules/renterd_mod/features/worker/data/abstract/worker_object_abst.dart'
     as _i5;
 import '../../../modules/renterd_mod/features/worker/data/impls/worker_object_impl.dart'
@@ -121,10 +123,11 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i5.WorkerObjectAbst>(() => _i6.WorkerObjectImpl());
     gh.lazySingleton<_i7.AccountsAbst>(() => _i8.AccountsImpl());
     gh.lazySingleton<_i9.ObjectAbst>(() => _i10.ObjectImpl());
-    gh.factory<_i11.FetchObjectController>(() => _i11.FetchObjectController(
-        workerObjectAbst: gh<_i5.WorkerObjectAbst>()));
-    gh.factory<_i12.UploadTheObjectController>(() =>
-        _i12.UploadTheObjectController(
+    gh.factory<_i11.UploadTheObjectController>(() =>
+        _i11.UploadTheObjectController(
+            workerObjectAbst: gh<_i5.WorkerObjectAbst>()));
+    gh.factory<_i12.DownloadTheObjectController>(() =>
+        _i12.DownloadTheObjectController(
             workerObjectAbst: gh<_i5.WorkerObjectAbst>()));
     gh.factory<_i13.AcceptBlockController>(() =>
         _i13.AcceptBlockController(consensusAbst: gh<_i3.ConsensusAbst>()));
@@ -160,42 +163,44 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i31.RenameAnObjectController(objectAbst: gh<_i9.ObjectAbst>()));
     gh.factory<_i32.GetTheListOfBucketController>(() =>
         _i32.GetTheListOfBucketController(objectAbst: gh<_i9.ObjectAbst>()));
-    gh.factory<_i33.FetchSomeHostController>(
-        () => _i33.FetchSomeHostController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i34.GetAllowListController>(
-        () => _i34.GetAllowListController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i35.GetBlockListController>(
-        () => _i35.GetBlockListController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i36.GetHostsController>(
-        () => _i36.GetHostsController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i37.GetHostInfoByPublicKeyController>(() =>
-        _i37.GetHostInfoByPublicKeyController(
+    gh.factory<_i33.GetTheDetailsOfObjectController>(() =>
+        _i33.GetTheDetailsOfObjectController(objectAbst: gh<_i9.ObjectAbst>()));
+    gh.factory<_i34.FetchSomeHostController>(
+        () => _i34.FetchSomeHostController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i35.GetAllowListController>(
+        () => _i35.GetAllowListController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i36.GetBlockListController>(
+        () => _i36.GetBlockListController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i37.GetHostsController>(
+        () => _i37.GetHostsController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i38.GetHostInfoByPublicKeyController>(() =>
+        _i38.GetHostInfoByPublicKeyController(
             hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i38.GetHostScannigController>(
-        () => _i38.GetHostScannigController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i39.PostInteractionController>(() =>
-        _i39.PostInteractionController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i40.RemoveHostsController>(
-        () => _i40.RemoveHostsController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i41.UpdateAllowListController>(() =>
-        _i41.UpdateAllowListController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i42.UpdateBlockListController>(() =>
-        _i42.UpdateBlockListController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i43.UpdateSomeHostController>(
-        () => _i43.UpdateSomeHostController(hosterAbst: gh<_i16.HosterAbst>()));
-    gh.factory<_i44.AcquireAContractController>(() =>
-        _i44.AcquireAContractController(contractAbst: gh<_i18.ContractAbst>()));
-    gh.factory<_i45.AddContractController>(() =>
-        _i45.AddContractController(contractAbst: gh<_i18.ContractAbst>()));
-    gh.factory<_i46.DeleteContractByIdController>(() =>
-        _i46.DeleteContractByIdController(
+    gh.factory<_i39.GetHostScannigController>(
+        () => _i39.GetHostScannigController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i40.PostInteractionController>(() =>
+        _i40.PostInteractionController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i41.RemoveHostsController>(
+        () => _i41.RemoveHostsController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i42.UpdateAllowListController>(() =>
+        _i42.UpdateAllowListController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i43.UpdateBlockListController>(() =>
+        _i43.UpdateBlockListController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i44.UpdateSomeHostController>(
+        () => _i44.UpdateSomeHostController(hosterAbst: gh<_i16.HosterAbst>()));
+    gh.factory<_i45.AcquireAContractController>(() =>
+        _i45.AcquireAContractController(contractAbst: gh<_i18.ContractAbst>()));
+    gh.factory<_i46.AddContractController>(() =>
+        _i46.AddContractController(contractAbst: gh<_i18.ContractAbst>()));
+    gh.factory<_i47.DeleteContractByIdController>(() =>
+        _i47.DeleteContractByIdController(
             contractAbst: gh<_i18.ContractAbst>()));
-    gh.factory<_i47.GetContractsController>(() =>
-        _i47.GetContractsController(contractAbst: gh<_i18.ContractAbst>()));
-    gh.factory<_i48.GetContractByIdController>(() =>
-        _i48.GetContractByIdController(contractAbst: gh<_i18.ContractAbst>()));
-    gh.factory<_i49.ReleasePreviousContractController>(() =>
-        _i49.ReleasePreviousContractController(
+    gh.factory<_i48.GetContractsController>(() =>
+        _i48.GetContractsController(contractAbst: gh<_i18.ContractAbst>()));
+    gh.factory<_i49.GetContractByIdController>(() =>
+        _i49.GetContractByIdController(contractAbst: gh<_i18.ContractAbst>()));
+    gh.factory<_i50.ReleasePreviousContractController>(() =>
+        _i50.ReleasePreviousContractController(
             contractAbst: gh<_i18.ContractAbst>()));
     return this;
   }

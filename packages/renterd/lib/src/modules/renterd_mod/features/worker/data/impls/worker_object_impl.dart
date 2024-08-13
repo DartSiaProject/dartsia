@@ -22,27 +22,33 @@ class WorkerObjectImpl implements WorkerObjectAbst {
   Future<http.Response> uploadAnObject({
     String? username,
     required String password,
-    required String key,
+    required String bucketName,
+    required String fileName,
     required File file,
     required String serverAddress,
   }) async {
     http.Response _response = await http.put(
-        Uri.parse(
-          ObjectApi.updateObject(serverAddress, key),
+      Uri.parse(
+        ObjectApi.uploadTheObject(
+          serverAddress,
+          bucketName,
+          fileName,
         ),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: file.readAsBytesSync());
+      ),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/octet-stream",
+        HttpHeaders.authorizationHeader:
+            "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+      },
+      body: await file.readAsBytes(),
+    );
 
     return _response;
   }
 
   /// Note : This Function whose Returns the current object of the bus like http.Response
   @override
-  Future<http.Response> previewTheObject({
+  Future<http.Response> downloadTheObject({
     String? username,
     required String password,
     required String key,
@@ -50,7 +56,7 @@ class WorkerObjectImpl implements WorkerObjectAbst {
   }) async {
     http.Response _response = await http.get(
       Uri.parse(
-        ObjectApi.getTheObject(serverAddress, key),
+        ObjectApi.downloadTheObject(serverAddress, key),
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",

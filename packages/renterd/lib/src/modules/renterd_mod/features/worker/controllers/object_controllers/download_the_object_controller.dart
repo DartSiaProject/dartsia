@@ -4,10 +4,10 @@ import 'package:injectable/injectable.dart';
 import '../../data/abstract/worker_object_abst.dart';
 
 @Injectable()
-class FetchObjectController {
+class DownloadTheObjectController {
   final WorkerObjectAbst _workerObjectAbst;
 
-  FetchObjectController({
+  DownloadTheObjectController({
     required WorkerObjectAbst workerObjectAbst,
   }) : _workerObjectAbst = workerObjectAbst;
 
@@ -17,7 +17,7 @@ class FetchObjectController {
     required String key,
     required String serverAddress,
   }) async {
-    return await _workerObjectAbst.previewTheObject(
+    return await _workerObjectAbst.downloadTheObject(
       username: username,
       password: password,
       key: key,

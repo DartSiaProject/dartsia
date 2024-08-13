@@ -4,10 +4,10 @@ import 'package:injectable/injectable.dart';
 import '../../data/abstract/object_abst.dart';
 
 @Injectable()
-class DeleteTheObjectController {
+class GetTheDetailsOfObjectController {
   final ObjectAbst _objectAbst;
 
-  DeleteTheObjectController({
+  GetTheDetailsOfObjectController({
     required ObjectAbst objectAbst,
   }) : _objectAbst = objectAbst;
 
@@ -15,15 +15,15 @@ class DeleteTheObjectController {
     String? username,
     required String password,
     required String serverAddress,
-    required String fileName,
     required String bucketName,
+    required String fileName,
   }) async {
-    return await _objectAbst.deleteTheObject(
+    return await _objectAbst.getDetailsOfObjects(
       username: username,
       password: password,
       serverAddress: serverAddress,
-      fileName: fileName,
       bucketName: bucketName,
+      fileName: fileName,
     );
   }
 }

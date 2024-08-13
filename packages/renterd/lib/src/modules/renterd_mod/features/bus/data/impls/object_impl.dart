@@ -36,17 +36,39 @@ class ObjectImpl implements ObjectAbst {
     return _response;
   }
 
-  /// Note :  This function allow to delete an object after send the fileNameWithExtension
+  /// Note :  This function allow to get the details of object
   @override
-  Future<http.Response> deleteTheObject({
+  Future<http.Response> getDetailsOfObjects({
     String? username,
     required String password,
     required String serverAddress,
-    required String fileNameWithExtension,
+    required String bucketName,
+    required String fileName,
   }) async {
+    http.Response _response = await http.get(
+      Uri.parse(
+        ObjectApi.getTheDetailsObject(serverAddress, bucketName, fileName),
+      ),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.authorizationHeader:
+            "Basic ${base64Encode(utf8.encode('$username:$password'))}",
+      },
+    );
+    return _response;
+  }
+
+  /// Note :  This function allow to delete an object after send the fileNameWithExtension
+  @override
+  Future<http.Response> deleteTheObject(
+      {String? username,
+      required String password,
+      required String serverAddress,
+      required String fileName,
+      required String bucketName}) async {
     http.Response _response = await http.delete(
       Uri.parse(
-        ObjectApi.deleteObject(serverAddress, fileNameWithExtension),
+        ObjectApi.deleteObject(serverAddress, fileName, bucketName),
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
