@@ -181,7 +181,7 @@ class HosterImpl implements HosterAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: hostScanData,
+      content: json.encode(hostScanData),
     );
 
     // await http.post(
@@ -214,10 +214,10 @@ class HosterImpl implements HosterAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "minRecentScanFailures": minRecentScanFailures,
         "maxDowntimeHours": maxDowntimeHours,
-      },
+      }),
     );
 
     // await http.post(

@@ -34,10 +34,10 @@ class ContractImpl implements ContractAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "duration": duration,
         "priority": priority,
-      },
+      }),
     );
 
     // await http.post(
@@ -73,11 +73,11 @@ class ContractImpl implements ContractAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "contract": contract,
         "startHeight": startHeight,
         "totalCost": totalCost
-      },
+      }),
     );
 
     //  await http.post(
@@ -196,9 +196,9 @@ class ContractImpl implements ContractAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "lockID": lockId,
-      },
+      }),
     );
 
     // await http.post(

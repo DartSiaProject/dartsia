@@ -61,10 +61,10 @@ class AccountsImpl implements AccountsAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "host": host,
         "amount": amount,
-      },
+      }),
     );
 
     // await http.post(
@@ -97,7 +97,7 @@ class AccountsImpl implements AccountsAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {"hostKey": hostKey},
+      content: json.encode({"hostKey": hostKey}),
     );
 
     // await http.post(
@@ -128,11 +128,11 @@ class AccountsImpl implements AccountsAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "hostKey": hostKey,
         "exclusive": exclusive,
         "duration": "1000",
-      },
+      }),
     );
 
     //  await http.post(
@@ -194,9 +194,9 @@ class AccountsImpl implements AccountsAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "host": host,
-      },
+      }),
     );
 
     // await http.post(Uri.parse(AccountApi.syncBalance(accountId, serverAddress)),
@@ -227,9 +227,9 @@ class AccountsImpl implements AccountsAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "lockID": BigInt.parse(lockId).toInt(),
-      },
+      }),
     );
 
     // await http.post(
@@ -260,10 +260,10 @@ class AccountsImpl implements AccountsAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "host": host,
         "amount": amount,
-      },
+      }),
     );
 
     // await http.post(

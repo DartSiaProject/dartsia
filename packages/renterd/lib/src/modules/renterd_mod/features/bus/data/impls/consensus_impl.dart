@@ -34,7 +34,7 @@ class ConsensusImpl extends ConsensusAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "ParentID": parentId,
         "Nonce": 0,
         "Timestamp": DateTime.now().toString(),
@@ -58,7 +58,7 @@ class ConsensusImpl extends ConsensusAbst {
             "Signatures": <dynamic>[]
           }
         ]
-      },
+      }),
     );
 
     // await http.post(

@@ -126,12 +126,12 @@ class ObjectImpl implements ObjectAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "sourceBucket": sourceBucketName,
         "sourcePath": "/$sourcefileName",
         "destinationBucket": destBucketName,
         "destinationPath": "/$destfileName",
-      },
+      }),
     );
 
     //  await http.post(
@@ -169,12 +169,12 @@ class ObjectImpl implements ObjectAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "bucket": bucketName,
         "limit": limit,
         "prefix": prefix,
         "marker": "",
-      },
+      }),
     );
 
     // await http.post(
@@ -212,12 +212,12 @@ class ObjectImpl implements ObjectAbst {
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      content: {
+      content: json.encode({
         "bucket": bucketName,
         "from": "/$oldFileName",
         "to": "/$newFileName",
         "mode": "single"
-      },
+      }),
     );
 
     // await http.post(
