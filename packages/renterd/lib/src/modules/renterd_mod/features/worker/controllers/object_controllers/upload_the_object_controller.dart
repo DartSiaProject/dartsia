@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
 import '../../data/abstract/worker_object_abst.dart';
@@ -13,7 +12,7 @@ class UploadTheObjectController {
     required WorkerObjectAbst workerObjectAbst,
   }) : _workerObjectAbst = workerObjectAbst;
 
-  Future<http.Response> call({
+  Future<Map<String, dynamic>> call({
     String? username,
     required String password,
     required String bucketName,

@@ -1,38 +1,30 @@
-// todo : Remove the comment marks once to enable this file
+import 'package:dio/dio.dart';
 
-// import 'package:dio/dio.dart';
+import '../configs/dio_instance.dart';
 
-// import '../../../constants/lang_const.dart';
-// import '../configs/dio_instance.dart';
-
-// class HttpPostRequest {
-//   static Future<Map<String, dynamic>> post({
-//     required String api,
-//     required String content,
-//     required Map<String, String> headers,
-//   }) async {
-//     return await dio
-//         .post<String>(
-//           api,
-//           data: content,
-//           options: Options(
-//             headers: headers,
-//           ),
-//         )
-//         .then((response) => {
-//               "status": true,
-//               "response": response,
-//             })
-//         .onError<DioException>((error, stackTrace) {
-//       return {
-//         "status": false,
-//         "message": error.type == DioExceptionType.connectionTimeout ||
-//                 error.type == DioExceptionType.receiveTimeout
-//             ? Lang.timeError
-//             : Lang.unknownError,
-//       };
-//     });
-//   }
+class HttpPostRequest {
+  static Future<Map<String, dynamic>> post({
+    required String api,
+    required Map<String, dynamic> headers,
+    Object? content,
+  }) async {
+    return await dio
+        .post<String>(
+          api,
+          data: content,
+          options: Options(
+            headers: headers,
+          ),
+        )
+        .then((response) => {
+              "status": true,
+              "response": response,
+            })
+        .onError<DioException>((error, stackTrace) => {
+              "status": false,
+              "error": error,
+            });
+  }
 
 //   static Future<Response<String>> postFile({
 //     required String api,
@@ -48,4 +40,4 @@
 //     );
 //     return _response;
 //   }
-// }
+}

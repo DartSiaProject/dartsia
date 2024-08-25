@@ -1,5 +1,3 @@
-import 'package:http/http.dart' as http;
-
 import '../../../core/configs/injectors_config/injector.dart';
 import '../features/bus/controllers/hoster_controllers/fetch_some_host_controller.dart';
 import '../features/bus/controllers/hoster_controllers/get_allow_list_controller.dart';
@@ -13,7 +11,7 @@ import '../features/bus/controllers/hoster_controllers/update_block_list_control
 import '../features/bus/controllers/hoster_controllers/update_some_host_controller.dart';
 
 class Hoster {
-  static Future<http.Response> getHostInfoByPublicKey({
+  static Future<Map<String, dynamic>> getHostInfoByPublicKey({
     String? username,
     required String password,
     required String publicKey,
@@ -26,7 +24,7 @@ class Hoster {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> getHosts({
+  static Future<Map<String, dynamic>> getHosts({
     String? username,
     required String password,
     required String serverAddress,
@@ -37,7 +35,7 @@ class Hoster {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> updateAllowList({
+  static Future<Map<String, dynamic>> updateAllowList({
     String? username,
     required String password,
     required List<String> addHostList,
@@ -51,7 +49,7 @@ class Hoster {
         removeHostList: removeHostList,
         serverAddress: serverAddress,
       );
-  static Future<http.Response> updateBlockList({
+  static Future<Map<String, dynamic>> updateBlockList({
     String? username,
     required String password,
     required List<String> addHostList,
@@ -65,7 +63,7 @@ class Hoster {
         removeHostList: removeHostList,
         serverAddress: serverAddress,
       );
-  static Future<http.Response> getAllowList({
+  static Future<Map<String, dynamic>> getAllowList({
     String? username,
     required String password,
     required String serverAddress,
@@ -76,7 +74,7 @@ class Hoster {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> getBlockList({
+  static Future<Map<String, dynamic>> getBlockList({
     String? username,
     required String password,
     required String serverAddress,
@@ -87,7 +85,7 @@ class Hoster {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> postInteraction({
+  static Future<Map<String, dynamic>> postInteraction({
     String? username,
     required String password,
     required List<String> hostScanData,
@@ -100,7 +98,7 @@ class Hoster {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> removeHosts({
+  static Future<Map<String, dynamic>> removeHosts({
     String? username,
     required String password,
     required int minRecentScanFailures,
@@ -115,7 +113,7 @@ class Hoster {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> getHostScannig({
+  static Future<Map<String, dynamic>> getHostScannig({
     String? username,
     required String password,
     required int offset,
@@ -132,7 +130,7 @@ class Hoster {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> fetchSomeHost({
+  static Future<Map<String, dynamic>> fetchSomeHost({
     String? username,
     required String password,
     required String serverAddress,
@@ -143,7 +141,7 @@ class Hoster {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> updateSomeHost({
+  static Future<Map<String, dynamic>> updateSomeHost({
     String? username,
     required String password,
     required Map<String, dynamic> hostConfig,

@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
-import 'package:renterd/src/modules/renterd_mod/features/bus/controllers/object_controllers/get_details_of_object_controller.dart';
-import 'package:renterd/src/modules/renterd_mod/features/bus/controllers/object_controllers/get_the_list_of_bucket_controller.dart';
+import '../features/bus/controllers/object_controllers/get_details_of_object_controller.dart';
+import '../features/bus/controllers/object_controllers/get_the_list_of_bucket_controller.dart';
 
 import '../../../core/configs/injectors_config/injector.dart';
 import '../features/bus/controllers/object_controllers/copy_and_paste_the_object_controller.dart';
@@ -13,7 +12,7 @@ import '../features/worker/controllers/object_controllers/download_the_object_co
 import '../features/worker/controllers/object_controllers/upload_the_object_controller.dart';
 
 class Object {
-  static Future<http.Response> getListOfBucket({
+  static Future<Map<String, dynamic>> getListOfBucket({
     String? username,
     required String password,
     required String serverAddress,
@@ -24,7 +23,7 @@ class Object {
             serverAddress: serverAddress,
           );
 
-  static Future<http.Response> getTheDetailsObject({
+  static Future<Map<String, dynamic>> getTheDetailsObject({
     String? username,
     required String password,
     required String serverAddress,
@@ -39,7 +38,7 @@ class Object {
             fileName: fileName,
           );
 
-  static Future<http.Response> uploadAnObject({
+  static Future<Map<String, dynamic>> uploadAnObject({
     String? username,
     required String password,
     required String bucketName,
@@ -54,7 +53,7 @@ class Object {
           file: file,
           serverAddress: serverAddress);
 
-  static Future<http.Response> downloadTheObject({
+  static Future<Map<String, dynamic>> downloadTheObject({
     String? username,
     required String password,
     required String serverAddress,
@@ -68,7 +67,7 @@ class Object {
           bucketName: bucketName,
           fileName: fileName);
 
-  static Future<http.Response> renameSingleObject({
+  static Future<Map<String, dynamic>> renameSingleObject({
     String? username,
     required String password,
     required String serverAddress,
@@ -84,7 +83,7 @@ class Object {
           oldFileName: oldFileName,
           newFileName: newFileName);
 
-  static Future<http.Response> getListOfObjectLimited({
+  static Future<Map<String, dynamic>> getListOfObjectLimited({
     String? username,
     required String password,
     required String serverAddress,
@@ -100,7 +99,7 @@ class Object {
           limit: limit,
           prefix: prefix);
 
-  static Future<http.Response> copyTheObject({
+  static Future<Map<String, dynamic>> copyTheObject({
     String? username,
     required String password,
     required String serverAddress,
@@ -118,7 +117,7 @@ class Object {
           destBucketName: destBucketName,
           destfileName: destfileName);
 
-  static Future<http.Response> deleteTheObject({
+  static Future<Map<String, dynamic>> deleteTheObject({
     String? username,
     required String password,
     required String serverAddress,

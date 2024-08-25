@@ -1,7 +1,5 @@
-import 'package:http/http.dart' as http;
-
 abstract class ContractAbst {
-  Future<http.Response> acquireAContract({
+  Future<Map<String, dynamic>> acquireAContract({
     String? username,
     required String password,
     required String id,
@@ -9,7 +7,7 @@ abstract class ContractAbst {
     required int priority,
     required String serverAddress,
   });
-  Future<http.Response> addContract({
+  Future<Map<String, dynamic>> addContract({
     String? username,
     required String password,
     required String id,
@@ -18,24 +16,24 @@ abstract class ContractAbst {
     required int startHeight,
     required String serverAddress,
   });
-  Future<http.Response> deleteContractById({
+  Future<Map<String, dynamic>> deleteContractById({
     String? username,
     required String password,
     required String id,
     required String serverAddress,
   });
-  Future<http.Response> getContractById({
+  Future<Map<String, dynamic>> getContractById({
     String? username,
     required String password,
     required String id,
     required String serverAddress,
   });
-  Future<http.Response> getContracts({
+  Future<Map<String, dynamic>> getContracts({
     String? username,
     required String password,
     required String serverAddress,
   });
-  Future<http.Response> releasePreviousContract({
+  Future<Map<String, dynamic>> releasePreviousContract({
     String? username,
     required String password,
     required String id,

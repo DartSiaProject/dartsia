@@ -1,13 +1,11 @@
-import 'package:http/http.dart' as http;
-
 abstract class AccountsAbst {
-  Future<http.Response> getAllAccounts({
+  Future<Map<String, dynamic>> getAllAccounts({
     String? username,
     required String password,
     required String serverAddress,
   });
 
-  Future<http.Response> addDeposit({
+  Future<Map<String, dynamic>> addDeposit({
     String? username,
     required String password,
     required String accountId,
@@ -16,7 +14,7 @@ abstract class AccountsAbst {
     required String serverAddress,
   });
 
-  Future<http.Response> getAnAccountById({
+  Future<Map<String, dynamic>> getAnAccountById({
     String? username,
     required String password,
     required String accountId,
@@ -24,7 +22,7 @@ abstract class AccountsAbst {
     required String serverAddress,
   });
 
-  Future<http.Response> lockAnAccount({
+  Future<Map<String, dynamic>> lockAnAccount({
     String? username,
     required String password,
     required String accountId,
@@ -33,14 +31,14 @@ abstract class AccountsAbst {
     required String serverAddress,
   });
 
-  Future<http.Response> resetDrift({
+  Future<Map<String, dynamic>> resetDrift({
     String? username,
     required String password,
     required String accountId,
     required String serverAddress,
   });
 
-  Future<http.Response> syncBalance({
+  Future<Map<String, dynamic>> syncBalance({
     String? username,
     required String password,
     required String accountId,
@@ -48,7 +46,7 @@ abstract class AccountsAbst {
     required String serverAddress,
   });
 
-  Future<http.Response> unLockAnAccount({
+  Future<Map<String, dynamic>> unLockAnAccount({
     String? username,
     required String password,
     required String accountId,
@@ -56,7 +54,7 @@ abstract class AccountsAbst {
     required String serverAddress,
   });
 
-  Future<http.Response> updateBalance({
+  Future<Map<String, dynamic>> updateBalance({
     String? username,
     required String password,
     required String accountId,

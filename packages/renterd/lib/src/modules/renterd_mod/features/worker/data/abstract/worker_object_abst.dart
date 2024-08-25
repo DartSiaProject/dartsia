@@ -1,9 +1,7 @@
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
-
 abstract class WorkerObjectAbst {
-  Future<http.Response> uploadAnObject({
+  Future<Map<String, dynamic>> uploadAnObject({
     String? username,
     required String password,
     required String bucketName,
@@ -11,7 +9,7 @@ abstract class WorkerObjectAbst {
     required File file,
     required String serverAddress,
   });
-  Future<http.Response> downloadTheObject({
+  Future<Map<String, dynamic>> downloadTheObject({
     String? username,
     required String password,
     required String serverAddress,

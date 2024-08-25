@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../shared/services/http/apis/renterd/bus/object_api.dart';
+import '../../../../../../shared/services/http/requests/http_delete_request.dart';
+import '../../../../../../shared/services/http/requests/http_get_request.dart';
+import '../../../../../../shared/services/http/requests/http_post_request.dart';
 import '../abstract/object_abst.dart';
 
 /// Project : [Renterd's Package]
@@ -18,70 +20,97 @@ import '../abstract/object_abst.dart';
 class ObjectImpl implements ObjectAbst {
   /// Note :  This function allow to get all the buckets
   @override
-  Future<http.Response> getListOfBuckets({
+  Future<Map<String, dynamic>> getListOfBuckets({
     String? username,
     required String password,
     required String serverAddress,
   }) async {
-    http.Response _response = await http.get(
-      Uri.parse(
-        ObjectApi.getBucketsList(serverAddress),
-      ),
+    var _response = await HttpGetRequest.get(
+      api: ObjectApi.getBucketsList(serverAddress),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
     );
+
+    // await http.get(
+    //   Uri.parse(
+    //     ObjectApi.getBucketsList(serverAddress),
+    //   ),
+    //   headers: {
+    //     HttpHeaders.contentTypeHeader: "application/json",
+    //     HttpHeaders.authorizationHeader:
+    //         "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+    //   },
+    // );
     return _response;
   }
 
   /// Note :  This function allow to get the details of object
   @override
-  Future<http.Response> getDetailsOfObjects({
+  Future<Map<String, dynamic>> getDetailsOfObjects({
     String? username,
     required String password,
     required String serverAddress,
     required String bucketName,
     required String fileName,
   }) async {
-    http.Response _response = await http.get(
-      Uri.parse(
-        ObjectApi.getTheDetailsObject(serverAddress, bucketName, fileName),
-      ),
-      headers: {
-        HttpHeaders.contentTypeHeader: "application/json",
-        HttpHeaders.authorizationHeader:
-            "Basic ${base64Encode(utf8.encode('$username:$password'))}",
-      },
-    );
-    return _response;
-  }
-
-  /// Note :  This function allow to delete an object after send the fileNameWithExtension
-  @override
-  Future<http.Response> deleteTheObject(
-      {String? username,
-      required String password,
-      required String serverAddress,
-      required String fileName,
-      required String bucketName}) async {
-    http.Response _response = await http.delete(
-      Uri.parse(
-        ObjectApi.deleteObject(serverAddress, fileName, bucketName),
-      ),
+    var _response = await HttpGetRequest.get(
+      api: ObjectApi.getTheDetailsObject(serverAddress, bucketName, fileName),
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
     );
+
+    // await http.get(
+    //   Uri.parse(
+    //     ObjectApi.getTheDetailsObject(serverAddress, bucketName, fileName),
+    //   ),
+    //   headers: {
+    //     HttpHeaders.contentTypeHeader: "application/json",
+    //     HttpHeaders.authorizationHeader:
+    //         "Basic ${base64Encode(utf8.encode('$username:$password'))}",
+    //   },
+    // );
+    return _response;
+  }
+
+  /// Note :  This function allow to delete an object after send the fileNameWithExtension
+  @override
+  Future<Map<String, dynamic>> deleteTheObject(
+      {String? username,
+      required String password,
+      required String serverAddress,
+      required String fileName,
+      required String bucketName}) async {
+    var _response = await HttpDeleteRequest.delete(
+      api: ObjectApi.deleteObject(serverAddress, fileName, bucketName),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.authorizationHeader:
+            "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+      },
+    );
+
+    // await http.delete(
+    //   Uri.parse(
+    //     ObjectApi.deleteObject(serverAddress, fileName, bucketName),
+    //   ),
+    //   headers: {
+    //     HttpHeaders.contentTypeHeader: "application/json",
+    //     HttpHeaders.authorizationHeader:
+    //         "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+    //   },
+    // );
     return _response;
   }
 
   /// Note :  This function allow to copy and paste an objet limit
   @override
-  Future<http.Response> copyAndPasteTheObject({
+  Future<Map<String, dynamic>> copyAndPasteTheObject({
     String? username,
     required String password,
     required String serverAddress,
@@ -90,27 +119,42 @@ class ObjectImpl implements ObjectAbst {
     required String destBucketName,
     required String destfileName,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse(
-          ObjectApi.copyAndPasteObject(serverAddress),
-        ),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({
-          "sourceBucket": sourceBucketName,
-          "sourcePath": "/$sourcefileName",
-          "destinationBucket": destBucketName,
-          "destinationPath": "/$destfileName",
-        }));
+    var _response = await HttpPostRequest.post(
+      api: ObjectApi.copyAndPasteObject(serverAddress),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.authorizationHeader:
+            "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+      },
+      content: {
+        "sourceBucket": sourceBucketName,
+        "sourcePath": "/$sourcefileName",
+        "destinationBucket": destBucketName,
+        "destinationPath": "/$destfileName",
+      },
+    );
+
+    //  await http.post(
+    //     Uri.parse(
+    //       ObjectApi.copyAndPasteObject(serverAddress),
+    //     ),
+    //     headers: {
+    //       HttpHeaders.contentTypeHeader: "application/json",
+    //       HttpHeaders.authorizationHeader:
+    //           "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+    //     },
+    //     body: json.encode({
+    //       "sourceBucket": sourceBucketName,
+    //       "sourcePath": "/$sourcefileName",
+    //       "destinationBucket": destBucketName,
+    //       "destinationPath": "/$destfileName",
+    //     }));
     return _response;
   }
 
   /// Note :  This function allow to get a list of object after insert a number limit
   @override
-  Future<http.Response> getListOfObjectLimited({
+  Future<Map<String, dynamic>> getListOfObjectLimited({
     String? username,
     required String password,
     required String serverAddress,
@@ -118,27 +162,42 @@ class ObjectImpl implements ObjectAbst {
     required int limit,
     String? prefix,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse(
-          ObjectApi.getObjectList(serverAddress),
-        ),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({
-          "bucket": bucketName,
-          "limit": limit,
-          "prefix": prefix == "" ? "" : "/$prefix/",
-          "marker": "",
-        }));
+    var _response = await HttpPostRequest.post(
+      api: ObjectApi.getObjectList(serverAddress),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.authorizationHeader:
+            "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+      },
+      content: {
+        "bucket": bucketName,
+        "limit": limit,
+        "prefix": prefix,
+        "marker": "",
+      },
+    );
+
+    // await http.post(
+    //     Uri.parse(
+    //       ObjectApi.getObjectList(serverAddress),
+    //     ),
+    //     headers: {
+    //       HttpHeaders.contentTypeHeader: "application/json",
+    //       HttpHeaders.authorizationHeader:
+    //           "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+    //     },
+    //     body: json.encode({
+    //       "bucket": bucketName,
+    //       "limit": limit,
+    //       "prefix": prefix,
+    //       "marker": "",
+    //     }));
     return _response;
   }
 
-  /// Note : This Function allow to rename a single object and send a http.Response
+  /// Note : This Function allow to rename a single object and send a var
   @override
-  Future<http.Response> renameSingleObject({
+  Future<Map<String, dynamic>> renameSingleObject({
     String? username,
     required String password,
     required String serverAddress,
@@ -146,21 +205,36 @@ class ObjectImpl implements ObjectAbst {
     required String oldFileName,
     required String newFileName,
   }) async {
-    http.Response _response = await http.post(
-        Uri.parse(
-          ObjectApi.renameObjectName(serverAddress),
-        ),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader:
-              "Basic ${base64Encode(utf8.encode('$username:$password'))}"
-        },
-        body: json.encode({
-          "bucket": bucketName,
-          "from": "/$oldFileName",
-          "to": "/$newFileName",
-          "mode": "single"
-        }));
+    var _response = await HttpPostRequest.post(
+      api: ObjectApi.renameObjectName(serverAddress),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        HttpHeaders.authorizationHeader:
+            "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+      },
+      content: {
+        "bucket": bucketName,
+        "from": "/$oldFileName",
+        "to": "/$newFileName",
+        "mode": "single"
+      },
+    );
+
+    // await http.post(
+    //     Uri.parse(
+    //       ObjectApi.renameObjectName(serverAddress),
+    //     ),
+    //     headers: {
+    //       HttpHeaders.contentTypeHeader: "application/json",
+    //       HttpHeaders.authorizationHeader:
+    //           "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+    //     },
+    //     body: json.encode({
+    //       "bucket": bucketName,
+    //       "from": "/$oldFileName",
+    //       "to": "/$newFileName",
+    //       "mode": "single"
+    //     }));
     return _response;
   }
 }

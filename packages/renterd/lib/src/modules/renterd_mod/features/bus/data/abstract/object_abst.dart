@@ -1,19 +1,17 @@
-import 'package:http/http.dart' as http;
-
 abstract class ObjectAbst {
-  Future<http.Response> getListOfBuckets({
+  Future<Map<String, dynamic>> getListOfBuckets({
     String? username,
     required String password,
     required String serverAddress,
   });
-  Future<http.Response> getDetailsOfObjects({
+  Future<Map<String, dynamic>> getDetailsOfObjects({
     String? username,
     required String password,
     required String serverAddress,
     required String bucketName,
     required String fileName,
   });
-  Future<http.Response> copyAndPasteTheObject({
+  Future<Map<String, dynamic>> copyAndPasteTheObject({
     String? username,
     required String password,
     required String serverAddress,
@@ -22,14 +20,14 @@ abstract class ObjectAbst {
     required String destBucketName,
     required String destfileName,
   });
-  Future<http.Response> deleteTheObject({
+  Future<Map<String, dynamic>> deleteTheObject({
     String? username,
     required String password,
     required String serverAddress,
     required String fileName,
     required String bucketName,
   });
-  Future<http.Response> getListOfObjectLimited({
+  Future<Map<String, dynamic>> getListOfObjectLimited({
     String? username,
     required String password,
     required String serverAddress,
@@ -37,7 +35,7 @@ abstract class ObjectAbst {
     required int limit,
     String? prefix,
   });
-  Future<http.Response> renameSingleObject({
+  Future<Map<String, dynamic>> renameSingleObject({
     String? username,
     required String password,
     required String serverAddress,

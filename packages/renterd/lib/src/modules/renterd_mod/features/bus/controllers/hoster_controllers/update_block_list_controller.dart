@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
 import '../../data/abstract/hoster_abst.dart';
@@ -11,7 +10,7 @@ class UpdateBlockListController {
     required this.hosterAbst,
   });
 
-  Future<http.Response> call({
+  Future<Map<String, dynamic>> call({
     String? username,
     required String password,
     required List<String> addHostList,

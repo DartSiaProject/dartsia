@@ -1,5 +1,3 @@
-import 'package:http/http.dart' as http;
-
 import '../../../core/configs/injectors_config/injector.dart';
 import '../features/bus/controllers/contract_controllers/acquire_a_contract_controller.dart';
 import '../features/bus/controllers/contract_controllers/add_contract_controller.dart';
@@ -9,7 +7,7 @@ import '../features/bus/controllers/contract_controllers/get_contracts_controlle
 import '../features/bus/controllers/contract_controllers/release_presious_contract_controller.dart';
 
 class Contract {
-  static Future<http.Response> getContracts({
+  static Future<Map<String, dynamic>> getContracts({
     String? username,
     required String password,
     required String serverAddress,
@@ -20,7 +18,7 @@ class Contract {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> addContract({
+  static Future<Map<String, dynamic>> addContract({
     String? username,
     required String password,
     required String id,
@@ -39,7 +37,7 @@ class Contract {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> acquireAContract({
+  static Future<Map<String, dynamic>> acquireAContract({
     String? username,
     required String password,
     required String id,
@@ -56,7 +54,7 @@ class Contract {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> releasePreviousContract({
+  static Future<Map<String, dynamic>> releasePreviousContract({
     String? username,
     required String password,
     required String id,
@@ -71,7 +69,7 @@ class Contract {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> getContractById({
+  static Future<Map<String, dynamic>> getContractById({
     String? username,
     required String password,
     required String id,
@@ -84,7 +82,7 @@ class Contract {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> deleteContractById({
+  static Future<Map<String, dynamic>> deleteContractById({
     String? username,
     required String password,
     required String id,

@@ -10,7 +10,7 @@ void main() async {
   var response = await Hoster.fetchSomeHost(
       password: "Vykuj3546@",
       serverAddress: "https://254b-188-166-77-234.ngrok-free.app");
-  debugPrint(response.statusCode.toString());
+  debugPrint(response.toString());
 
   runApp(const MyApp());
 }

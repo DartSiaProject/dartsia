@@ -1,5 +1,3 @@
-import 'package:http/http.dart' as http;
-
 import '../../../core/configs/injectors_config/injector.dart';
 import '../features/bus/controllers/accounts_controllers/add_deposit_controller.dart';
 import '../features/bus/controllers/accounts_controllers/get_all_accounts_controller.dart';
@@ -11,7 +9,7 @@ import '../features/bus/controllers/accounts_controllers/un_lock_an_account_cont
 import '../features/bus/controllers/accounts_controllers/update_balance_controller.dart';
 
 class Accounts {
-  static Future<http.Response> getAllAccounts({
+  static Future<Map<String, dynamic>> getAllAccounts({
     String? username,
     required String password,
     required String serverAddress,
@@ -22,7 +20,7 @@ class Accounts {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> getAnAcountById({
+  static Future<Map<String, dynamic>> getAnAcountById({
     String? username,
     required String password,
     required String accountId,
@@ -37,7 +35,7 @@ class Accounts {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> lockAnAccount({
+  static Future<Map<String, dynamic>> lockAnAccount({
     String? username,
     required String password,
     required String accountId,
@@ -54,7 +52,7 @@ class Accounts {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> unLockAnAccount({
+  static Future<Map<String, dynamic>> unLockAnAccount({
     String? username,
     required String password,
     required String accountId,
@@ -69,7 +67,7 @@ class Accounts {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> addDeposit({
+  static Future<Map<String, dynamic>> addDeposit({
     String? username,
     required String password,
     required String accountId,
@@ -86,7 +84,7 @@ class Accounts {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> updateBalance({
+  static Future<Map<String, dynamic>> updateBalance({
     String? username,
     required String password,
     required String accountId,
@@ -103,7 +101,7 @@ class Accounts {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> syncBalance({
+  static Future<Map<String, dynamic>> syncBalance({
     String? username,
     required String password,
     required String accountId,
@@ -118,7 +116,7 @@ class Accounts {
         serverAddress: serverAddress,
       );
 
-  static Future<http.Response> resetDrift({
+  static Future<Map<String, dynamic>> resetDrift({
     String? username,
     required String password,
     required String accountId,

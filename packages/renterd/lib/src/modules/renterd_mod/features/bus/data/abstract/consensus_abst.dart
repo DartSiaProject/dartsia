@@ -1,7 +1,5 @@
-import 'package:http/http.dart' as http;
-
 abstract class ConsensusAbst {
-  Future<http.Response> acceptBlock({
+  Future<Map<String, dynamic>> acceptBlock({
     String? username,
     required String password,
     required String parentId,
@@ -11,14 +9,14 @@ abstract class ConsensusAbst {
     required String serverAddress,
   });
 
-  Future<http.Response> getSiaFundFee({
+  Future<Map<String, dynamic>> getSiaFundFee({
     String? username,
     required String password,
     required int payout,
     required String serverAddress,
   });
 
-  Future<http.Response> getState({
+  Future<Map<String, dynamic>> getState({
     String? username,
     required String password,
     required String serverAddress,

@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import '../../../../../../shared/services/http/requests/http_get_request.dart';
+import '../../../../../../shared/services/http/requests/http_update_request.dart';
 
 import '../../../../../../shared/services/http/apis/renterd/bus/object_api.dart';
 import '../abstract/worker_object_abst.dart';
@@ -16,10 +17,10 @@ import '../abstract/worker_object_abst.dart';
 
 @LazySingleton(as: WorkerObjectAbst)
 class WorkerObjectImpl implements WorkerObjectAbst {
-  /// Note : This Function whose Returns the current object of the bus like http.Response
+  /// Note : This Function whose Returns the current object of the bus like var
 
   @override
-  Future<http.Response> uploadAnObject({
+  Future<Map<String, dynamic>> uploadAnObject({
     String? username,
     required String password,
     required String bucketName,
@@ -27,44 +28,67 @@ class WorkerObjectImpl implements WorkerObjectAbst {
     required File file,
     required String serverAddress,
   }) async {
-    http.Response _response = await http.put(
-      Uri.parse(
-        ObjectApi.uploadTheObject(
-          serverAddress,
-          bucketName,
-          fileName,
-        ),
+    var _response = await HttpUpdateRequest.put(
+      api: ObjectApi.uploadTheObject(
+        serverAddress,
+        bucketName,
+        fileName,
       ),
       headers: {
         HttpHeaders.contentTypeHeader: "application/octet-stream",
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
-      body: await file.readAsBytes(),
+      content: await file.readAsBytes(),
     );
+
+    // await http.put(
+    //   Uri.parse(
+    //     ObjectApi.uploadTheObject(
+    //       serverAddress,
+    //       bucketName,
+    //       fileName,
+    //     ),
+    //   ),
+    //   headers: {
+    //     HttpHeaders.contentTypeHeader: "application/octet-stream",
+    //     HttpHeaders.authorizationHeader:
+    //         "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+    //   },
+    //   body: await file.readAsBytes(),
+    // );
 
     return _response;
   }
 
-  /// Note : This Function whose Returns the current object of the bus like http.Response
+  /// Note : This Function whose Returns the current object of the bus like var
   @override
-  Future<http.Response> downloadTheObject({
+  Future<Map<String, dynamic>> downloadTheObject({
     String? username,
     required String password,
     required String serverAddress,
     required String bucketName,
     required String fileName,
   }) async {
-    http.Response _response = await http.get(
-      Uri.parse(
-        ObjectApi.downloadTheObject(serverAddress, bucketName, fileName),
-      ),
+    var _response = await HttpGetRequest.get(
+      api: ObjectApi.downloadTheObject(serverAddress, bucketName, fileName),
       headers: {
         HttpHeaders.contentTypeHeader: "application/octet-stream",
         HttpHeaders.authorizationHeader:
             "Basic ${base64Encode(utf8.encode('$username:$password'))}"
       },
     );
+
+    // await http.get(
+    //   Uri.parse(
+    //     ObjectApi.downloadTheObject(serverAddress, bucketName, fileName),
+    //   ),
+    //   headers: {
+    //     HttpHeaders.contentTypeHeader: "application/octet-stream",
+    //     HttpHeaders.authorizationHeader:
+    //         "Basic ${base64Encode(utf8.encode('$username:$password'))}"
+    //   },
+    // );
     return _response;
   }
 }

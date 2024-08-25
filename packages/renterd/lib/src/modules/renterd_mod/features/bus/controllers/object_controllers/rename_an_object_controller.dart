@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
 import '../../data/abstract/object_abst.dart';
@@ -11,7 +10,7 @@ class RenameAnObjectController {
     required ObjectAbst objectAbst,
   }) : _objectAbst = objectAbst;
 
-  Future<http.Response> call({
+  Future<Map<String, dynamic>> call({
     String? username,
     required String password,
     required String serverAddress,
