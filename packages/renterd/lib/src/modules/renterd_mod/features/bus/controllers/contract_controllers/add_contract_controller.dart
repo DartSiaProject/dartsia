@@ -11,22 +11,26 @@ class AddContractController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String id,
     required Map<dynamic, dynamic> contract,
     required String totalCost,
     required int startHeight,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await contractAbst.addContract(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       id: id,
       contract: contract,
       totalCost: totalCost,
       startHeight: startHeight,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

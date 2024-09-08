@@ -1,14 +1,8 @@
 class ContractsApi {
-  static String getContracts(String serverAddress) =>
-      "$serverAddress/api/bus/contracts";
-  static String postContracts(String id, String serverAddress) =>
-      "$serverAddress/api/bus/contract/$id";
-  static String acquireAContract(String id, String serverAddress) =>
-      "$serverAddress/api/bus/contract/$id/acquire";
-  static String releasePreviousContract(String id, String serverAddress) =>
-      "$serverAddress/api/bus/contract/$id/release";
-  static String getContractById(String id, String serverAddress) =>
-      "$serverAddress/api/bus/contract/$id";
-  static String deleteContractById(String id, String serverAddress) =>
-      "$serverAddress/api/bus/contract/$id";
+  static var getContracts = "/api/bus/contracts";
+  static var postContracts = "/api/bus/contract";
+  static var acquireAContract = "/api/bus/contract";
+  static var releasePreviousContract = "/api/bus/contract";
+  static var getContractById = "/api/bus/contract";
+  static var deleteContractById = "/api/bus/contract";
 }

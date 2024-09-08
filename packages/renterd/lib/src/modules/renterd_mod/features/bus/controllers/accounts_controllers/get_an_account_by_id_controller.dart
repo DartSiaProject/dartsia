@@ -11,18 +11,22 @@ class GetAnAccountByIdController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required String hostKey,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await accountsAbst.getAnAccountById(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       accountId: accountId,
       hostKey: hostKey,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

@@ -1,6 +1,8 @@
 library renterd;
 
 export 'package:renterd/src/core/configs/injectors_config/injector.dart';
+export 'package:renterd/src/modules/crypto_mod/routes/crypto_route.dart'
+    show Crypto;
 export 'package:renterd/src/modules/renterd_mod/routes/accounts_route.dart'
     show Accounts;
 export 'package:renterd/src/modules/renterd_mod/routes/consensus_route.dart'

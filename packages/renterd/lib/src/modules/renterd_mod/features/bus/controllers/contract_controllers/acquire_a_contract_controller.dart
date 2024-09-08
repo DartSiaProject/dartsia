@@ -11,20 +11,24 @@ class AcquireAContractController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String id,
     required String duration,
     required int priority,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await contractAbst.acquireAContract(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       id: id,
       duration: duration,
       priority: priority,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

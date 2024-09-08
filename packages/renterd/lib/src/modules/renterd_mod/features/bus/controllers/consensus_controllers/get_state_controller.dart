@@ -11,14 +11,18 @@ class GetStateController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await consensusAbst.getState(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

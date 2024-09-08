@@ -3,16 +3,20 @@ import 'package:dio/dio.dart';
 import '../configs/dio_instance.dart';
 
 class HttpGetRequest {
-  static Future<Map<String, dynamic>> get({
+  static Future<dynamic> get<T>({
     required String api,
-    required Map<String, dynamic> headers,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? queryParameters,
+    ResponseType responseType = ResponseType.json,
   }) async {
     return await dio
-        .get<String>(
+        .get<T>(
           api,
           options: Options(
             headers: headers,
+            responseType: responseType,
           ),
+          queryParameters: queryParameters,
         )
         .then((response) => {
               "status": true,
@@ -21,7 +25,7 @@ class HttpGetRequest {
         .onError<DioException>(
           (error, stackTrace) => {
             "status": false,
-            "message": error,
+            "error": error,
           },
         );
   }

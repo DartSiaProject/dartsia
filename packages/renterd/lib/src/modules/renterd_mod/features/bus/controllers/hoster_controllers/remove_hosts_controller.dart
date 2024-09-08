@@ -11,18 +11,22 @@ class RemoveHostsController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required int minRecentScanFailures,
     required String maxDowntimeHours,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await hosterAbst.removeHosts(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       minRecentScanFailures: minRecentScanFailures,
       maxDowntimeHours: maxDowntimeHours,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

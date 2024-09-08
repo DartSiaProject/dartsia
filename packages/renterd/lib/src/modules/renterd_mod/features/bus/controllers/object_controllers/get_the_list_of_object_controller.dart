@@ -11,20 +11,22 @@ class GetTheListOfObjectController {
   }) : _objectAbst = objectAbst;
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String serverAddress,
     required String bucketName,
     required int limit,
-    String? prefix,
+    required String prefix,
+    required String key,
+    required String iv,
   }) async {
     return await _objectAbst.getListOfObjectLimited(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       serverAddress: serverAddress,
       bucketName: bucketName,
       limit: limit,
-      prefix: prefix,
+      prefix: prefix, key: key, iv: iv,
     );
   }
 }

@@ -11,16 +11,20 @@ class ResetDriftController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await accountsAbst.resetDrift(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       accountId: accountId,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

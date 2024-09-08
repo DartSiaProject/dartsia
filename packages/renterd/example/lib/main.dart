@@ -7,10 +7,10 @@ import 'package:renterd/renterd.dart';
 void main() async {
   renterdInit();
   HttpOverrides.global = MyHttpOverridesHelper();
-  var response = await Hoster.fetchSomeHost(
-      password: "Vykuj3546@",
-      serverAddress: "https://254b-188-166-77-234.ngrok-free.app");
-  debugPrint(response.toString());
+  // var response = await Hoster.fetchSomeHost(
+  //     password: "Vykuj3546@",
+  //     serverAddress: "https://254b-188-166-77-234.ngrok-free.app");
+  // debugPrint(response.toString());
 
   runApp(const MyApp());
 }

@@ -11,16 +11,20 @@ class UpdateSomeHostController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required Map<String, dynamic> hostConfig,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await hosterAbst.updateSomeHost(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       hostConfig: hostConfig,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

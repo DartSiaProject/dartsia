@@ -1,18 +1,10 @@
 class AccountApi {
-  static String getAccounts(String serverAddress) =>
-      "$serverAddress/api/bus/accounts";
-  static String getAnAccountById(String accounId, String serverAddress) =>
-      "$serverAddress/api/bus/accounts/$accounId";
-  static String lockAnAccount(String accounId, String serverAddress) =>
-      "$serverAddress/api/bus/accounts/$accounId/lock";
-  static String unLockAnAccount(String accounId, String serverAddress) =>
-      "$serverAddress/api/bus/accounts/$accounId/unlock";
-  static String addDeposit(String accounId, String serverAddress) =>
-      "$serverAddress/api/bus/accounts/$accounId/add";
-  static String updateBalance(String accounId, String serverAddress) =>
-      "$serverAddress/api/bus/accounts/$accounId/update";
-  static String syncBalance(String accounId, String serverAddress) =>
-      "$serverAddress/api/bus/accounts/$accounId/requiressync";
-  static String resetDrift(String accounId, String serverAddress) =>
-      "$serverAddress/api/bus/accounts/$accounId/resetdrift";
+  static var getAccounts = "/api/bus/accounts";
+  static var getAnAccountById = "/api/bus/accounts";
+  static var lockAnAccount = "/api/bus/accounts";
+  static var unLockAnAccount = "/api/bus/accounts";
+  static var addDeposit = "/api/bus/accounts";
+  static var updateBalance = "/api/bus/accounts";
+  static var syncBalance = "/api/bus/accounts";
+  static var resetDrift = "/api/bus/accounts";
 }

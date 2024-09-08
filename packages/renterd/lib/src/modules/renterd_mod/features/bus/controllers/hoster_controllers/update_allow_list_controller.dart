@@ -11,18 +11,22 @@ class UpdateAllowListController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required List<String> addHostList,
     required List<String> removeHostList,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await hosterAbst.updateAllowList(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       addHostList: addHostList,
       removeHostList: removeHostList,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

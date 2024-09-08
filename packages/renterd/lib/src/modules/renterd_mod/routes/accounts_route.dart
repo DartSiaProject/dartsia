@@ -10,122 +10,154 @@ import '../features/bus/controllers/accounts_controllers/update_balance_controll
 
 class Accounts {
   static Future<Map<String, dynamic>> getAllAccounts({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async =>
       await sl<GetAllAccountsController>().call(
-        password: password,
-        username: username,
+        // password: password,
+        // username: username,
         serverAddress: serverAddress,
+        key: key,
+        iv: iv,
       );
 
   static Future<Map<String, dynamic>> getAnAcountById({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required String hostKey,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async =>
       await sl<GetAnAccountByIdController>().call(
-        username: username,
-        password: password,
+        // username: username,
+        // password: password,
         accountId: accountId,
         hostKey: hostKey,
         serverAddress: serverAddress,
+        key: key,
+        iv: iv,
       );
 
   static Future<Map<String, dynamic>> lockAnAccount({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required String hostKey,
     required bool exclusive,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async =>
       await sl<LockAnAccountController>().call(
-        username: username,
-        password: password,
+        // username: username,
+        // password: password,
         accountId: accountId,
         hostKey: hostKey,
         exclusive: exclusive,
         serverAddress: serverAddress,
+        key: key,
+        iv: iv,
       );
 
   static Future<Map<String, dynamic>> unLockAnAccount({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required String lockId,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async =>
       await sl<UnLockAnAccountController>().call(
-        username: username,
-        password: password,
+        // username: username,
+        // password: password,
         accountId: accountId,
         lockId: lockId,
         serverAddress: serverAddress,
+        key: key,
+        iv: iv,
       );
 
   static Future<Map<String, dynamic>> addDeposit({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required int amount,
     required String host,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async =>
       await sl<AddDepositController>().call(
-        username: username,
-        password: password,
+        // username: username,
+        // password: password,
         accountId: accountId,
         amount: amount,
         host: host,
         serverAddress: serverAddress,
+        key: key,
+        iv: iv,
       );
 
   static Future<Map<String, dynamic>> updateBalance({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required int amount,
     required String host,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async =>
       await sl<UpdateBalanceController>().call(
-        username: username,
-        password: password,
+        // username: username,
+        // password: password,
         accountId: accountId,
         amount: amount,
         host: host,
         serverAddress: serverAddress,
+        key: key,
+        iv: iv,
       );
 
   static Future<Map<String, dynamic>> syncBalance({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required String host,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async =>
       await sl<SyncBalanceController>().call(
-        username: username,
-        password: password,
+        // username: username,
+        // password: password,
         accountId: accountId,
         host: host,
         serverAddress: serverAddress,
+        key: key,
+        iv: iv,
       );
 
   static Future<Map<String, dynamic>> resetDrift({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async =>
       await sl<ResetDriftController>().call(
-        username: username,
-        password: password,
+        // username: username,
+        // password: password,
         accountId: accountId,
         serverAddress: serverAddress,
+        key: key,
+        iv: iv,
       );
 }

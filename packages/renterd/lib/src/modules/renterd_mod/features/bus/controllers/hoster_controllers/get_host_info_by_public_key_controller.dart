@@ -11,16 +11,20 @@ class GetHostInfoByPublicKeyController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String publicKey,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await hosterAbst.getHostInfoByPublicKey(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       publicKey: publicKey,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

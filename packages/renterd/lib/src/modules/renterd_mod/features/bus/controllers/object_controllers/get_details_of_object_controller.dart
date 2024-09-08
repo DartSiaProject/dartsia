@@ -11,18 +11,20 @@ class GetTheDetailsOfObjectController {
   }) : _objectAbst = objectAbst;
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String serverAddress,
     required String bucketName,
     required String fileName,
+    required String key,
+    required String iv,
   }) async {
     return await _objectAbst.getDetailsOfObjects(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       serverAddress: serverAddress,
       bucketName: bucketName,
-      fileName: fileName,
+      fileName: fileName, key: key, iv: iv,
     );
   }
 }

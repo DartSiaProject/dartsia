@@ -1,10 +1,12 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-    language:
-        strict-casts: true
-        strict-raw-types: true
-        strict-inference: true
+    errors:
+      inference_failure_on_collection_literal: ignore  
+    # language:
+    #     strict-casts: true
+    #     strict-raw-types: false
+    #     strict-inference: true
 
 linter:
     rules:

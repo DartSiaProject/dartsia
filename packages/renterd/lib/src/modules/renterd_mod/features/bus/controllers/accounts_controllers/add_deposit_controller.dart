@@ -11,20 +11,24 @@ class AddDepositController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String accountId,
     required String host,
     required int amount,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await accountsAbst.addDeposit(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       accountId: accountId,
       host: host,
       amount: amount,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }

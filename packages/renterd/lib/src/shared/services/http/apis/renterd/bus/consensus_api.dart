@@ -1,8 +1,5 @@
 class ConsensusApi {
-  static String postAcceptBlock(String serverAddress) =>
-      "$serverAddress/api/bus/consensus/acceptblock";
-  static String getState(String serverAddress) =>
-      "$serverAddress/api/bus/consensus/state";
-  static String getTotalPayout(int payout, String serverAddress) =>
-      "$serverAddress/api/bus/consensus/siafundfee/$payout";
+  static var postAcceptBlock = "/api/bus/consensus/acceptblock";
+  static var getState = "/api/bus/consensus/state";
+  static var getTotalPayout = "/api/bus/consensus/siafundfee";
 }

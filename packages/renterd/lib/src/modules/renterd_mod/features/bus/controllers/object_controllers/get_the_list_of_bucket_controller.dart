@@ -11,14 +11,16 @@ class GetTheListOfBucketController {
   }) : _objectAbst = objectAbst;
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await _objectAbst.getListOfBuckets(
-      username: username,
-      password: password,
-      serverAddress: serverAddress,
+      // username: username,
+      // password: password,
+      serverAddress: serverAddress, key: key, iv: iv,
     );
   }
 }

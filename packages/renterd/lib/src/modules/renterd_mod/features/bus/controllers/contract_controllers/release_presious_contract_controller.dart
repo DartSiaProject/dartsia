@@ -11,18 +11,22 @@ class ReleasePreviousContractController {
   });
 
   Future<Map<String, dynamic>> call({
-    String? username,
-    required String password,
+    // String? username,
+    // required String password,
     required String id,
     required int lockId,
     required String serverAddress,
+    required String key,
+    required String iv,
   }) async {
     return await contractAbst.releasePreviousContract(
-      username: username,
-      password: password,
+      // username: username,
+      // password: password,
       id: id,
       lockId: lockId,
       serverAddress: serverAddress,
+      key: key,
+      iv: iv,
     );
   }
 }
