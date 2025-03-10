@@ -11,6 +11,8 @@ export 'package:renterd/src/modules/renterd_mod/routes/contract_route.dart'
     show Contract;
 export 'package:renterd/src/modules/renterd_mod/routes/hoster_route.dart'
     show Hoster;
+export 'package:renterd/src/modules/renterd_mod/routes/notification_route.dart'
+    show Notification;
 export 'package:renterd/src/modules/renterd_mod/routes/object_route.dart'
     show Object;
 export 'package:renterd/src/shared/constants/int_const.dart';
